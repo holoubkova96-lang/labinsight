@@ -1,0 +1,7 @@
+dist
+node_modules
+public/data
+data_gen
+data
+*.md
+package-lock.json

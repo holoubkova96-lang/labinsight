@@ -1,0 +1,116 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Barevné tokeny: světlý režim je výchozí, tmavý je samostatně zvolená sada, ne inverze. */
+:root {
+  color-scheme: light;
+  --bg: #f4f5f2;
+  --surface: #fcfcfb;
+  --surface-2: #f0efec;
+  --border: #e2e1dc;
+  --text: #0b0b0b;
+  --text-2: #52514e;
+  --muted: #7a7974;
+  --grid: #e7e6e1;
+
+  /* akcent módu */
+  --clinical: #0f766e;
+  --clinical-soft: #ccfbef;
+  --business: #4f46e5;
+  --business-soft: #e0e7ff;
+
+  /* kategorická paleta grafů (validovaná, pevné pořadí) */
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
+  --series-4: #eda100;
+  --series-5: #e87ba4;
+  --series-6: #008300;
+  --series-7: #6250d6;
+  --series-8: #e34948;
+
+  /* stavové barvy – jen s ikonou a popiskem */
+  --good: #0ca30c;
+  --warning: #fab219;
+  --serious: #ec835a;
+  --critical: #d03b3b;
+}
+
+.dark {
+  color-scheme: dark;
+  --bg: #121211;
+  --surface: #1a1a19;
+  --surface-2: #242422;
+  --border: #33332f;
+  --text: #f0efec;
+  --text-2: #c3c2b7;
+  --muted: #918f87;
+  --grid: #2c2c29;
+
+  --clinical: #2dd4bf;
+  --clinical-soft: #123b36;
+  --business: #8b93f8;
+  --business-soft: #23264d;
+
+  --series-1: #3987e5;
+  --series-2: #d95926;
+  --series-3: #199e70;
+  --series-4: #c98500;
+  --series-5: #d55181;
+  --series-6: #008300;
+  --series-7: #9085e9;
+  --series-8: #e66767;
+}
+
+[data-mode='clinical'] {
+  --accent: var(--clinical);
+  --accent-soft: var(--clinical-soft);
+}
+[data-mode='business'] {
+  --accent: var(--business);
+  --accent-soft: var(--business-soft);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--border);
+  --color-ink: var(--text);
+  --color-ink-2: var(--text-2);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent, var(--clinical));
+  --color-accent-soft: var(--accent-soft, var(--clinical-soft));
+  --color-clinical: var(--clinical);
+  --color-business: var(--business);
+  --color-critical: var(--critical);
+  --color-good: var(--good);
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* tenký posuvník pro vodorovné záložky */
+.scroll-thin {
+  scrollbar-width: thin;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent, var(--clinical));
+  outline-offset: 2px;
+}

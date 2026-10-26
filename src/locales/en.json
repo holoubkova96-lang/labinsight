@@ -1,0 +1,180 @@
+{
+  "app": {
+    "name": "LabInsight",
+    "tagline": "Analytics dashboard for a clinical biochemistry & haematology laboratory",
+    "disclaimer": "Patients, volumes and costs are entirely fictional. Procedure points and the point value come from real sources (VZP, Decree No. 432/2025 Coll.).",
+    "disclaimerShort": "Fictional data"
+  },
+  "mode": {
+    "label": "Mode",
+    "clinical": "Clinical",
+    "business": "Business"
+  },
+  "nav": {
+    "sqlLab": "SQL lab",
+    "er": "Data model",
+    "about": "About the data",
+    "home": "Home",
+    "pages": "Pages"
+  },
+  "pages": {
+    "clinical": {
+      "overview": "Overview",
+      "results": "Results & distributions",
+      "critical": "Critical values",
+      "qc": "Quality control",
+      "tat": "TAT & operations",
+      "patient": "Patient",
+      "correlation": "Correlation",
+      "ordering": "Ordering behaviour"
+    },
+    "business": {
+      "overview": "Overview",
+      "frequency": "Volume vs. cost",
+      "breakeven": "Break-even",
+      "makebuy": "Make-or-buy",
+      "lifecycle": "Method lifecycle",
+      "payers": "Insurers & self-payers",
+      "requesters": "Requesters",
+      "pnl": "P&L waterfall",
+      "whatif": "What-if",
+      "forecast": "Forecast"
+    }
+  },
+  "theme": {
+    "toLight": "Switch to light mode",
+    "toDark": "Switch to dark mode"
+  },
+  "lang": {
+    "switch": "Language",
+    "cs": "CZ",
+    "en": "EN"
+  },
+  "slicers": {
+    "title": "Filters",
+    "open": "Filters",
+    "close": "Close filters",
+    "clearAll": "Clear all",
+    "period": "Period",
+    "from": "From",
+    "to": "To",
+    "presets": {
+      "3m": "3 mo",
+      "6m": "6 mo",
+      "12m": "12 mo",
+      "ytd": "YTD",
+      "all": "All"
+    },
+    "presetsHint": "Quick ranges count back from the end of the data (Sep 30, 2026).",
+    "depts": "Department / requester",
+    "payers": "Insurer / self-payer",
+    "groups": "Test group",
+    "tests": "Test",
+    "sex": "Sex",
+    "ages": "Age group",
+    "priority": "STAT / routine",
+    "analyzers": "Analyser",
+    "status": "Method status",
+    "search": "Search…",
+    "all": "All",
+    "selected_one": "{{count}} selected",
+    "selected_other": "{{count}} selected",
+    "selectAll": "Select all",
+    "none": "No matches",
+    "internal": "Hospital departments",
+    "external": "External clinics",
+    "self": "Self-payer",
+    "ignored": "These filters do not apply to this data: {{list}}"
+  },
+  "values": {
+    "sex": {
+      "M": "Male",
+      "F": "Female"
+    },
+    "priority": {
+      "STAT": "STAT",
+      "ROUTINE": "Routine"
+    },
+    "status": {
+      "ACTIVE": "Active",
+      "CANCELLED": "Discontinued"
+    }
+  },
+  "chips": {
+    "remove": "Remove filter {{label}}",
+    "active": "Active filters"
+  },
+  "common": {
+    "showSql": "Show SQL",
+    "hideSql": "Hide SQL",
+    "copy": "Copy",
+    "copied": "Copied",
+    "close": "Close",
+    "exportCsv": "CSV",
+    "exportPng": "PNG",
+    "exportCsvTitle": "Download chart data as CSV",
+    "exportPngTitle": "Download chart as PNG image",
+    "loading": "Loading…",
+    "empty": "No data for the selected filters.",
+    "error": "Query failed",
+    "retry": "Try again",
+    "comingSoon": "This page is in preparation.",
+    "sqlTitle": "Chart SQL query",
+    "sqlHint": "This chart is built by this query running in DuckDB inside your browser. The WHERE conditions mirror the active filters.",
+    "crossFilterHint": "Click the chart to filter"
+  },
+  "loading": {
+    "engine": "Starting the DuckDB database in your browser…",
+    "tables": "Loading data ({{loaded}}/{{total}} tables)…",
+    "error": "The data could not be loaded."
+  },
+  "kpi": {
+    "samples": "Samples (orders)",
+    "results": "Results",
+    "pathological": "Abnormal results",
+    "critical": "Critical values",
+    "tatStat": "Median TAT – STAT",
+    "tatRoutine": "Median TAT – routine",
+    "minutes": "{{value}} min",
+    "ofResults": "of {{total}} results"
+  },
+  "charts": {
+    "volumeTrend": "Test volume over time",
+    "volumeTrendSub": "Orders per month by priority · click a month to set the period",
+    "month": "Month",
+    "orders": "Orders",
+    "resultsCount": "Results",
+    "stat": "STAT",
+    "routine": "Routine"
+  },
+  "glossary": {
+    "tat": "TAT (turnaround time) – time from sample collection to result validation. The median is robust to extreme values.",
+    "pathological": "A result outside the reference interval for the patient's sex and age (flag L/H, critical LL/HH).",
+    "critical": "A critical value endangers the patient; the laboratory must phone it to the physician immediately.",
+    "samples": "Number of unique orders containing at least one result that matches the filters.",
+    "westgard": "Westgard rules – a set of statistical rules for evaluating quality-control runs (e.g. 1-3s, 2-2s, R-4s, 10x).",
+    "egfr": "eGFR – estimated glomerular filtration rate from creatinine, age and sex (CKD-EPI 2021 equation).",
+    "pointValue": "Point value – how many CZK an insurer pays per procedure point. For laboratories it is set by the annual reimbursement decree.",
+    "breakEven": "Break-even – the minimum volume at which revenue covers a method's fixed and variable costs."
+  },
+  "landing": {
+    "title": "LabInsight",
+    "lead": "An interactive clinical-laboratory dashboard that answers one question: does this method pay off given its volume and its cost?",
+    "clinicalCta": "Clinical view",
+    "clinicalDesc": "Results, reference intervals, critical values, quality control and operations.",
+    "businessCta": "Business view",
+    "businessDesc": "Points, reimbursement, cost per result, margins, break-even and method lifecycle.",
+    "sqlCta": "SQL lab",
+    "sqlDesc": "Your own SQL queries on DuckDB right in the browser.",
+    "author": "Author",
+    "authorName": "[First Last]",
+    "authorRole": "Data analyst",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "stack": "Tech stack"
+  },
+  "placeholder": {
+    "title": "Coming soon",
+    "text": "This page will be added in the next phase of the project."
+  }
+}

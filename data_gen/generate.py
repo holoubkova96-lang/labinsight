@@ -32,7 +32,8 @@ TMP = ROOT / "data" / "tmp"
 def write(df: pd.DataFrame, name: str, folder: Path = OUT) -> None:
     folder.mkdir(parents=True, exist_ok=True)
     path = folder / f"{name}.parquet"
-    df.to_parquet(path, index=False, compression="zstd")
+    # časová razítka v ms – v prohlížeči se z nich stane JS číslo bez ztráty přesnosti
+    df.to_parquet(path, index=False, compression="zstd", coerce_timestamps="ms", allow_truncated_timestamps=True)
     print(f"  {path.relative_to(ROOT)}: {len(df):>7,} řádků, {path.stat().st_size / 1024:,.0f} kB")
 
 

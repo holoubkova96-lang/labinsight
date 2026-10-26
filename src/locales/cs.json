@@ -1,0 +1,181 @@
+{
+  "app": {
+    "name": "LabInsight",
+    "tagline": "Analytický dashboard klinické biochemicko-hematologické laboratoře",
+    "disclaimer": "Pacienti, objemy a náklady jsou zcela fiktivní. Bodové hodnoty výkonů a hodnota bodu vychází z reálných zdrojů (VZP, vyhl. č. 432/2025 Sb.).",
+    "disclaimerShort": "Fiktivní data"
+  },
+  "mode": {
+    "label": "Mód",
+    "clinical": "Klinický",
+    "business": "Business"
+  },
+  "nav": {
+    "sqlLab": "SQL laboratoř",
+    "er": "Datový model",
+    "about": "O datech",
+    "home": "Úvod",
+    "pages": "Stránky"
+  },
+  "pages": {
+    "clinical": {
+      "overview": "Přehled",
+      "results": "Výsledky a distribuce",
+      "critical": "Kritické hodnoty",
+      "qc": "Kontrola kvality",
+      "tat": "TAT a provoz",
+      "patient": "Pacient",
+      "correlation": "Korelace",
+      "ordering": "Indikační chování"
+    },
+    "business": {
+      "overview": "Přehled",
+      "frequency": "Frekvence vs. náklad",
+      "breakeven": "Bod zvratu",
+      "makebuy": "Make-or-buy",
+      "lifecycle": "Životní cyklus metod",
+      "payers": "Pojišťovny a samoplátci",
+      "requesters": "Žadatelé",
+      "pnl": "P&L waterfall",
+      "whatif": "What-if",
+      "forecast": "Prognóza"
+    }
+  },
+  "theme": {
+    "toLight": "Přepnout na světlý režim",
+    "toDark": "Přepnout na tmavý režim"
+  },
+  "lang": {
+    "switch": "Jazyk",
+    "cs": "CZ",
+    "en": "EN"
+  },
+  "slicers": {
+    "title": "Filtry",
+    "open": "Filtry",
+    "close": "Zavřít filtry",
+    "clearAll": "Zrušit vše",
+    "period": "Období",
+    "from": "Od",
+    "to": "Do",
+    "presets": {
+      "3m": "3 měs.",
+      "6m": "6 měs.",
+      "12m": "12 měs.",
+      "ytd": "Letos",
+      "all": "Vše"
+    },
+    "presetsHint": "Rychlé volby se počítají od konce dat (30. 9. 2026).",
+    "depts": "Oddělení / žadatel",
+    "payers": "Pojišťovna / samoplátce",
+    "groups": "Skupina vyšetření",
+    "tests": "Vyšetření",
+    "sex": "Pohlaví",
+    "ages": "Věková skupina",
+    "priority": "STAT / rutina",
+    "analyzers": "Analyzátor",
+    "status": "Stav metody",
+    "search": "Hledat…",
+    "all": "Vše",
+    "selected_one": "{{count}} vybrána",
+    "selected_few": "{{count}} vybrány",
+    "selected_other": "{{count}} vybráno",
+    "selectAll": "Vybrat vše",
+    "none": "Nic nenalezeno",
+    "internal": "Nemocniční oddělení",
+    "external": "Externí ambulance",
+    "self": "Samoplátce",
+    "ignored": "Na tato data se nevztahuje filtr: {{list}}"
+  },
+  "values": {
+    "sex": {
+      "M": "Muž",
+      "F": "Žena"
+    },
+    "priority": {
+      "STAT": "STAT",
+      "ROUTINE": "Rutina"
+    },
+    "status": {
+      "ACTIVE": "Aktivní",
+      "CANCELLED": "Zrušená"
+    }
+  },
+  "chips": {
+    "remove": "Odebrat filtr {{label}}",
+    "active": "Aktivní filtry"
+  },
+  "common": {
+    "showSql": "Zobrazit SQL",
+    "hideSql": "Skrýt SQL",
+    "copy": "Kopírovat",
+    "copied": "Zkopírováno",
+    "close": "Zavřít",
+    "exportCsv": "CSV",
+    "exportPng": "PNG",
+    "exportCsvTitle": "Stáhnout data grafu jako CSV",
+    "exportPngTitle": "Stáhnout graf jako obrázek PNG",
+    "loading": "Načítám…",
+    "empty": "Pro zvolené filtry nejsou žádná data.",
+    "error": "Dotaz selhal",
+    "retry": "Zkusit znovu",
+    "comingSoon": "Tato stránka se připravuje.",
+    "sqlTitle": "SQL dotaz grafu",
+    "sqlHint": "Graf vzniká tímto dotazem nad DuckDB přímo v prohlížeči. Podmínky WHERE odpovídají aktivním filtrům.",
+    "crossFilterHint": "Klikni do grafu pro filtrování"
+  },
+  "loading": {
+    "engine": "Spouštím databázi DuckDB v prohlížeči…",
+    "tables": "Načítám data ({{loaded}}/{{total}} tabulek)…",
+    "error": "Data se nepodařilo načíst."
+  },
+  "kpi": {
+    "samples": "Vzorky (žádanky)",
+    "results": "Výsledky",
+    "pathological": "Patologické výsledky",
+    "critical": "Kritické hodnoty",
+    "tatStat": "Medián TAT – STAT",
+    "tatRoutine": "Medián TAT – rutina",
+    "minutes": "{{value}} min",
+    "ofResults": "z {{total}} výsledků"
+  },
+  "charts": {
+    "volumeTrend": "Objem vyšetření v čase",
+    "volumeTrendSub": "Počet žádanek po měsících podle priority · klikem na měsíc nastavíš období",
+    "month": "Měsíc",
+    "orders": "Žádanky",
+    "resultsCount": "Výsledky",
+    "stat": "STAT",
+    "routine": "Rutina"
+  },
+  "glossary": {
+    "tat": "TAT (turnaround time) – doba od odběru vzorku do validace výsledku. Medián je odolný vůči extrémním hodnotám.",
+    "pathological": "Výsledek mimo referenční meze pro dané pohlaví a věk (příznak L/H, kritické LL/HH).",
+    "critical": "Kritická hodnota ohrožuje pacienta a laboratoř ji musí neprodleně telefonicky nahlásit lékaři.",
+    "samples": "Počet unikátních žádanek, které obsahují alespoň jeden výsledek vyhovující filtrům.",
+    "westgard": "Westgardova pravidla – sada statistických pravidel pro vyhodnocení kontrol kvality (např. 1-3s, 2-2s, R-4s, 10x).",
+    "egfr": "eGFR – odhad glomerulární filtrace z kreatininu, věku a pohlaví (rovnice CKD-EPI 2021).",
+    "pointValue": "Hodnota bodu – kolik Kč zaplatí pojišťovna za 1 bod výkonu. Pro laboratoře ji stanoví úhradová vyhláška.",
+    "breakEven": "Bod zvratu – minimální frekvence, při které výnos pokryje fixní i variabilní náklady metody."
+  },
+  "landing": {
+    "title": "LabInsight",
+    "lead": "Interaktivní dashboard klinické laboratoře, který odpovídá na otázku: vyplatí se nám tato metoda vzhledem k její frekvenci a nákladům?",
+    "clinicalCta": "Klinický pohled",
+    "clinicalDesc": "Výsledky, referenční meze, kritické hodnoty, kontrola kvality a provoz.",
+    "businessCta": "Business pohled",
+    "businessDesc": "Body, úhrady, náklady na výsledek, marže, bod zvratu a životní cyklus metod.",
+    "sqlCta": "SQL laboratoř",
+    "sqlDesc": "Vlastní SQL dotazy nad DuckDB přímo v prohlížeči.",
+    "author": "Autorka",
+    "authorName": "[Jméno Příjmení]",
+    "authorRole": "Datová analytička",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "stack": "Technologie"
+  },
+  "placeholder": {
+    "title": "Připravuje se",
+    "text": "Tato stránka bude doplněna v další fázi projektu."
+  }
+}
