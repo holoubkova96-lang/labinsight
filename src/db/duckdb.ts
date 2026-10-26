@@ -1,4 +1,5 @@
 import * as duckdb from '@duckdb/duckdb-wasm';
+import { DataType } from 'apache-arrow';
 import mvpWasm from '@duckdb/duckdb-wasm/dist/duckdb-mvp.wasm?url';
 import mvpWorker from '@duckdb/duckdb-wasm/dist/duckdb-browser-mvp.worker.js?url';
 import ehWasm from '@duckdb/duckdb-wasm/dist/duckdb-eh.wasm?url';
@@ -102,11 +103,18 @@ export async function query<T extends Row = Row>(sql: string): Promise<T[]> {
   const run = queue.then(() => conn.query(sql));
   queue = run.catch(() => undefined);
   const table = await run;
-  const fields = table.schema.fields.map((f) => f.name);
+  // DECIMAL přichází z Arrow jako celé číslo bez desetinné čárky – vydělíme 10^scale
+  const fields = table.schema.fields.map((f) => ({
+    name: f.name,
+    scale: DataType.isDecimal(f.type) ? 10 ** f.type.scale : 0,
+  }));
   const rows: T[] = [];
   for (const r of table.toArray()) {
     const o: Row = {};
-    for (const f of fields) o[f] = normalize(r[f]);
+    for (const f of fields) {
+      const v = r[f.name];
+      o[f.name] = f.scale && v != null ? Number(String(v)) / f.scale : normalize(v);
+    }
     rows.push(o as T);
   }
   return rows;

@@ -13,9 +13,9 @@ export const PAGES: Record<Mode, PageDef[]> = {
     { id: 'critical', component: lazy(() => import('./clinical/Critical')) },
     { id: 'qc', component: lazy(() => import('./clinical/QualityControl')) },
     { id: 'tat', component: lazy(() => import('./clinical/Tat')) },
-    { id: 'patient' },
-    { id: 'correlation' },
-    { id: 'ordering' },
+    { id: 'patient', component: lazy(() => import('./clinical/Patient')) },
+    { id: 'correlation', component: lazy(() => import('./clinical/Correlation')) },
+    { id: 'ordering', component: lazy(() => import('./clinical/Ordering')) },
   ],
   business: [
     { id: 'overview' },
