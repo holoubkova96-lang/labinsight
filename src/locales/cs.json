@@ -171,7 +171,13 @@
     "spearman": "Spearmanův ρ je korelace pořadí – odolná vůči odlehlým hodnotám a nelineárnímu (monotónnímu) vztahu.",
     "r2": "Koeficient determinace R² říká, jakou část rozptylu Y vysvětluje regrese na X.",
     "mri": "Minimální interval opakování (MRI) – doba, před jejímž uplynutím opakování vyšetření zpravidla nepřinese novou informaci (např. HbA1c 90 dní).",
-    "costPerResult": "Odhad: počet předčasných opakování × skutečný náklad na vydaný výsledek daného vyšetření z nákladového modelu."
+    "costPerResult": "Odhad: počet předčasných opakování × skutečný náklad na vydaný výsledek daného vyšetření z nákladového modelu.",
+    "procedures": "Výkon = vydaný výsledek vyšetření, který laboratoř vykazuje pojišťovně (body) nebo účtuje samoplátci.",
+    "absorption": "Náklady se přiřazují vydaným výsledkům: počet výsledků × skutečný náklad na výsledek metody v daném měsíci (absorpční kalkulace).",
+    "costPerReportable": "Skutečný náklad na vydaný výsledek = všechny náklady metody (reagencie, QC, kalibrace, expirace, EHK, personál, leasing, režie) / počet vydaných výsledků.",
+    "pareto": "Paretovo pravidlo 80/20: malá část položek často tvoří většinu efektu. Seřazené sloupce a kumulativní čára ukazují, kolik metod tvoří 80 %.",
+    "payback": "Doba návratnosti = jednorázové náklady zavedení (validace, zaškolení) / měsíční provozní marže.",
+    "sensitivity": "Citlivostní analýza ukazuje, které předpoklady nejvíc ovlivní výsledek. Nejdelší pruhy = parametry, které je potřeba ověřit nejpečlivěji."
   },
   "landing": {
     "title": "LabInsight",
@@ -356,5 +362,137 @@
     "kind": "Typ",
     "internal": "Interní",
     "external": "Externí"
+  },
+  "units": {
+    "kCzk": "tis. Kč",
+    "mCzk": "mil. Kč"
+  },
+  "bizOverview": {
+    "procedures": "Výkony (vydané výsledky)",
+    "points": "Objem bodů (pojišťovny)",
+    "revenue": "Výnos",
+    "cost": "Náklady",
+    "margin": "Marže",
+    "perOrder": "Výnos na žádanku",
+    "mom": "m/m",
+    "yoy": "r/r",
+    "deltaNote": "Změny „m/m“ a „r/r“ porovnávají poslední měsíc období ({{month}}) s předchozím měsícem a se stejným měsícem loni.",
+    "trend": "Výnosy, náklady a marže po měsících",
+    "trendSub": "Náklady = vydané výsledky × skutečný náklad na výsledek z nákladového modelu",
+    "byGroup": "Výnosy, náklady a marže podle skupiny vyšetření"
+  },
+  "frequency": {
+    "profit": "Zisková metoda",
+    "loss": "Ztrátová metoda",
+    "freq": "Frekvence",
+    "month": "měs.",
+    "revPer": "Výnos na výsledek",
+    "costPer": "Náklad na výsledek",
+    "marginPer": "Marže na výsledek",
+    "totalRevenue": "Výnos celkem",
+    "totalMargin": "Marže celkem",
+    "xAxis": "Výsledků za měsíc (log. škála)",
+    "yAxis": "Marže na výsledek",
+    "median": "medián frekvence",
+    "quadrant": {
+      "stars": "Hvězdy",
+      "volume": "Objemové",
+      "niche": "Niche, ale ziskové",
+      "cut": "Kandidáti na zrušení"
+    },
+    "quadrantDesc": {
+      "stars": "vysoká frekvence a kladná marže – pilíře laboratoře",
+      "volume": "vysoká frekvence, ale ztráta – optimalizovat náklady",
+      "niche": "nízká frekvence, ale ziskové – udržet",
+      "cut": "nízká frekvence a ztráta – zvážit odeslání nebo zrušení"
+    },
+    "bubble": "Frekvence vs. marže metod",
+    "bubbleSub": "Velikost bubliny = celkový výnos · barva = ziskovost · klikem vybereš metodu pro křivku nákladu",
+    "curve": "Náklad na výsledek podle frekvence – {{test}}",
+    "curveSub": "Model: fixní náklady (QC, kalibrace, leasing, EHK) se rozpočítají na méně výsledků; při nízké frekvenci navíc expirují reagencie",
+    "costCurve": "Náklad na výsledek (model)",
+    "actual": "Skutečnost",
+    "breakEven": "bod zvratu",
+    "pareto": "Paretova analýza",
+    "paretoRevenue": "Výnosy",
+    "paretoLoss": "Ztráty",
+    "shareRevenue": "Podíl na výnosu",
+    "shareLoss": "Podíl na ztrátě",
+    "cumulative": "Kumulativně",
+    "paretoRevenueSub": "{{n}} z {{total}} metod tvoří 80 % výnosu · klikem filtruješ metodu",
+    "paretoLossSub": "{{n}} z {{total}} ztrátových metod tvoří 80 % ztráty · klikem filtruješ metodu",
+    "selectedNote": "{{test}}: expirace tvoří {{expiry}} nákladů, fixní náklady (QC, kalibrace, EHK, leasing, validace) {{fixed}}.",
+    "clippedNote": "↓ Mimo osu (marže na výsledek): {{list}}"
+  },
+  "breakeven": {
+    "form": "Parametry metody",
+    "preset": "Vycházet z",
+    "newMethod": "Nová metoda (šablona)",
+    "existing": "Existující metody",
+    "freq": "Očekávaná frekvence",
+    "formNote": "Simulace jednoho analyzátoru. Výnos = body × hodnota bodu (samoplátci nejsou zahrnuti). Osobní sazby: laborant 420 Kč/h, VŠ 780 Kč/h.",
+    "group": {
+      "revenue": "Výnos",
+      "reagent": "Reagencie",
+      "quality": "Kontrola kvality",
+      "fixed": "Personál a fixní náklady"
+    },
+    "field": {
+      "points": "Body výkonu",
+      "pointValue": "Hodnota bodu",
+      "reagentCzk": "Reagencie na test",
+      "packSize": "Testů v balení",
+      "stabilityDays": "Stabilita po otevření",
+      "qcPerDay": "QC měření denně",
+      "qcCzk": "Cena QC měření",
+      "calPerMonth": "Kalibrací měsíčně",
+      "calCzk": "Cena kalibrace",
+      "ehkYearCzk": "EHK ročně",
+      "techMin": "Laborant na test",
+      "uniMin": "VŠ na test",
+      "leaseMonthCzk": "Leasing a servis měsíčně",
+      "overheadPerResult": "Režie na výsledek",
+      "oneOffCzk": "Validace a zaškolení"
+    },
+    "unit": {
+      "pts": "b.",
+      "czk": "Kč",
+      "days": "dní",
+      "min": "min"
+    },
+    "verdict": {
+      "yes": "Vyplatí se zavést",
+      "borderline": "Hraniční – vyplatí se jen těsně",
+      "no": "Nevyplatí se – metoda by byla ztrátová"
+    },
+    "verdictText": "Bod zvratu je {{be}} výsledků měsíčně; očekávaná frekvence {{freq}} je {{ratio}} bodu zvratu.",
+    "verdictNever": "Ani při velmi vysoké frekvenci výnos nepokryje náklady – výnos na výsledek je nižší než variabilní náklad.",
+    "kpiBreakEven": "Bod zvratu",
+    "withoutAmort": "bez odpisu validace: {{n}}",
+    "vsRevenue": "výnos {{rev}}",
+    "monthlyMargin": "Měsíční marže",
+    "yearly": "ročně {{v}}",
+    "payback": "Návratnost zavedení",
+    "months": "{{n}} měs.",
+    "expected": "očekávaná",
+    "base": "Výchozí marže",
+    "marginChange": "Změna měsíční marže",
+    "curve": "Náklad na výsledek vs. výnos na výsledek",
+    "curveSub": "Průsečík křivek = bod zvratu; svislá čára = očekávaná frekvence",
+    "tornado": "Citlivostní analýza (tornádo)",
+    "tornadoSub": "Změna měsíční marže při změně parametru o ±20 % (výchozí marže {{base}})",
+    "structure": "Struktura měsíčních nákladů",
+    "structureSub": "Při očekávané frekvenci, celkem {{total}} měsíčně",
+    "part": {
+      "variable": "Reagencie a materiál",
+      "expiry": "Expirace reagencií",
+      "qc": "Kontrola kvality",
+      "calibration": "Kalibrace",
+      "ehk": "EHK",
+      "staff": "Personál",
+      "lease": "Leasing a servis",
+      "overhead": "Režie",
+      "amortization": "Odpis validace"
+    }
   }
 }

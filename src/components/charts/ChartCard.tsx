@@ -18,6 +18,8 @@ type Props = {
   error: string | null;
   /** Filtry, které se na data grafu nevztahují. */
   ignoredNote?: string;
+  /** Poznámka pod grafem (např. hodnoty mimo osu). */
+  note?: string;
   /** Výška oblasti grafu v px; 'auto' pro tabulky. */
   height?: number | 'auto';
   fileName: string;
@@ -56,6 +58,7 @@ export function ChartCard({
   loading,
   error,
   ignoredNote,
+  note,
   height = 300,
   fileName,
   controls,
@@ -135,6 +138,7 @@ export function ChartCard({
           </div>
         )}
       </div>
+      {note && <p className="mt-2 text-xs text-muted">{note}</p>}
       {showSql && <SqlModal sql={sql} onClose={() => setShowSql(false)} />}
     </section>
   );

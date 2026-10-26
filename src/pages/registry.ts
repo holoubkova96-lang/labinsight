@@ -18,9 +18,9 @@ export const PAGES: Record<Mode, PageDef[]> = {
     { id: 'ordering', component: lazy(() => import('./clinical/Ordering')) },
   ],
   business: [
-    { id: 'overview' },
-    { id: 'frequency' },
-    { id: 'breakeven' },
+    { id: 'overview', component: lazy(() => import('./business/Overview')) },
+    { id: 'frequency', component: lazy(() => import('./business/Frequency')) },
+    { id: 'breakeven', component: lazy(() => import('./business/BreakEven')) },
     { id: 'makebuy' },
     { id: 'lifecycle' },
     { id: 'payers' },

@@ -170,7 +170,13 @@
     "spearman": "Spearman's ρ is a rank correlation – robust to outliers and to non-linear (monotonic) relationships.",
     "r2": "The coefficient of determination R² is the share of Y's variance explained by the regression on X.",
     "mri": "Minimum retesting interval (MRI) – the time before which repeating a test usually adds no new information (e.g. HbA1c 90 days).",
-    "costPerResult": "Estimate: number of early repeats × actual cost per reportable result of that test from the cost model."
+    "costPerResult": "Estimate: number of early repeats × actual cost per reportable result of that test from the cost model.",
+    "procedures": "A procedure = a reported test result the lab bills to an insurer (points) or to a self-payer.",
+    "absorption": "Costs are assigned to reported results: number of results × the method's actual cost per result in that month (absorption costing).",
+    "costPerReportable": "Actual cost per reportable result = all method costs (reagents, QC, calibration, expiry, EQA, staff, lease, overhead) / number of reported results.",
+    "pareto": "The 80/20 Pareto rule: a small share of items often drives most of the effect. Sorted bars with a cumulative line show how many methods make up 80 %.",
+    "payback": "Payback period = one-off introduction costs (validation, training) / monthly operating margin.",
+    "sensitivity": "Sensitivity analysis shows which assumptions move the result most. The longest bars are the parameters to verify most carefully."
   },
   "landing": {
     "title": "LabInsight",
@@ -354,5 +360,137 @@
     "kind": "Type",
     "internal": "Internal",
     "external": "External"
+  },
+  "units": {
+    "kCzk": "k CZK",
+    "mCzk": "m CZK"
+  },
+  "bizOverview": {
+    "procedures": "Procedures (reported results)",
+    "points": "Points (insurers)",
+    "revenue": "Revenue",
+    "cost": "Costs",
+    "margin": "Margin",
+    "perOrder": "Revenue per order",
+    "mom": "MoM",
+    "yoy": "YoY",
+    "deltaNote": "MoM and YoY compare the last month of the period ({{month}}) with the previous month and with the same month last year.",
+    "trend": "Revenue, costs and margin by month",
+    "trendSub": "Costs = reported results × actual cost per result from the cost model",
+    "byGroup": "Revenue, costs and margin by test group"
+  },
+  "frequency": {
+    "profit": "Profitable method",
+    "loss": "Loss-making method",
+    "freq": "Volume",
+    "month": "mo",
+    "revPer": "Revenue per result",
+    "costPer": "Cost per result",
+    "marginPer": "Margin per result",
+    "totalRevenue": "Total revenue",
+    "totalMargin": "Total margin",
+    "xAxis": "Results per month (log scale)",
+    "yAxis": "Margin per result",
+    "median": "median volume",
+    "quadrant": {
+      "stars": "Stars",
+      "volume": "Volume drivers",
+      "niche": "Niche but profitable",
+      "cut": "Candidates to discontinue"
+    },
+    "quadrantDesc": {
+      "stars": "high volume and positive margin – the lab's pillars",
+      "volume": "high volume but loss-making – optimise costs",
+      "niche": "low volume but profitable – keep",
+      "cut": "low volume and loss-making – consider sending out or discontinuing"
+    },
+    "bubble": "Method volume vs. margin",
+    "bubbleSub": "Bubble size = total revenue · colour = profitability · click to pick a method for the cost curve",
+    "curve": "Cost per result by volume – {{test}}",
+    "curveSub": "Model: fixed costs (QC, calibration, lease, EQA) are spread over fewer results; at low volume reagents also expire",
+    "costCurve": "Cost per result (model)",
+    "actual": "Actual",
+    "breakEven": "break-even",
+    "pareto": "Pareto analysis",
+    "paretoRevenue": "Revenue",
+    "paretoLoss": "Losses",
+    "shareRevenue": "Share of revenue",
+    "shareLoss": "Share of loss",
+    "cumulative": "Cumulative",
+    "paretoRevenueSub": "{{n}} of {{total}} methods make up 80 % of revenue · click to filter the method",
+    "paretoLossSub": "{{n}} of {{total}} loss-making methods make up 80 % of the loss · click to filter",
+    "selectedNote": "{{test}}: reagent expiry is {{expiry}} of costs, fixed costs (QC, calibration, EQA, lease, validation) {{fixed}}.",
+    "clippedNote": "↓ Off the axis (margin per result): {{list}}"
+  },
+  "breakeven": {
+    "form": "Method parameters",
+    "preset": "Start from",
+    "newMethod": "New method (template)",
+    "existing": "Existing methods",
+    "freq": "Expected volume",
+    "formNote": "Simulates a single analyser. Revenue = points × point value (self-payers excluded). Staff rates: technician CZK 420/h, specialist CZK 780/h.",
+    "group": {
+      "revenue": "Revenue",
+      "reagent": "Reagents",
+      "quality": "Quality control",
+      "fixed": "Staff and fixed costs"
+    },
+    "field": {
+      "points": "Procedure points",
+      "pointValue": "Point value",
+      "reagentCzk": "Reagent per test",
+      "packSize": "Tests per pack",
+      "stabilityDays": "Stability once opened",
+      "qcPerDay": "QC runs per day",
+      "qcCzk": "QC run cost",
+      "calPerMonth": "Calibrations per month",
+      "calCzk": "Calibration cost",
+      "ehkYearCzk": "EQA per year",
+      "techMin": "Technician per test",
+      "uniMin": "Specialist per test",
+      "leaseMonthCzk": "Lease & service per month",
+      "overheadPerResult": "Overhead per result",
+      "oneOffCzk": "Validation & training"
+    },
+    "unit": {
+      "pts": "pts",
+      "czk": "CZK",
+      "days": "days",
+      "min": "min"
+    },
+    "verdict": {
+      "yes": "Worth introducing",
+      "borderline": "Borderline – only just pays off",
+      "no": "Not worth it – the method would lose money"
+    },
+    "verdictText": "Break-even is {{be}} results per month; the expected volume of {{freq}} is {{ratio}} of break-even.",
+    "verdictNever": "Even at very high volume revenue never covers costs – revenue per result is below the variable cost.",
+    "kpiBreakEven": "Break-even",
+    "withoutAmort": "without validation write-off: {{n}}",
+    "vsRevenue": "revenue {{rev}}",
+    "monthlyMargin": "Monthly margin",
+    "yearly": "per year {{v}}",
+    "payback": "Payback of introduction",
+    "months": "{{n}} mo",
+    "expected": "expected",
+    "base": "Base margin",
+    "marginChange": "Change in monthly margin",
+    "curve": "Cost per result vs. revenue per result",
+    "curveSub": "Where the curves cross = break-even; vertical line = expected volume",
+    "tornado": "Sensitivity analysis (tornado)",
+    "tornadoSub": "Change in monthly margin when a parameter moves by ±20 % (base margin {{base}})",
+    "structure": "Monthly cost structure",
+    "structureSub": "At the expected volume, {{total}} per month in total",
+    "part": {
+      "variable": "Reagents & consumables",
+      "expiry": "Reagent expiry",
+      "qc": "Quality control",
+      "calibration": "Calibration",
+      "ehk": "EQA",
+      "staff": "Staff",
+      "lease": "Lease & service",
+      "overhead": "Overhead",
+      "amortization": "Validation write-off"
+    }
   }
 }
