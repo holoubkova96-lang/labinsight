@@ -9,10 +9,10 @@ type PageDef = { id: string; component?: LazyExoticComponent<ComponentType> };
 export const PAGES: Record<Mode, PageDef[]> = {
   clinical: [
     { id: 'overview', component: lazy(() => import('./clinical/Overview')) },
-    { id: 'results' },
-    { id: 'critical' },
-    { id: 'qc' },
-    { id: 'tat' },
+    { id: 'results', component: lazy(() => import('./clinical/Results')) },
+    { id: 'critical', component: lazy(() => import('./clinical/Critical')) },
+    { id: 'qc', component: lazy(() => import('./clinical/QualityControl')) },
+    { id: 'tat', component: lazy(() => import('./clinical/Tat')) },
     { id: 'patient' },
     { id: 'correlation' },
     { id: 'ordering' },

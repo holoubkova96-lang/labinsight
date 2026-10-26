@@ -11,6 +11,9 @@ export type ChartTheme = {
   border: string;
   accent: string;
   critical: string;
+  warning: string;
+  /** Sekvenční škála jednoho odstínu: první = málo, poslední = hodně (pro tmavý režim obrácená). */
+  sequential: string[];
 };
 
 function cssVar(el: Element, name: string): string {
@@ -33,9 +36,13 @@ export function useChartTheme(): ChartTheme {
       border: cssVar(el, '--border'),
       accent: cssVar(el, '--accent') || cssVar(el, '--clinical'),
       critical: cssVar(el, '--critical'),
+      warning: cssVar(el, '--warning'),
+      sequential:
+        theme === 'dark'
+          ? ['#1d2a3d', '#184f95', '#2a78d6', '#6da7ec', '#cde2fb']
+          : ['#e3eefc', '#9ec5f4', '#3987e5', '#1c5cab', '#0d366b'],
     };
     // theme je záměrná závislost: změna třídy .dark mění hodnoty proměnných
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [theme]);
 }
 

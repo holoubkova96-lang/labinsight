@@ -18,8 +18,14 @@ type Props = {
   error: string | null;
   /** Filtry, které se na data grafu nevztahují. */
   ignoredNote?: string;
-  height?: number;
+  /** Výška oblasti grafu v px; 'auto' pro tabulky. */
+  height?: number | 'auto';
   fileName: string;
+  /** Ovládací prvky karty (výběr testu, přepínač dimenze…). */
+  controls?: ReactNode;
+  /** Tabulková karta nemá PNG export. */
+  png?: boolean;
+  className?: string;
   children: (register: (chart: EChartsType | null) => void) => ReactNode;
 };
 
@@ -52,6 +58,9 @@ export function ChartCard({
   ignoredNote,
   height = 300,
   fileName,
+  controls,
+  png = true,
+  className = '',
   children,
 }: Props) {
   const { t } = useTranslation();
@@ -75,7 +84,7 @@ export function ChartCard({
   const btn =
     'flex items-center gap-1 rounded-md px-2 py-1 text-xs text-ink-2 hover:bg-surface-2 hover:text-ink disabled:opacity-40';
   return (
-    <section className="rounded-xl border border-line bg-surface p-4">
+    <section className={`min-w-0 rounded-xl border border-line bg-surface p-4 ${className}`}>
       <header className="mb-3 flex flex-wrap items-start justify-between gap-2">
         <div className="min-w-0">
           <h2 className="flex items-center gap-1.5 text-sm font-semibold">
@@ -98,23 +107,26 @@ export function ChartCard({
             <Icon name="download" className="size-3.5" />
             {t('common.exportCsv')}
           </button>
-          <button
-            className={btn}
-            onClick={exportPng}
-            disabled={!data?.length}
-            title={t('common.exportPngTitle')}
-          >
-            <Icon name="download" className="size-3.5" />
-            {t('common.exportPng')}
-          </button>
+          {png && (
+            <button
+              className={btn}
+              onClick={exportPng}
+              disabled={!data?.length}
+              title={t('common.exportPngTitle')}
+            >
+              <Icon name="download" className="size-3.5" />
+              {t('common.exportPng')}
+            </button>
+          )}
         </div>
       </header>
+      {controls && <div className="mb-3 flex flex-wrap items-center gap-2">{controls}</div>}
       {ignoredNote && <p className="mb-2 text-xs text-muted">{ignoredNote}</p>}
-      <div style={{ height }}>
+      <div style={height === 'auto' ? undefined : { height }} className={height === 'auto' ? 'min-h-24' : ''}>
         {error ? (
           <ErrorState message={error} />
         ) : loading && !data ? (
-          <Skeleton className="h-full" />
+          <Skeleton className={height === 'auto' ? 'h-40' : 'h-full'} />
         ) : !data?.length ? (
           <EmptyState />
         ) : (

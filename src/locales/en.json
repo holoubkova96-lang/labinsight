@@ -155,7 +155,16 @@
     "westgard": "Westgard rules – a set of statistical rules for evaluating quality-control runs (e.g. 1-3s, 2-2s, R-4s, 10x).",
     "egfr": "eGFR – estimated glomerular filtration rate from creatinine, age and sex (CKD-EPI 2021 equation).",
     "pointValue": "Point value – how many CZK an insurer pays per procedure point. For laboratories it is set by the annual reimbursement decree.",
-    "breakEven": "Break-even – the minimum volume at which revenue covers a method's fixed and variable costs."
+    "breakEven": "Break-even – the minimum volume at which revenue covers a method's fixed and variable costs.",
+    "histogram": "A histogram shows how often values fall into each interval and reveals the shape of the distribution (e.g. skew in enzymes).",
+    "boxplot": "A box plot summarises a distribution in five numbers and makes groups easy to compare.",
+    "criticalTarget": "Recommended target: phone a critical value to the physician within 30 minutes of validation.",
+    "cv": "Coefficient of variation = SD / mean × 100. Measures the imprecision (spread) of repeated control measurements.",
+    "bias": "Bias = (control mean − target) / target × 100. Measures systematic deviation of the method.",
+    "leveyJennings": "A Levey-Jennings chart plots control measurements over time against the target and ±1, 2 and 3 SD bands.",
+    "percentile": "90th percentile = the value below which 90 % of samples fall. It shows the long tail of slow samples better than the mean.",
+    "ecdf": "Empirical cumulative distribution: for each time, the share of samples that already have a result.",
+    "sankey": "A Sankey diagram shows flows between states; band width is proportional to the number of results."
   },
   "landing": {
     "title": "LabInsight",
@@ -176,5 +185,103 @@
   "placeholder": {
     "title": "Coming soon",
     "text": "This page will be added in the next phase of the project."
+  },
+  "results": {
+    "test": "Test",
+    "pickerHint": "Click a bar in the “out of range” chart to switch the test.",
+    "kpiN": "Results",
+    "kpiMedian": "Median",
+    "kpiLow": "Below reference interval",
+    "kpiHigh": "Above reference interval",
+    "histogram": "Value distribution – {{test}}",
+    "histogramSub": "Histogram with adult reference limits (dashed)",
+    "count": "Count",
+    "median": "Median",
+    "boxplot": "Values by group",
+    "boxplotSub": "Box = 25th–75th percentile, line = median, whiskers = 5th and 95th percentile; groups with n ≥ 20",
+    "boxplotBy": "Split by",
+    "outOfRange": "Results outside the reference interval",
+    "outOfRangeSub": "20 tests with the highest share of abnormal results · click to select a test",
+    "low": "Below",
+    "high": "Above"
+  },
+  "critical": {
+    "reportedIn": "reported in {{min}} min",
+    "onTime": "Within 30 min",
+    "late": "After 30 min",
+    "minutes": "minutes (log scale)",
+    "target": "30 min target",
+    "count": "Count",
+    "within30": "Reported within 30 min",
+    "medianTime": "Median time to report",
+    "over60": "Reported after 60 min",
+    "timeline": "Critical value notification timeline",
+    "timelineSub": "Each dot = one critical value; height = time from validation to phone notification",
+    "histogram": "Time to notification",
+    "histogramSub": "Notifications in 5-minute intervals; those after 30 minutes in orange",
+    "byDept": "Share reported within 30 min by department",
+    "byTest": "Critical values by test"
+  },
+  "qc": {
+    "target": "target",
+    "lot": "lot",
+    "mean": "mean",
+    "level": "Level",
+    "warning": "1-2s warning",
+    "reject": "Rejection (Westgard)",
+    "runs": "Control measurements",
+    "cv": "CV % (imprecision)",
+    "bias": "Bias % (deviation)",
+    "rejections": "Rule violations",
+    "lj": "Levey-Jennings chart – {{test}} · {{analyzer}}",
+    "ljSub": "Both control levels in SD units from target · default view is the last 90 days; drag the slider to change it",
+    "violations": "Westgard rule violations",
+    "violationsSub": "Measurements that would reject the run (newest first)",
+    "date": "Date",
+    "value": "Value",
+    "rules": "Rules",
+    "summary": "QC overview of all methods",
+    "summarySub": "Click a row to show that method's Levey-Jennings chart"
+  },
+  "tat": {
+    "dow": {
+      "1": "Mon",
+      "2": "Tue",
+      "3": "Wed",
+      "4": "Thu",
+      "5": "Fri",
+      "6": "Sat",
+      "7": "Sun"
+    },
+    "samples": "samples",
+    "hour": "Hour received",
+    "minutes": "minutes from collection",
+    "phase": {
+      "transport": "Transport",
+      "lab": "Lab (receipt → analysis)",
+      "validation": "Validation"
+    },
+    "issue": {
+      "NONE": "No defect",
+      "HEMOLYSIS": "Haemolysis",
+      "CLOT": "Clotted",
+      "INSUFFICIENT": "Insufficient volume"
+    },
+    "outcome": {
+      "NORMAL": "Normal",
+      "ABNORMAL": "Abnormal",
+      "CRITICAL": "Critical",
+      "NOT_REPORTED": "Not reported"
+    },
+    "p90Stat": "90th percentile TAT – STAT",
+    "p90Routine": "90th percentile TAT – routine",
+    "heatmap": "Laboratory workload",
+    "heatmapSub": "Samples received by weekday and hour",
+    "ecdf": "Cumulative TAT distribution",
+    "ecdfSub": "Share of samples with a result within a given time from collection",
+    "phases": "TAT phases (median)",
+    "phasesSub": "Where a sample spends its time · click to filter by priority",
+    "sankey": "Result path",
+    "sankeySub": "Priority → sample condition → outcome (number of results)"
   }
 }

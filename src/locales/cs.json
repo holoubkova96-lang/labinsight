@@ -156,7 +156,16 @@
     "westgard": "Westgardova pravidla – sada statistických pravidel pro vyhodnocení kontrol kvality (např. 1-3s, 2-2s, R-4s, 10x).",
     "egfr": "eGFR – odhad glomerulární filtrace z kreatininu, věku a pohlaví (rovnice CKD-EPI 2021).",
     "pointValue": "Hodnota bodu – kolik Kč zaplatí pojišťovna za 1 bod výkonu. Pro laboratoře ji stanoví úhradová vyhláška.",
-    "breakEven": "Bod zvratu – minimální frekvence, při které výnos pokryje fixní i variabilní náklady metody."
+    "breakEven": "Bod zvratu – minimální frekvence, při které výnos pokryje fixní i variabilní náklady metody.",
+    "histogram": "Histogram ukazuje, jak často se hodnoty vyskytují v jednotlivých intervalech. Prozradí tvar rozdělení (např. zešikmení u enzymů).",
+    "boxplot": "Krabicový graf shrnuje rozdělení pěti čísly a umožňuje rychle porovnat skupiny.",
+    "criticalTarget": "Doporučený cíl: kritickou hodnotu nahlásit lékaři do 30 minut od validace.",
+    "cv": "Variační koeficient = SD / průměr × 100. Měří nepřesnost (rozptyl) opakovaných měření kontroly.",
+    "bias": "Bias = (průměr kontroly − cílová hodnota) / cílová hodnota × 100. Měří systematické vychýlení metody.",
+    "leveyJennings": "Levey-Jenningsův graf zobrazuje měření kontrolního materiálu v čase vůči cílové hodnotě a pásmům ±1, 2 a 3 SD.",
+    "percentile": "90. percentil = hodnota, pod kterou leží 90 % vzorků. Lépe než průměr ukazuje „dlouhý ocas“ pomalých vzorků.",
+    "ecdf": "Kumulativní distribuční funkce: pro každý čas ukazuje podíl vzorků, které už mají výsledek.",
+    "sankey": "Sankeyův diagram zobrazuje toky mezi stavy; šířka pásu odpovídá počtu výsledků."
   },
   "landing": {
     "title": "LabInsight",
@@ -177,5 +186,103 @@
   "placeholder": {
     "title": "Připravuje se",
     "text": "Tato stránka bude doplněna v další fázi projektu."
+  },
+  "results": {
+    "test": "Vyšetření",
+    "pickerHint": "Klikem na sloupec v grafu „mimo meze“ vybereš jiné vyšetření.",
+    "kpiN": "Počet výsledků",
+    "kpiMedian": "Medián",
+    "kpiLow": "Pod referenční mezí",
+    "kpiHigh": "Nad referenční mezí",
+    "histogram": "Rozdělení hodnot – {{test}}",
+    "histogramSub": "Histogram se zvýrazněnými referenčními mezemi (čárkovaně) pro dospělé",
+    "count": "Počet",
+    "median": "Medián",
+    "boxplot": "Hodnoty podle skupin",
+    "boxplotSub": "Krabice = 25.–75. percentil, čára = medián, vousy = 5. a 95. percentil; skupiny s n ≥ 20",
+    "boxplotBy": "Rozdělit podle",
+    "outOfRange": "Výsledky mimo referenční meze",
+    "outOfRangeSub": "20 vyšetření s nejvyšším podílem patologických výsledků · klikem vybereš vyšetření",
+    "low": "Pod mezí",
+    "high": "Nad mezí"
+  },
+  "critical": {
+    "reportedIn": "nahlášeno za {{min}} min",
+    "onTime": "Do 30 min",
+    "late": "Po 30 min",
+    "minutes": "minuty (log. škála)",
+    "target": "cíl 30 min",
+    "count": "Počet",
+    "within30": "Nahlášeno do 30 min",
+    "medianTime": "Medián doby nahlášení",
+    "over60": "Nahlášeno po 60 min",
+    "timeline": "Časová osa hlášení kritických hodnot",
+    "timelineSub": "Každý bod = jedna kritická hodnota; výška = doba od validace do telefonického nahlášení",
+    "histogram": "Doba do nahlášení",
+    "histogramSub": "Počet hlášení po 5minutových intervalech; hlášení po 30 minutách oranžově",
+    "byDept": "Podíl nahlášených do 30 min podle oddělení",
+    "byTest": "Kritické hodnoty podle vyšetření"
+  },
+  "qc": {
+    "target": "cíl",
+    "lot": "šarže",
+    "mean": "průměr",
+    "level": "Úroveň",
+    "warning": "Varování 1-2s",
+    "reject": "Zamítnutí (Westgard)",
+    "runs": "Měření kontrol",
+    "cv": "CV % (nepřesnost)",
+    "bias": "Bias % (vychýlení)",
+    "rejections": "Porušení pravidel",
+    "lj": "Levey-Jenningsův graf – {{test}} · {{analyzer}}",
+    "ljSub": "Kontroly obou úrovní v jednotkách SD od cílové hodnoty · výchozí pohled posledních 90 dní, posuvníkem změníš rozsah",
+    "violations": "Porušení Westgardových pravidel",
+    "violationsSub": "Měření, kvůli kterým by se běh zamítl (nejnovější nahoře)",
+    "date": "Datum",
+    "value": "Hodnota",
+    "rules": "Pravidla",
+    "summary": "Přehled QC všech metod",
+    "summarySub": "Klikem na řádek zobrazíš Levey-Jenningsův graf metody"
+  },
+  "tat": {
+    "dow": {
+      "1": "Po",
+      "2": "Út",
+      "3": "St",
+      "4": "Čt",
+      "5": "Pá",
+      "6": "So",
+      "7": "Ne"
+    },
+    "samples": "vzorků",
+    "hour": "Hodina příjmu",
+    "minutes": "minuty od odběru",
+    "phase": {
+      "transport": "Transport",
+      "lab": "Laboratoř (příjem → analýza)",
+      "validation": "Validace"
+    },
+    "issue": {
+      "NONE": "Bez vady",
+      "HEMOLYSIS": "Hemolýza",
+      "CLOT": "Sraženina",
+      "INSUFFICIENT": "Málo materiálu"
+    },
+    "outcome": {
+      "NORMAL": "V normě",
+      "ABNORMAL": "Patologické",
+      "CRITICAL": "Kritické",
+      "NOT_REPORTED": "Nevydáno"
+    },
+    "p90Stat": "90. percentil TAT – STAT",
+    "p90Routine": "90. percentil TAT – rutina",
+    "heatmap": "Zatížení laboratoře",
+    "heatmapSub": "Přijaté vzorky podle dne v týdnu a hodiny",
+    "ecdf": "Kumulativní rozdělení TAT",
+    "ecdfSub": "Jaký podíl vzorků má výsledek do daného času od odběru",
+    "phases": "Fáze TAT (medián)",
+    "phasesSub": "Kde vzorek tráví čas · klikem filtruješ prioritu",
+    "sankey": "Cesta výsledku",
+    "sankeySub": "Priorita → stav vzorku → výsledek (počet výsledků)"
   }
 }
