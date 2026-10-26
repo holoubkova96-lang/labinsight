@@ -178,7 +178,12 @@
     "payback": "Payback period = one-off introduction costs (validation, training) / monthly operating margin.",
     "sensitivity": "Sensitivity analysis shows which assumptions move the result most. The longest bars are the parameters to verify most carefully.",
     "makeOrBuy": "Make-or-buy compares running a method in-house with sending samples to a reference laboratory. When sent out, the reference lab bills the procedure; we keep only the pre-analytics and transport cost.",
-    "lifecycleLoss": "Sum of negative cumulative results of discontinued methods: revenue − all costs including validation, training and expiry."
+    "lifecycleLoss": "Sum of negative cumulative results of discontinued methods: revenue − all costs including validation, training and expiry.",
+    "waterfall": "A waterfall chart shows how a starting value changes step by step through positive and negative items to the final value.",
+    "annualized": "Period result scaled to 12 months: result / number of months × 12.",
+    "breakEvenPointValue": "By how much the point value would have to change (with the other scenario assumptions) for the operating result to be exactly zero.",
+    "holtWinters": "Holt-Winters exponential smoothing tracks the level, trend and seasonality of a series, weighting older data less; α, β and γ are chosen by the lowest error.",
+    "mape": "MAPE = mean absolute percentage error. The model is trained without the latest months and compared with what actually happened."
   },
   "landing": {
     "title": "LabInsight",
@@ -575,5 +580,82 @@
     "kindTrend": "Internal vs. external clients",
     "kindTrendSub": "Monthly revenue by requester type",
     "table": "All requesters"
+  },
+  "pnl": {
+    "item": {
+      "revenue": "Revenue",
+      "reagents": "Reagents & consumables",
+      "qcCal": "QC, calibration, EQA",
+      "expiry": "Expiry",
+      "staff": "Staff",
+      "service": "Lease & service",
+      "other": "Validation & overhead",
+      "result": "Operating result",
+      "baseResult": "Base result",
+      "scenarioResult": "Scenario result"
+    },
+    "costs": "Total costs",
+    "selfShare": "of which self-payers {{pct}}",
+    "marginPct": "margin {{pct}}",
+    "annualized": "Annualised result",
+    "months": "from {{n}} months of data",
+    "waterfall": "P&L waterfall",
+    "waterfallSub": "From revenue through each cost item to the operating result for the selected period",
+    "byGroup": "P&L by test group",
+    "marginCol": "Margin"
+  },
+  "whatif": {
+    "controls": "Scenario assumptions",
+    "reset": "Reset",
+    "presets": "Quick scenarios",
+    "lever": {
+      "pointValue": "Point value (insurers)",
+      "volume": "Test volume",
+      "reagentPrice": "Reagent & consumable prices",
+      "qcPrice": "QC & calibrator prices",
+      "staffRate": "Staff costs"
+    },
+    "preset": {
+      "pointCut": "Point value −5 %",
+      "inflation": "Cost inflation",
+      "growth": "Volume +15 %",
+      "austerity": "Insurer austerity year"
+    },
+    "note": "Annualised from the average month of the selected period. Simplification: QC, lease, validation and overhead are fixed with respect to volume; expiry falls as volume grows.",
+    "base": "Base",
+    "scenario": "Scenario",
+    "baseResult": "Base result / year",
+    "scenarioResult": "Scenario result / year",
+    "impact": "Scenario impact",
+    "perYear": "on the annual operating result",
+    "breakEvenPointValue": "Critical point value change",
+    "breakEvenPointValueSub": "at which the lab would break even",
+    "bridge": "Result bridge: base → scenario",
+    "bridgeSub": "Contribution of each item to the change in annual operating result",
+    "compare": "Base vs. scenario",
+    "compareSub": "Annual revenue and cost items"
+  },
+  "forecast": {
+    "series": "Series",
+    "all": "All active methods",
+    "horizon": "Horizon",
+    "months": "{{n}} months",
+    "actual": "Actual",
+    "fitted": "Model (in-sample)",
+    "forecast": "Forecast",
+    "interval": "95 % interval",
+    "nextMonth": "Next month",
+    "horizonTotal": "{{n}}-month forecast",
+    "vsLast": "{{pct}} vs. recent months",
+    "model": "Model",
+    "mape": "Backtest error (MAPE)",
+    "mapeSub": "forecasting recent months from earlier data",
+    "chart": "Volume forecast – {{series}}",
+    "chartSub": "Holt-Winters (trend + seasonality) {{n}} months ahead with a 95 % uncertainty interval",
+    "table": "Forecast by method",
+    "tableSub": "Last 6 months vs. forecast for the next 6 months – input for reagent orders and capacity planning · click to show the method",
+    "last6": "Last 6 mo",
+    "next6": "Next 6 mo (forecast)",
+    "change": "Change"
   }
 }

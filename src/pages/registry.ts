@@ -25,9 +25,9 @@ export const PAGES: Record<Mode, PageDef[]> = {
     { id: 'lifecycle', component: lazy(() => import('./business/Lifecycle')) },
     { id: 'payers', component: lazy(() => import('./business/Payers')) },
     { id: 'requesters', component: lazy(() => import('./business/Requesters')) },
-    { id: 'pnl' },
-    { id: 'whatif' },
-    { id: 'forecast' },
+    { id: 'pnl', component: lazy(() => import('./business/PnL')) },
+    { id: 'whatif', component: lazy(() => import('./business/WhatIf')) },
+    { id: 'forecast', component: lazy(() => import('./business/Forecast')) },
   ],
 };
 

@@ -179,7 +179,12 @@
     "payback": "Doba návratnosti = jednorázové náklady zavedení (validace, zaškolení) / měsíční provozní marže.",
     "sensitivity": "Citlivostní analýza ukazuje, které předpoklady nejvíc ovlivní výsledek. Nejdelší pruhy = parametry, které je potřeba ověřit nejpečlivěji.",
     "makeOrBuy": "Make-or-buy porovná vlastní provádění metody s odesláním vzorků do referenční laboratoře. Při odeslání vykazuje výkon referenční laboratoř, nám zůstává náklad na preanalytiku a dopravu.",
-    "lifecycleLoss": "Součet záporných kumulovaných výsledků zrušených metod: výnos − všechny náklady včetně validace, zaškolení a expirace."
+    "lifecycleLoss": "Součet záporných kumulovaných výsledků zrušených metod: výnos − všechny náklady včetně validace, zaškolení a expirace.",
+    "waterfall": "Vodopádový graf ukazuje, jak se výchozí hodnota postupně mění jednotlivými kladnými a zápornými položkami až ke konečné hodnotě.",
+    "annualized": "Výsledek období přepočtený na 12 měsíců: výsledek / počet měsíců × 12.",
+    "breakEvenPointValue": "O kolik procent by se musela změnit hodnota bodu (při ostatních předpokladech scénáře), aby provozní výsledek byl přesně nula.",
+    "holtWinters": "Holt-Wintersova metoda exponenciálně vyrovnává úroveň, trend a sezónnost řady. Starším datům dává menší váhu; parametry α, β, γ se volí podle nejmenší chyby.",
+    "mape": "MAPE = průměrná absolutní procentní chyba. Model se natrénuje bez posledních měsíců a porovná se s tím, co se skutečně stalo."
   },
   "landing": {
     "title": "LabInsight",
@@ -577,5 +582,82 @@
     "kindTrend": "Interní vs. externí klienti",
     "kindTrendSub": "Měsíční výnos podle typu žadatele",
     "table": "Všichni žadatelé"
+  },
+  "pnl": {
+    "item": {
+      "revenue": "Výnosy",
+      "reagents": "Reagencie a materiál",
+      "qcCal": "QC, kalibrace, EHK",
+      "expiry": "Expirace",
+      "staff": "Personál",
+      "service": "Leasing a servis",
+      "other": "Validace a režie",
+      "result": "Provozní výsledek",
+      "baseResult": "Výchozí výsledek",
+      "scenarioResult": "Výsledek scénáře"
+    },
+    "costs": "Náklady celkem",
+    "selfShare": "z toho samoplátci {{pct}}",
+    "marginPct": "marže {{pct}}",
+    "annualized": "Výsledek za rok (přepočet)",
+    "months": "z {{n}} měsíců dat",
+    "waterfall": "P&L waterfall",
+    "waterfallSub": "Od výnosů přes jednotlivé nákladové položky k provoznímu výsledku za zvolené období",
+    "byGroup": "P&L podle skupin vyšetření",
+    "marginCol": "Marže"
+  },
+  "whatif": {
+    "controls": "Předpoklady scénáře",
+    "reset": "Vynulovat",
+    "presets": "Rychlé scénáře",
+    "lever": {
+      "pointValue": "Hodnota bodu (pojišťovny)",
+      "volume": "Objem vyšetření",
+      "reagentPrice": "Ceny reagencií a materiálu",
+      "qcPrice": "Ceny QC a kalibrátorů",
+      "staffRate": "Mzdové náklady"
+    },
+    "preset": {
+      "pointCut": "Snížení hodnoty bodu o 5 %",
+      "inflation": "Inflace nákladů",
+      "growth": "Růst objemu o 15 %",
+      "austerity": "Úsporný rok pojišťoven"
+    },
+    "note": "Roční přepočet z průměrného měsíce zvoleného období. Zjednodušení: QC, leasing, validace a režie jsou vůči objemu fixní; expirace s rostoucím objemem klesá.",
+    "base": "Výchozí stav",
+    "scenario": "Scénář",
+    "baseResult": "Výchozí výsledek / rok",
+    "scenarioResult": "Výsledek scénáře / rok",
+    "impact": "Dopad scénáře",
+    "perYear": "na provozní výsledek za rok",
+    "breakEvenPointValue": "Kritická změna hodnoty bodu",
+    "breakEvenPointValueSub": "při které by laboratoř byla na nule",
+    "bridge": "Most výsledku: výchozí stav → scénář",
+    "bridgeSub": "Příspěvek každé položky ke změně ročního provozního výsledku",
+    "compare": "Výchozí stav vs. scénář",
+    "compareSub": "Roční výnosy a nákladové položky"
+  },
+  "forecast": {
+    "series": "Řada",
+    "all": "Všechny aktivní metody",
+    "horizon": "Horizont",
+    "months": "{{n}} měsíce",
+    "actual": "Skutečnost",
+    "fitted": "Model (zpětně)",
+    "forecast": "Prognóza",
+    "interval": "95% interval",
+    "nextMonth": "Příští měsíc",
+    "horizonTotal": "Prognóza na {{n}} měs.",
+    "vsLast": "{{pct}} proti posledním měsícům",
+    "model": "Model",
+    "mape": "Chyba backtestu (MAPE)",
+    "mapeSub": "prognóza posledních měsíců z dřívějších dat",
+    "chart": "Prognóza objemu – {{series}}",
+    "chartSub": "Holt-Winters (trend + sezónnost) na {{n}} měsíců dopředu s 95% intervalem nejistoty",
+    "table": "Prognóza podle metod",
+    "tableSub": "Posledních 6 měsíců vs. prognóza dalších 6 měsíců – podklad pro objednávky reagencií a plánování kapacit · klikem zobrazíš metodu",
+    "last6": "Posledních 6 měs.",
+    "next6": "Dalších 6 měs. (prognóza)",
+    "change": "Změna"
   }
 }

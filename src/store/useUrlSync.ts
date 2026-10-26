@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { isLang, rememberLang } from '../i18n';
@@ -8,6 +8,10 @@ import { filtersKey, filtersToParams, paramsToFilters } from './urlState';
 /**
  * Obousměrná synchronizace filtrů a jazyka s URL. Výchozí stav se načte z URL
  * už v main.tsx, takže tady řešíme jen další změny (klik na filtr, tlačítko Zpět).
+ *
+ * `synced` drží poslední stav, na kterém se URL a store shodly. Díky tomu se
+ * změna z jedné strany nepropíše zpět jako „nová“ změna (jinak by při navigaci
+ * Zpět vznikla nekonečná smyčka URL ↔ store).
  */
 export function useUrlSync() {
   const [params, setParams] = useSearchParams();
@@ -15,26 +19,34 @@ export function useUrlSync() {
   const filters = useFilterValues();
   const replaceAll = useFilters((s) => s.replaceAll);
   const paramsStr = params.toString();
+  const key = filtersKey(filters);
+  const lang = i18n.resolvedLanguage;
 
-  // URL → stav (např. navigace zpět)
+  const synced = useRef({ key, lang });
+  const latest = useRef({ paramsStr, setParams });
+  useEffect(() => {
+    latest.current = { paramsStr, setParams };
+  });
+
+  // URL → stav (např. navigace zpět nebo sdílený odkaz)
   useEffect(() => {
     const p = new URLSearchParams(paramsStr);
     const fromUrl = paramsToFilters(p);
-    if (filtersKey(fromUrl) !== filtersKey(useFilters.getState())) replaceAll(fromUrl);
-    const lang = p.get('lang');
-    if (isLang(lang) && lang !== i18n.resolvedLanguage) void i18n.changeLanguage(lang);
+    const urlKey = filtersKey(fromUrl);
+    const urlLang = p.get('lang');
+    synced.current = { key: urlKey, lang: isLang(urlLang) ? urlLang : synced.current.lang };
+    if (urlKey !== filtersKey(useFilters.getState())) replaceAll(fromUrl);
+    if (isLang(urlLang) && urlLang !== i18n.resolvedLanguage) void i18n.changeLanguage(urlLang);
   }, [paramsStr, replaceAll, i18n]);
 
-  // stav → URL
-  const key = filtersKey(filters);
-  const lang = i18n.resolvedLanguage;
+  // stav → URL (jen když se změnily filtry nebo jazyk, ne URL)
   useEffect(() => {
-    const current = new URLSearchParams(paramsStr);
-    const next = filtersToParams(paramsToFilters(new URLSearchParams(key)), current);
-    if (lang) next.set('lang', lang);
-    if (next.toString() !== current.toString()) setParams(next, { replace: true });
     if (isLang(lang)) rememberLang(lang);
-    // paramsStr záměrně chybí: reagujeme jen na změnu stavu, ne na změnu URL
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [key, lang, setParams]);
+    if (key === synced.current.key && lang === synced.current.lang) return;
+    synced.current = { key, lang };
+    const { paramsStr: current, setParams: set } = latest.current;
+    const next = filtersToParams(paramsToFilters(new URLSearchParams(key)), new URLSearchParams(current));
+    if (lang) next.set('lang', lang);
+    if (next.toString() !== current) set(next, { replace: true });
+  }, [key, lang]);
 }
