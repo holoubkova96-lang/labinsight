@@ -659,5 +659,176 @@
     "last6": "Posledních 6 měs.",
     "next6": "Dalších 6 měs. (prognóza)",
     "change": "Změna"
+  },
+  "sqlLab": {
+    "intro": "Pište vlastní SQL nad stejnou databází DuckDB, ze které vznikají všechny grafy – běží přímo ve vašem prohlížeči. Začněte některým z ukázkových dotazů vlevo.",
+    "examples": "Ukázkové dotazy",
+    "schema": "Schéma databáze",
+    "run": "Spustit",
+    "restore": "Obnovit ukázku",
+    "editor": "SQL editor",
+    "hint": "Ctrl/Cmd + Enter spustí dotaz · Ctrl + mezerník našeptá tabulky a sloupce · změny se týkají jen vaší relace, obnovením stránky se databáze vrátí do původního stavu.",
+    "result": "Výsledek",
+    "stats": "{{rows}} řádků za {{ms}} ms",
+    "truncated": "zobrazeno prvních {{n}}",
+    "view": "Zobrazení",
+    "table": "Tabulka",
+    "chart": "Graf",
+    "yAxis": "Hodnota",
+    "noChart": "Pro graf je potřeba aspoň jeden číselný sloupec.",
+    "presets": {
+      "join": {
+        "title": "JOIN: výsledky podle oddělení",
+        "desc": "Spojení faktové tabulky s dimenzemi a podíl patologických výsledků."
+      },
+      "monthly": {
+        "title": "GROUP BY: objem a výnos po měsících",
+        "desc": "Agregace podle měsíce odběru."
+      },
+      "moving_avg": {
+        "title": "Okno: klouzavý průměr",
+        "desc": "3měsíční klouzavý průměr objemu pomocí AVG() OVER."
+      },
+      "rank": {
+        "title": "Okno: TOP 3 ve skupině",
+        "desc": "RANK() OVER (PARTITION BY …) a filtr QUALIFY."
+      },
+      "tat_percentiles": {
+        "title": "CTE + percentily TAT",
+        "desc": "Medián, 90. a 95. percentil doby odezvy podle priority."
+      },
+      "cohort": {
+        "title": "Kohortová analýza",
+        "desc": "Návratnost pacientů po kvartálech od první žádanky (PIVOT)."
+      },
+      "outliers": {
+        "title": "Detekce outlierů (IQR)",
+        "desc": "Extrémní hodnoty kreatininu Tukeyho metodou."
+      },
+      "cost_per_result": {
+        "title": "Náklad na výsledek",
+        "desc": "Skutečný náklad vs. výnos na vydaný výsledek podle metody."
+      },
+      "break_even": {
+        "title": "Bod zvratu v SQL",
+        "desc": "Fixní a variabilní náklady → minimální měsíční frekvence."
+      },
+      "pareto": {
+        "title": "Pareto 80/20",
+        "desc": "Kumulativní podíl výnosu pomocí SUM() OVER (ORDER BY …)."
+      },
+      "delta_check": {
+        "title": "Delta check (LAG)",
+        "desc": "Největší změny draslíku u téhož pacienta do 48 hodin."
+      },
+      "westgard": {
+        "title": "Kontrola kvality",
+        "desc": "CV %, bias % a porušení pravidla 1-3s podle metody."
+      },
+      "yoy": {
+        "title": "Meziroční srovnání",
+        "desc": "Změna objemu r/r pomocí LAG(…, 12)."
+      },
+      "lifecycle": {
+        "title": "Zrušené metody",
+        "desc": "Plán vs. skutečnost a celková ztráta zrušených metod."
+      }
+    }
+  },
+  "er": {
+    "title": "Datový model – hvězdicové schéma",
+    "intro": "Faktové tabulky (události: žádanky, výsledky, QC měření, měsíční náklady) jsou propojené s dimenzemi (číselníky: pacienti, vyšetření, oddělení, pojišťovny, analyzátory, kalendář) přes cizí klíče. Čísla v záhlaví = počet řádků.",
+    "fact": "Faktová tabulka",
+    "dim": "Dimenze",
+    "pk": "primární klíč",
+    "fk": "cizí klíč",
+    "rel": "vztah 1:N",
+    "more": "+ {{n}} dalších sloupců",
+    "columns": "Sloupce tabulek",
+    "rows": "řádků",
+    "wideNote": "Pro rychlé filtrování si aplikace po načtení vytvoří denormalizované tabulky results_wide, costs_wide a qc_wide (výsledek JOINu faktů s dimenzemi), aby všechny grafy sdílely stejnou podmínku WHERE.",
+    "desc": {
+      "fact_orders": "Žádanka = jeden odběr vzorku: kdo, kdy, pro koho, priorita a plátce.",
+      "fact_results": "Výsledek jednoho vyšetření: hodnota, příznak, časová razítka, body a výnos.",
+      "fact_qc_runs": "Měření kontrolního materiálu ve 2 úrovních pro Westgardova pravidla.",
+      "fact_monthly_costs": "Měsíční náklady metody na analyzátoru podle složek nákladového modelu.",
+      "dim_patients": "Pseudonymizovaní pacienti: pohlaví, rok narození, věková skupina, pojišťovna, okres.",
+      "dim_tests": "Katalog vyšetření: kód výkonu a body (VZP), jednotky, kritické meze, parametry nákladů.",
+      "dim_reference_ranges": "Referenční meze podle pohlaví a věku.",
+      "dim_method_registry": "Životní cyklus metod: zavedení, zrušení, plán, lessons learned, make-or-buy.",
+      "dim_departments": "Oddělení nemocnice a externí ambulance.",
+      "dim_insurers": "Zdravotní pojišťovny a hodnota bodu (fiktivní smluvní koeficient).",
+      "dim_analyzers": "Analyzátory a jejich leasing.",
+      "dim_date": "Kalendář: den v týdnu, svátky, sezóna."
+    }
+  },
+  "about": {
+    "intro": "Odkud pochází čísla v dashboardu, co je skutečné a co vymyšlené a jaká zjednodušení model obsahuje.",
+    "disclaimerTitle": "Všichni pacienti, objemy a náklady jsou fiktivní",
+    "disclaimer": "Data vygeneroval skript s pevným seedem. Nepředstavují žádnou skutečnou laboratoř, nemocnici ani pacienta. Skutečné jsou jen veřejné ceníkové údaje (body výkonů, hodnota bodu) a odborné principy (referenční meze, Westgardova pravidla, rovnice eGFR).",
+    "sourcesTitle": "Zdroje",
+    "source": "Zdroj",
+    "usage": "Použití",
+    "retrieved": "Staženo",
+    "sources": {
+      "vzp": {
+        "name": "VZP – číselník Zdravotní výkony, verze 1482",
+        "usage": "Kódy výkonů a bodové hodnoty 45 vyšetření (platnost od 1. 10. 2026)."
+      },
+      "decree": {
+        "name": "Vyhláška č. 432/2025 Sb. (úhradová vyhláška 2026)",
+        "usage": "Hodnota bodu: 0,80 Kč (801, 813), 0,90 Kč (818), 1,05 Kč (999) pro akreditovanou laboratoř."
+      },
+      "prices": {
+        "name": "Veřejný ceník pro samoplátce (webkalkulacka.agellab.cz)",
+        "usage": "Ceny pro samoplátce – vyplňují se ručně do data/source/ceny_samoplatci.csv; dokud chybí, jsou odhadnuty z bodů."
+      },
+      "mri": {
+        "name": "RCPath / ACB – National Minimum Retesting Intervals (2021)",
+        "usage": "Minimální intervaly opakování vyšetření (indikační chování)."
+      },
+      "ckdepi": {
+        "name": "Inker et al., NEJM 2021 – rovnice CKD-EPI bez rasy",
+        "usage": "Výpočet eGFR z kreatininu, věku a pohlaví."
+      },
+      "westgard": {
+        "name": "Westgard QC – Westgard Rules",
+        "usage": "Pravidla vyhodnocení vnitřní kontroly kvality."
+      }
+    },
+    "realTitle": "Co vychází ze skutečnosti",
+    "real": [
+      "Kódy výkonů a jejich body podle číselníku VZP.",
+      "Hodnota bodu pro laboratorní odbornosti podle úhradové vyhlášky 2026.",
+      "Referenční a kritické meze běžně používané v klinické biochemii a hematologii.",
+      "Pojišťovny (kódy a názvy) a struktura žádanky, výsledku a QC.",
+      "Odborné metody: eGFR CKD-EPI 2021, Westgardova pravidla, minimální intervaly opakování."
+    ],
+    "fictionalTitle": "Co je fiktivní",
+    "fictional": [
+      "Všichni pacienti, žádanky, výsledky a jejich hodnoty.",
+      "Objemy vyšetření a jejich rozložení v čase.",
+      "Ceny reagencií, QC, kalibrací, EHK, leasing a režie (realistické, ale vymyšlené).",
+      "Smluvní koeficienty pojišťoven k hodnotě bodu (±3 %).",
+      "Externí ambulance a jejich názvy, registr metod a lessons learned.",
+      "Náklady na odeslání vzorků do referenční laboratoře."
+    ],
+    "generatorTitle": "Jak data vznikla",
+    "generator": [
+      "Generátor v Pythonu (numpy, pandas, Faker cs_CZ) s pevným seedem 42 vytvoří 36 měsíců dat (10/2023 – 9/2026): 5 000 pacientů, 50 000 žádanek, ~362 000 výsledků, ~108 000 QC měření a měsíční náklady.",
+      "Žádanky vznikají po epizodách péče (hospitalizace s denními odběry, urgentní příjem, onkologické cykly, ambulance). Hodnoty mají realistická rozdělení (log-normální u enzymů a CRP), sezónnost (zánět v zimě, vitamin D v létě), korelace přes sdílené klinické faktory a malé procento hemolytických či chybných vzorků.",
+      "Nákladový model simuluje reagencie den po dni včetně expirace otevřených balení. Výsledkem je skutečný náklad na vydaný výsledek, který u málo častých metod prudce roste."
+    ],
+    "simplificationsTitle": "Zjednodušení",
+    "simplifications": [
+      "Laboratorní koeficient BONlab a regulační omezení úhradové vyhlášky nejsou modelovány (výnos = body × hodnota bodu).",
+      "Při odeslání vzorku vykazuje výkon referenční laboratoř; laboratoři zůstává jen náklad na preanalytiku a dopravu.",
+      "Náklady se k výsledkům přiřazují absorpční kalkulací (výsledky × náklad na výsledek metody v měsíci).",
+      "Stejný výkon STAT a rutina je vykazován stejným kódem.",
+      "Prognóza a what-if jsou orientační modely pro rozhodování, ne účetní predikce."
+    ],
+    "volumeTitle": "Objem dat (řádky tabulek)",
+    "privacyTitle": "Ochrana osobních údajů",
+    "privacy": "Aplikace pracuje s pseudonymizovanými fiktivními daty: místo jména a rodného čísla jen ID, rok narození a okres. Vše běží lokálně v prohlížeči – žádná data se neodesílají na server."
   }
 }

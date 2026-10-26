@@ -1,11 +1,14 @@
-import { Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { AppShell } from './components/layout/AppShell';
 import { DbGate } from './components/layout/DbGate';
 import { Spinner } from './components/ui/States';
 import Landing from './pages/Landing';
 import ModePage from './pages/ModePage';
-import Placeholder from './pages/Placeholder';
+
+const SqlLab = lazy(() => import('./pages/SqlLab'));
+const ErDiagram = lazy(() => import('./pages/ErDiagram'));
+const About = lazy(() => import('./pages/About'));
 
 export default function App() {
   return (
@@ -27,9 +30,30 @@ export default function App() {
               </Suspense>
             }
           />
-          <Route path="sql" element={<Placeholder titleKey="nav.sqlLab" />} />
-          <Route path="er" element={<Placeholder titleKey="nav.er" />} />
-          <Route path="about" element={<Placeholder titleKey="nav.about" />} />
+          <Route
+            path="sql"
+            element={
+              <Suspense fallback={<Spinner />}>
+                <SqlLab />
+              </Suspense>
+            }
+          />
+          <Route
+            path="er"
+            element={
+              <Suspense fallback={<Spinner />}>
+                <ErDiagram />
+              </Suspense>
+            }
+          />
+          <Route
+            path="about"
+            element={
+              <Suspense fallback={<Spinner />}>
+                <About />
+              </Suspense>
+            }
+          />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

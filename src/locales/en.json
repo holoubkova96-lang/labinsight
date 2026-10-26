@@ -657,5 +657,176 @@
     "last6": "Last 6 mo",
     "next6": "Next 6 mo (forecast)",
     "change": "Change"
+  },
+  "sqlLab": {
+    "intro": "Write your own SQL against the same DuckDB database that powers every chart – running right in your browser. Start with one of the example queries on the left.",
+    "examples": "Example queries",
+    "schema": "Database schema",
+    "run": "Run",
+    "restore": "Restore example",
+    "editor": "SQL editor",
+    "hint": "Ctrl/Cmd + Enter runs the query · Ctrl + Space suggests tables and columns · changes affect only your session; reloading the page restores the database.",
+    "result": "Result",
+    "stats": "{{rows}} rows in {{ms}} ms",
+    "truncated": "showing the first {{n}}",
+    "view": "View",
+    "table": "Table",
+    "chart": "Chart",
+    "yAxis": "Value",
+    "noChart": "A chart needs at least one numeric column.",
+    "presets": {
+      "join": {
+        "title": "JOIN: results by department",
+        "desc": "Joining the fact table to dimensions and the share of abnormal results."
+      },
+      "monthly": {
+        "title": "GROUP BY: volume and revenue by month",
+        "desc": "Aggregation by collection month."
+      },
+      "moving_avg": {
+        "title": "Window: moving average",
+        "desc": "3-month moving average of volume with AVG() OVER."
+      },
+      "rank": {
+        "title": "Window: top 3 per group",
+        "desc": "RANK() OVER (PARTITION BY …) with a QUALIFY filter."
+      },
+      "tat_percentiles": {
+        "title": "CTE + TAT percentiles",
+        "desc": "Median, 90th and 95th percentile turnaround by priority."
+      },
+      "cohort": {
+        "title": "Cohort analysis",
+        "desc": "Patient return by quarters since their first order (PIVOT)."
+      },
+      "outliers": {
+        "title": "Outlier detection (IQR)",
+        "desc": "Extreme creatinine values by Tukey’s method."
+      },
+      "cost_per_result": {
+        "title": "Cost per result",
+        "desc": "Actual cost vs. revenue per reportable result by method."
+      },
+      "break_even": {
+        "title": "Break-even in SQL",
+        "desc": "Fixed and variable costs → minimum monthly volume."
+      },
+      "pareto": {
+        "title": "Pareto 80/20",
+        "desc": "Cumulative revenue share with SUM() OVER (ORDER BY …)."
+      },
+      "delta_check": {
+        "title": "Delta check (LAG)",
+        "desc": "Largest potassium changes for the same patient within 48 hours."
+      },
+      "westgard": {
+        "title": "Quality control",
+        "desc": "CV %, bias % and 1-3s violations by method."
+      },
+      "yoy": {
+        "title": "Year-over-year",
+        "desc": "YoY volume change with LAG(…, 12)."
+      },
+      "lifecycle": {
+        "title": "Discontinued methods",
+        "desc": "Plan vs. actual and total loss of discontinued methods."
+      }
+    }
+  },
+  "er": {
+    "title": "Data model – star schema",
+    "intro": "Fact tables (events: orders, results, QC runs, monthly costs) link to dimensions (lookups: patients, tests, departments, insurers, analysers, calendar) through foreign keys. Numbers in the header = row count.",
+    "fact": "Fact table",
+    "dim": "Dimension",
+    "pk": "primary key",
+    "fk": "foreign key",
+    "rel": "1:N relationship",
+    "more": "+ {{n}} more columns",
+    "columns": "Table columns",
+    "rows": "rows",
+    "wideNote": "For fast filtering the app builds denormalised tables results_wide, costs_wide and qc_wide (facts joined with dimensions) after loading, so all charts share the same WHERE condition.",
+    "desc": {
+      "fact_orders": "An order = one sample collection: who, when, for whom, priority and payer.",
+      "fact_results": "One test result: value, flag, timestamps, points and revenue.",
+      "fact_qc_runs": "Control-material measurements at 2 levels for the Westgard rules.",
+      "fact_monthly_costs": "Monthly costs of a method on an analyser by cost-model component.",
+      "dim_patients": "Pseudonymised patients: sex, birth year, age group, insurer, district.",
+      "dim_tests": "Test catalogue: procedure code and points (VZP), units, critical limits, cost parameters.",
+      "dim_reference_ranges": "Reference intervals by sex and age.",
+      "dim_method_registry": "Method lifecycle: introduction, discontinuation, plan, lessons learned, make-or-buy.",
+      "dim_departments": "Hospital departments and external clinics.",
+      "dim_insurers": "Health insurers and point value (fictional contract coefficient).",
+      "dim_analyzers": "Analysers and their lease.",
+      "dim_date": "Calendar: weekday, public holidays, season."
+    }
+  },
+  "about": {
+    "intro": "Where the dashboard's numbers come from, what is real and what is made up, and which simplifications the model makes.",
+    "disclaimerTitle": "All patients, volumes and costs are fictional",
+    "disclaimer": "The data were produced by a script with a fixed seed. They do not represent any real laboratory, hospital or patient. Only the public tariff data (procedure points, point value) and professional principles (reference intervals, Westgard rules, eGFR equation) are real.",
+    "sourcesTitle": "Sources",
+    "source": "Source",
+    "usage": "Used for",
+    "retrieved": "Retrieved",
+    "sources": {
+      "vzp": {
+        "name": "VZP – Health procedures code list, version 1482",
+        "usage": "Procedure codes and points for 45 tests (valid from Oct 1, 2026)."
+      },
+      "decree": {
+        "name": "Decree No. 432/2025 Coll. (2026 reimbursement decree)",
+        "usage": "Point value: CZK 0.80 (801, 813), 0.90 (818), 1.05 (999) for an accredited laboratory."
+      },
+      "prices": {
+        "name": "Public self-payer price list (webkalkulacka.agellab.cz)",
+        "usage": "Self-payer prices – entered manually into data/source/ceny_samoplatci.csv; estimated from points until filled in."
+      },
+      "mri": {
+        "name": "RCPath / ACB – National Minimum Retesting Intervals (2021)",
+        "usage": "Minimum retesting intervals (ordering behaviour)."
+      },
+      "ckdepi": {
+        "name": "Inker et al., NEJM 2021 – race-free CKD-EPI equation",
+        "usage": "eGFR from creatinine, age and sex."
+      },
+      "westgard": {
+        "name": "Westgard QC – Westgard Rules",
+        "usage": "Rules for evaluating internal quality control."
+      }
+    },
+    "realTitle": "What is based on reality",
+    "real": [
+      "Procedure codes and points from the VZP code list.",
+      "Point value for laboratory specialties from the 2026 reimbursement decree.",
+      "Reference and critical limits commonly used in clinical chemistry and haematology.",
+      "Insurers (codes and names) and the structure of orders, results and QC.",
+      "Professional methods: CKD-EPI 2021 eGFR, Westgard rules, minimum retesting intervals."
+    ],
+    "fictionalTitle": "What is fictional",
+    "fictional": [
+      "All patients, orders, results and their values.",
+      "Test volumes and their distribution over time.",
+      "Prices of reagents, QC, calibration, EQA, lease and overhead (realistic but made up).",
+      "Insurer contract coefficients on the point value (±3 %).",
+      "External clinics and their names, the method register and lessons learned.",
+      "Costs of sending samples to a reference laboratory."
+    ],
+    "generatorTitle": "How the data were made",
+    "generator": [
+      "A Python generator (numpy, pandas, Faker cs_CZ) with a fixed seed of 42 creates 36 months of data (10/2023 – 9/2026): 5,000 patients, 50,000 orders, ~362,000 results, ~108,000 QC runs and monthly costs.",
+      "Orders are generated as care episodes (inpatient stays with daily draws, emergency visits, oncology cycles, outpatient visits). Values follow realistic distributions (log-normal for enzymes and CRP), seasonality (inflammation in winter, vitamin D in summer), correlations through shared clinical factors and a small share of haemolysed or faulty samples.",
+      "The cost model simulates reagents day by day, including expiry of opened packs. The result is the actual cost per reportable result, which rises steeply for low-volume methods."
+    ],
+    "simplificationsTitle": "Simplifications",
+    "simplifications": [
+      "The BONlab laboratory coefficient and regulatory caps of the reimbursement decree are not modelled (revenue = points × point value).",
+      "When a sample is sent out, the reference lab bills the procedure; the lab keeps only the pre-analytics and transport cost.",
+      "Costs are assigned to results by absorption costing (results × the method's cost per result in the month).",
+      "STAT and routine runs of a test are billed under the same code.",
+      "Forecast and what-if are indicative decision models, not accounting predictions."
+    ],
+    "volumeTitle": "Data volume (table rows)",
+    "privacyTitle": "Privacy",
+    "privacy": "The app works with pseudonymised fictional data: instead of name and national ID only an ID, birth year and district. Everything runs locally in your browser – no data are sent to a server."
   }
 }
