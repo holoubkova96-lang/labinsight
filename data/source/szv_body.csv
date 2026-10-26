@@ -1,0 +1,39 @@
+test_key,kod_vykonu,odbornost,nazev_vykonu,body,poznamka,zdroj,datum_stazeni
+NA,81593,801,SAOD SODÍK,25,,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
+K,81393,801,SAOD DRASLÍK,27,,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
+CL,81469,801,SAOD CHLORIDY,18,,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
+UREA,81621,801,SAOD UREA,21,,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
+CREA,81499,801,SAOD KREATININ,20,,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
+EGFR,81902,801,ODHAD GLOMERULÁRNÍ FILTRACE (EGFR) DLE CKD-EPI,0,výpočet – nevykazuje se samostatně,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
+GLU,81439,801,SAOD GLUKÓZA KVANTITATIVNÍ STANOVENÍ,18,,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
+HBA1C,81449,801,S GLYKOVANÝ HEMOGLOBIN,213,,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
+ALT,81337,801,SAOD ALT,22,,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
+AST,81357,801,SAOD AST,22,,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
+GGT,81435,801,SAOD GAMAGLUTAMYLTRANSFERÁZA (GMT),24,,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
+ALP,81421,801,SAOD FOSFATÁZA ALKALICKÁ (ALP),21,,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
+BILI,81361,801,SAOD BILIRUBIN CELKOVÝ,19,,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
+CRP,91153,813,S STANOVENÍ C-REAKTIVNÍHO PROTEINU,160,kód odbornosti 813 – v praxi vykazováno i biochemií,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
+PCT,91481,813,S STANOVENÍ KONCENTRACE PROCALCITONINU,829,kód odbornosti 813; indikační omezení,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
+TNT,81237,801,S TROPONIN - T NEBO I ELISA,997,hs troponin modelován tímto kódem,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
+NTPROBNP,81731,801,S STANOVENÍ NATRIURETICKÝCH PEPTIDŮ V SÉRU A V PLAZMĚ,876,indikační omezení odborností,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
+CHOL,81471,801,SAOD CHOLESTEROL CELKOVÝ,26,,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
+HDL,81473,801,S CHOLESTEROL HDL,55,,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
+LDL,81527,801,S CHOLESTEROL LDL,65,,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
+TAG,81611,801,SAOD TRIACYLGLYCEROLY,32,,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
+TSH,93195,801,TYREOTROPIN (TSH),200,,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
+FT4,93189,801,TYROXIN VOLNÝ (FT4),182,,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
+FERR,93151,801,FERRITIN,225,,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
+ALB,81329,801,S ALBUMIN (SÉRUM),19,,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
+VITD,81681,801,S 25-HYDROXYVITAMIN D (25 OHD),504,,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
+B12,93213,801,VITAMIN B12,259,,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
+FOL,93115,801,FOLÁTY,257,,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
+KO_DIF,96167,818,S KREVNÍ OBRAZ S DIFERENCIÁLEM,79,,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
+PT_INR,96623,818,AOD PROTROMBINOVÝ TEST,89,,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
+APTT,96621,818,S AKTIVOVANÝ PARCIÁLNÍ TROMBOPLASTINOVÝ TEST (APTT),81,,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
+DDIM,96515,818,S D-DIMERY KVANTITATIVNĚ,418,,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
+FBG,96325,818,FIBRINOGEN (SÉRIE),226,,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
+FW,09133,999,AOD SEDIMENTACE ERYTROCYTŮ,47,společný kód 999,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
+ANTIXA,96157,818,S STANOVENÍ HEPARINOVÝCH JEDNOTEK ANTI XA,381,málo frekventovaná speciální metoda,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
+IL6,81301,801,S STANOVENÍ INTERLEUKINU IL6,799,málo frekventovaná speciální metoda,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
+ACE,81269,801,S ANGIOTENSIN KONVERTUJÍCÍ ENZYM V SÉRU (ACE),220,málo frekventovaná speciální metoda,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
+KRYO,81375,801,S KRYOGLOBULINY KVANTITATIVNĚ,38,málo frekventovaná speciální metoda,VZP číselník Zdravotní výkony v. 1482 (platnost od 1. 10. 2026),2026-10-26
