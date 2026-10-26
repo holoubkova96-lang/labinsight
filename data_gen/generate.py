@@ -19,6 +19,9 @@ from dimensions import (EXPORT_PATIENT_COLS, build_dim_date, build_dim_departmen
                         build_dim_insurers, build_patients)
 from orders import EXPORT_ORDER_COLS, build_orders  # noqa: E402
 from results import EXPORT_RESULT_COLS, build_results  # noqa: E402
+from costs import build_monthly_costs  # noqa: E402
+from qc import build_qc_runs  # noqa: E402
+from registry import build_method_registry  # noqa: E402
 from test_dims import build_dim_analyzers, build_dim_reference_ranges, build_dim_tests  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -89,6 +92,31 @@ def print_result_stats(r: pd.DataFrame, orders: pd.DataFrame, tests: pd.DataFram
     print("sezónnost (medián podle měsíce):\n" + seas.to_string())
 
 
+def print_business_stats(r: pd.DataFrame, qc: pd.DataFrame, costs: pd.DataFrame, orders: pd.DataFrame) -> None:
+    print("\n=== QC ===")
+    z = (qc["value"] - qc["target_mean"]) / qc["target_sd"]
+    print("měření:", len(qc), "| |z|>2:", round((z.abs() > 2).mean(), 3), "| |z|>3:", round((z.abs() > 3).mean(), 4))
+    print("\n=== Ekonomika (36 měsíců) ===")
+    rev = r.assign(month_key=r["order_id"].map(orders.set_index("order_id")["collected_at"]).dt.strftime("%Y-%m"))
+    rev_t = rev.groupby("test_id")["revenue_czk"].sum()
+    cost_cols = [c for c in costs.columns if c.endswith("_czk") and c != "total_cost_czk"]
+    total_rev = rev_t.sum()
+    print(f"výnos {total_rev / 1e6:.2f} mil. Kč")
+    for c in cost_cols:
+        print(f"  {c:<20} {costs[c].sum() / 1e6:6.2f} mil. ({costs[c].sum() / total_rev:5.1%})")
+    print(f"provozní výsledek {(total_rev - costs['total_cost_czk'].sum()) / 1e6:.2f} mil. Kč "
+          f"(marže {(1 - costs['total_cost_czk'].sum() / total_rev):.1%})")
+    g = costs.groupby("test_id").agg(cost=("total_cost_czk", "sum"), n=("reportable_results", "sum"),
+                                     exp=("expiry_czk", "sum"), months=("month_key", "nunique"))
+    g["revenue"] = rev_t
+    g["margin_pct"] = (1 - g["cost"] / g["revenue"]).round(3)
+    g["cost_per_result"] = (g["cost"] / g["n"]).round(1)
+    g["rev_per_result"] = (g["revenue"] / g["n"]).round(1)
+    g["n_month"] = (g["n"] / g["months"]).round(0)
+    g["expiry_share"] = (g["exp"] / g["cost"]).round(2)
+    print(g.sort_values("margin_pct")[["n_month", "rev_per_result", "cost_per_result", "margin_pct", "expiry_share"]].to_string())
+
+
 def main() -> None:
     rng = np.random.default_rng(config.SEED)
     fake = Faker("cs_CZ")
@@ -104,12 +132,19 @@ def main() -> None:
     tests = build_dim_tests()
     ref = build_dim_reference_ranges()
     results = build_results(orders, patients, depts, tests, ref, rng)
+    print("Generuji QC, registr metod a náklady…")
+    qc = build_qc_runs(rng)
+    registry = build_method_registry(tests, results, orders, rng)
+    costs = build_monthly_costs(results, qc, registry)
 
     print("\nZapisuji:")
     write(tests, "dim_tests")
     write(ref, "dim_reference_ranges")
     write(build_dim_analyzers(), "dim_analyzers")
     write(results[EXPORT_RESULT_COLS], "fact_results")
+    write(qc, "fact_qc_runs")
+    write(costs, "fact_monthly_costs")
+    write(registry, "dim_method_registry")
     write(dim_date, "dim_date")
     write(insurers, "dim_insurers")
     write(depts.drop(columns=["order_share", "orders_per_episode", "stat_share", "patient_focus"]), "dim_departments")
@@ -120,6 +155,7 @@ def main() -> None:
 
     print_stats(patients, depts, orders)
     print_result_stats(results, orders, tests)
+    print_business_stats(results, qc, costs, orders)
 
 
 if __name__ == "__main__":

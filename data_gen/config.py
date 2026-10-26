@@ -46,5 +46,11 @@ STAT_SHARE = 0.28
 HOURLY_RATE_LAB_TECH = 420
 HOURLY_RATE_UNIVERSITY = 780
 
+# Nákladový model (fiktivní, realistické parametry)
+CONSUMABLE_SHARE = 0.15            # podíl spotřebního materiálu v nákladu na test
+DEAD_VOLUME = 0.03                 # mrtvý objem reagencie
+VALIDATION_AMORT_MONTHS = 36       # odpis validace a zaškolení nové metody
+LAB_OVERHEAD_MONTH_CZK = 75_000    # LIS, budova, energie, vedení – rozpočítáno podle objemu
+
 # Kč za test, pokud ceník samoplátců nemá cenu: body × hodnota bodu × přirážka
 SELF_PAY_MARKUP = 1.35

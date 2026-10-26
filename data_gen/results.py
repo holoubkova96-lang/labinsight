@@ -15,7 +15,7 @@ import pandas as pd
 
 import config
 from catalog import BY_KEY, CATALOG, LIFECYCLE
-from test_dims import CHEM_SPLIT
+from test_dims import CHEM_SPLIT, DUAL_CHEM_MIN_WEIGHT
 
 PANELS = {
     "elyte": ["NA", "K", "CL"], "renal": ["UREA", "CREA", "EGFR"], "glu": ["GLU"],
@@ -256,7 +256,8 @@ def build_results(orders: pd.DataFrame, patients: pd.DataFrame, depts: pd.DataFr
     r["flag"], r["is_critical"] = _flags(r, ref)
 
     # Analyzátor
-    r["analyzer_id"] = np.where(group == "AN_CHEM", chem_an[oi], group)
+    dual = r["test_id"].map(lambda k: BY_KEY[k].weight >= DUAL_CHEM_MIN_WEIGHT).to_numpy()
+    r["analyzer_id"] = np.where(group == "AN_CHEM", np.where(dual, chem_an[oi], "AN_CHEM1"), group)
 
     # Časová razítka
     stat = (o["priority"] == "STAT").to_numpy()[oi]

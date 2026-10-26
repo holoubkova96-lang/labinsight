@@ -14,14 +14,15 @@ SOURCE = Path(__file__).resolve().parent.parent / "data" / "source"
 
 # (id, skupina z katalogu, název CZ, název EN, leasing + servis Kč/měsíc) – fiktivní
 ANALYZERS = [
-    ("AN_CHEM1", "AN_CHEM", "Biochemický analyzátor 1", "Clinical chemistry analyser 1", 95_000),
-    ("AN_CHEM2", "AN_CHEM", "Biochemický analyzátor 2", "Clinical chemistry analyser 2", 95_000),
-    ("AN_IMMU", "AN_IMMU", "Imunochemický analyzátor", "Immunoassay analyser", 120_000),
-    ("AN_HEM", "AN_HEM", "Hematologický analyzátor", "Haematology analyser", 70_000),
-    ("AN_COAG", "AN_COAG", "Koagulační analyzátor", "Coagulation analyser", 45_000),
-    ("AN_SPEC", "AN_SPEC", "Pracoviště speciálních metod (ELISA, manuální)", "Special methods bench (ELISA, manual)", 30_000),
+    ("AN_CHEM1", "AN_CHEM", "Biochemický analyzátor 1", "Clinical chemistry analyser 1", 18_000),
+    ("AN_CHEM2", "AN_CHEM", "Biochemický analyzátor 2", "Clinical chemistry analyser 2", 14_000),
+    ("AN_IMMU", "AN_IMMU", "Imunochemický analyzátor", "Immunoassay analyser", 25_000),
+    ("AN_HEM", "AN_HEM", "Hematologický analyzátor", "Haematology analyser", 14_000),
+    ("AN_COAG", "AN_COAG", "Koagulační analyzátor", "Coagulation analyser", 9_000),
+    ("AN_SPEC", "AN_SPEC", "Pracoviště speciálních metod (ELISA, manuální)", "Special methods bench (ELISA, manual)", 6_000),
 ]
 CHEM_SPLIT = .6  # podíl žádanek na biochemickém analyzátoru 1
+DUAL_CHEM_MIN_WEIGHT = 7  # méně časté metody běží jen na analyzátoru 1
 
 # Dětské referenční meze (0–17 let) tam, kde se výrazně liší od dospělých
 CHILD_REF = {"ALP": (1.2, 6.0), "CREA": (20, 60), "UA": (120, 330), "CK": (0, 4.0)}
