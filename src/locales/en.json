@@ -176,7 +176,9 @@
     "costPerReportable": "Actual cost per reportable result = all method costs (reagents, QC, calibration, expiry, EQA, staff, lease, overhead) / number of reported results.",
     "pareto": "The 80/20 Pareto rule: a small share of items often drives most of the effect. Sorted bars with a cumulative line show how many methods make up 80 %.",
     "payback": "Payback period = one-off introduction costs (validation, training) / monthly operating margin.",
-    "sensitivity": "Sensitivity analysis shows which assumptions move the result most. The longest bars are the parameters to verify most carefully."
+    "sensitivity": "Sensitivity analysis shows which assumptions move the result most. The longest bars are the parameters to verify most carefully.",
+    "makeOrBuy": "Make-or-buy compares running a method in-house with sending samples to a reference laboratory. When sent out, the reference lab bills the procedure; we keep only the pre-analytics and transport cost.",
+    "lifecycleLoss": "Sum of negative cumulative results of discontinued methods: revenue − all costs including validation, training and expiry."
   },
   "landing": {
     "title": "LabInsight",
@@ -492,5 +494,86 @@
       "overhead": "Overhead",
       "amortization": "Validation write-off"
     }
+  },
+  "makebuy": {
+    "make": "In-house testing",
+    "buy": "Send to reference lab",
+    "crossover": "Crossover",
+    "tat": "Send-out TAT",
+    "decision": "Recommendation",
+    "decisionMake": "Keep in-house",
+    "decisionBuy": "Send out",
+    "kpiMethods": "Methods assessed",
+    "kpiBuy": "Active methods better sent out",
+    "kpiSaving": "Monthly saving from sending out",
+    "kpiSelected": "Selected method",
+    "advantage": "difference {{v}} per month",
+    "chart": "Make-or-buy – {{test}}",
+    "chartSub": "Monthly result of both options by volume · sending out costs {{handling}} per sample (pre-analytics and transport), result in {{tat}} h",
+    "table": "Make-or-buy for all methods",
+    "tableSub": "At the actual volume in the period · click a row to chart the method"
+  },
+  "lifecycle": {
+    "running": "ongoing",
+    "category": {
+      "NEW_SUCCESS": "Successful",
+      "NEW_CANCELLED": "Discontinued"
+    },
+    "kpiIntroduced": "Newly introduced methods",
+    "kpiCancelled": "Discontinued methods",
+    "kpiLoss": "Cumulative loss of discontinued",
+    "kpiGain": "Contribution of successful",
+    "gantt": "Method lifecycle",
+    "ganttSub": "From introduction to discontinuation · blue successful, red discontinued",
+    "plan": "Planned vs. actual volume",
+    "planSub": "Average results per month · grey plan, coloured actual",
+    "planned": "Plan",
+    "actual": "Actual",
+    "cumulative": "Cumulative result of new methods",
+    "cumulativeSub": "Revenue − actual costs incl. validation; discontinued methods dashed",
+    "lessons": "Lessons learned – what should have warned us",
+    "modelBreakEven": "Break-even (model)",
+    "result": "Total result",
+    "reason": "Reason for discontinuation",
+    "lesson": "Lesson",
+    "planAbove": "The plan was {{pct}} above break-even – the decision relied on an optimistic demand estimate.",
+    "planBelow": "Even the plan was below break-even – the method could never be profitable.",
+    "actualBelow": "Actual volume reached only {{pct}} of break-even.",
+    "actualAbove": "Actual volume exceeded break-even."
+  },
+  "payers": {
+    "shareResults": "Share of procedures",
+    "shareRevenue": "Share of revenue",
+    "kpiSelfOrders": "Self-payers – share of orders",
+    "kpiSelfRevenue": "{{pct}} of revenue",
+    "kpiPointValue": "Realised point value",
+    "kpiPointValueSub": "weighted average across insurers and specialties",
+    "kpiTop": "Largest payer",
+    "ofRevenue": "{{pct}} of revenue",
+    "kpiRevenuePerResult": "Revenue per result – self-payer",
+    "vsInsurance": "insurers {{v}}",
+    "share": "Payers: share of procedures and revenue",
+    "shareSub": "Click to filter the payer",
+    "trend": "Revenue by payer over time",
+    "trendSub": "Monthly revenue stacked by insurer and self-payers",
+    "pointValues": "Point value by insurer",
+    "pointValuesSub": "Decree No. 432/2025 Coll. × FICTIONAL contract coefficient (simulated individual contracts) · realised = revenue / points",
+    "insurer": "Insurer",
+    "coef": "Contract coefficient",
+    "realised": "Realised",
+    "selfNote": "Self-payer prices: {{estimated}} of {{total}} tests are still estimated from points (points × point value × 1.35) until the price list is filled in (data/source/ceny_samoplatci.csv)."
+  },
+  "requesters": {
+    "kpiActive": "Active requesters",
+    "kpiSplit": "{{internal}} internal · {{external}} external",
+    "kpiExternalShare": "External – share of revenue",
+    "ofOrders": "{{pct}} of orders",
+    "kpiPerOrder": "Revenue per order – internal",
+    "externalPerOrder": "external {{v}}",
+    "kpiTop": "Largest requester",
+    "top": "Top {{n}} requesters",
+    "kindTrend": "Internal vs. external clients",
+    "kindTrendSub": "Monthly revenue by requester type",
+    "table": "All requesters"
   }
 }

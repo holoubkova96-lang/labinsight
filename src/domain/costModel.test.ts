@@ -63,3 +63,14 @@ describe('cost model', () => {
     expect(rows[0].high).toBeGreaterThan(rows[0].low);
   });
 });
+
+describe('make or buy', () => {
+  it('prefers sending out at low volume and own testing at high volume', async () => {
+    const { makeOrBuy, makeOrBuyCrossover } = await import('./costModel');
+    expect(makeOrBuy(simple, 5, 30).decision).toBe('buy');
+    expect(makeOrBuy(simple, 500, 30).decision).toBe('make');
+    // vlastní provádění: 79,49 Kč × f − 8 000 ≥ −30 Kč × f  →  f ≥ 8 000 / 109,49
+    const perTest = 100 - 20 * (0.85 * 1.03 + 0.15);
+    expect(makeOrBuyCrossover(simple, 30)).toBe(Math.ceil(8000 / (perTest + 30)));
+  });
+});

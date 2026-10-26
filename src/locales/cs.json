@@ -177,7 +177,9 @@
     "costPerReportable": "Skutečný náklad na vydaný výsledek = všechny náklady metody (reagencie, QC, kalibrace, expirace, EHK, personál, leasing, režie) / počet vydaných výsledků.",
     "pareto": "Paretovo pravidlo 80/20: malá část položek často tvoří většinu efektu. Seřazené sloupce a kumulativní čára ukazují, kolik metod tvoří 80 %.",
     "payback": "Doba návratnosti = jednorázové náklady zavedení (validace, zaškolení) / měsíční provozní marže.",
-    "sensitivity": "Citlivostní analýza ukazuje, které předpoklady nejvíc ovlivní výsledek. Nejdelší pruhy = parametry, které je potřeba ověřit nejpečlivěji."
+    "sensitivity": "Citlivostní analýza ukazuje, které předpoklady nejvíc ovlivní výsledek. Nejdelší pruhy = parametry, které je potřeba ověřit nejpečlivěji.",
+    "makeOrBuy": "Make-or-buy porovná vlastní provádění metody s odesláním vzorků do referenční laboratoře. Při odeslání vykazuje výkon referenční laboratoř, nám zůstává náklad na preanalytiku a dopravu.",
+    "lifecycleLoss": "Součet záporných kumulovaných výsledků zrušených metod: výnos − všechny náklady včetně validace, zaškolení a expirace."
   },
   "landing": {
     "title": "LabInsight",
@@ -494,5 +496,86 @@
       "overhead": "Režie",
       "amortization": "Odpis validace"
     }
+  },
+  "makebuy": {
+    "make": "Vlastní provádění",
+    "buy": "Odeslání do referenční laboratoře",
+    "crossover": "Bod přechodu",
+    "tat": "TAT odeslání",
+    "decision": "Doporučení",
+    "decisionMake": "Provádět",
+    "decisionBuy": "Odesílat",
+    "kpiMethods": "Posuzované metody",
+    "kpiBuy": "Aktivní metody výhodnější odesílat",
+    "kpiSaving": "Úspora odesláním měsíčně",
+    "kpiSelected": "Vybraná metoda",
+    "advantage": "rozdíl {{v}} měsíčně",
+    "chart": "Make-or-buy – {{test}}",
+    "chartSub": "Měsíční výsledek obou variant podle frekvence · odeslání stojí {{handling}} za vzorek (preanalytika a doprava), výsledek za {{tat}} h",
+    "table": "Make-or-buy všech metod",
+    "tableSub": "Při skutečné frekvenci v období · klikem vybereš metodu do grafu"
+  },
+  "lifecycle": {
+    "running": "dosud",
+    "category": {
+      "NEW_SUCCESS": "Osvědčená",
+      "NEW_CANCELLED": "Zrušená"
+    },
+    "kpiIntroduced": "Nově zavedené metody",
+    "kpiCancelled": "Zrušené metody",
+    "kpiLoss": "Kumulovaná ztráta zrušených",
+    "kpiGain": "Přínos osvědčených",
+    "gantt": "Životní cyklus metod",
+    "ganttSub": "Od zavedení do zrušení · modře osvědčené, červeně zrušené",
+    "plan": "Plánovaná vs. skutečná frekvence",
+    "planSub": "Průměrný počet výsledků měsíčně · šedě plán, barevně skutečnost",
+    "planned": "Plán",
+    "actual": "Skutečnost",
+    "cumulative": "Kumulovaný výsledek nových metod",
+    "cumulativeSub": "Výnos − skutečné náklady včetně validace; zrušené metody čárkovaně",
+    "lessons": "Lessons learned – co mělo varovat předem",
+    "modelBreakEven": "Bod zvratu (model)",
+    "result": "Výsledek celkem",
+    "reason": "Důvod zrušení",
+    "lesson": "Poučení",
+    "planAbove": "Plán byl o {{pct}} nad bodem zvratu – rozhodnutí stálo na optimistickém odhadu poptávky.",
+    "planBelow": "Už plán byl pod bodem zvratu – metodu nešlo zavést ziskově.",
+    "actualBelow": "Skutečnost dosáhla jen {{pct}} bodu zvratu.",
+    "actualAbove": "Skutečnost bod zvratu překonala."
+  },
+  "payers": {
+    "shareResults": "Podíl na výkonech",
+    "shareRevenue": "Podíl na výnosu",
+    "kpiSelfOrders": "Samoplátci – podíl žádanek",
+    "kpiSelfRevenue": "{{pct}} výnosu",
+    "kpiPointValue": "Realizovaná hodnota bodu",
+    "kpiPointValueSub": "vážený průměr všech pojišťoven a odborností",
+    "kpiTop": "Největší plátce",
+    "ofRevenue": "{{pct}} výnosu",
+    "kpiRevenuePerResult": "Výnos na výsledek – samoplátce",
+    "vsInsurance": "pojišťovny {{v}}",
+    "share": "Plátci: podíl výkonů a výnosů",
+    "shareSub": "Klikem filtruješ plátce",
+    "trend": "Výnosy podle plátce v čase",
+    "trendSub": "Měsíční výnos, skládaný podle pojišťoven a samoplátců",
+    "pointValues": "Hodnota bodu podle pojišťovny",
+    "pointValuesSub": "Vyhláška č. 432/2025 Sb. × FIKTIVNÍ smluvní koeficient (simulace individuálních smluv) · realizovaná = výnos / body",
+    "insurer": "Pojišťovna",
+    "coef": "Smluvní koeficient",
+    "realised": "Realizovaná",
+    "selfNote": "Ceny pro samoplátce: {{estimated}} z {{total}} vyšetření je zatím odhadnuto z bodů (body × hodnota bodu × 1,35), dokud nebude vyplněn ceník (data/source/ceny_samoplatci.csv)."
+  },
+  "requesters": {
+    "kpiActive": "Aktivní žadatelé",
+    "kpiSplit": "{{internal}} interních · {{external}} externích",
+    "kpiExternalShare": "Externí – podíl výnosu",
+    "ofOrders": "{{pct}} žádanek",
+    "kpiPerOrder": "Výnos na žádanku – interní",
+    "externalPerOrder": "externí {{v}}",
+    "kpiTop": "Největší žadatel",
+    "top": "{{n}} největších žadatelů",
+    "kindTrend": "Interní vs. externí klienti",
+    "kindTrendSub": "Měsíční výnos podle typu žadatele",
+    "table": "Všichni žadatelé"
   }
 }

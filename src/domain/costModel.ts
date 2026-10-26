@@ -157,3 +157,27 @@ export function monthlyOn(p: MethodParams, freq: number, analyzers = 1): Monthly
   ) as MonthlyBreakdown;
   return scaled;
 }
+
+/**
+ * Make-or-buy: měsíční výsledek vlastního provádění vs. odeslání do referenční
+ * laboratoře. Při odeslání vykazuje výkon referenční laboratoř, nám zůstává jen
+ * náklad na preanalytiku a dopravu (handlingCzk za vzorek).
+ */
+export function makeOrBuy(p: MethodParams, freq: number, handlingCzk: number, analyzers = 1) {
+  const make = monthlyOn(p, freq, analyzers).margin;
+  const buy = -handlingCzk * freq;
+  return { make, buy, advantage: make - buy, decision: make >= buy ? ('make' as const) : ('buy' as const) };
+}
+
+/** Nejnižší frekvence, od které se vyplatí provádět metodu vlastními silami. */
+export function makeOrBuyCrossover(
+  p: MethodParams,
+  handlingCzk: number,
+  analyzers = 1,
+  maxFreq = 20_000,
+): number | null {
+  for (let f = 1; f <= maxFreq; f++) {
+    if (makeOrBuy(p, f, handlingCzk, analyzers).decision === 'make') return f;
+  }
+  return null;
+}
