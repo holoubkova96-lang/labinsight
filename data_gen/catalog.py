@@ -99,12 +99,12 @@ BY_KEY = {t.key: t for t in CATALOG}
 # Životní cyklus metod: (zavedení, zrušení | None, plánovaná měsíční frekvence, důvod zrušení)
 # Metody, které nejsou uvedené, běží od začátku období.
 LIFECYCLE = {
-    "ANTIXA": ("2024-01-15", "2025-06-30", 220, "low_volume_reagent_expiry"),
-    "IL6": ("2024-04-01", "2025-03-31", 180, "low_volume_high_qc_cost"),
-    "ACE": ("2023-11-01", "2025-01-31", 120, "low_volume_outsourcing_cheaper"),
-    "KRYO": ("2024-09-01", "2026-02-28", 40, "manual_labour_cost"),
-    "FOL": ("2024-02-01", "2026-06-30", 400, "low_volume_reagent_expiry"),
-    "PCT": ("2023-12-01", None, 250, None),
-    "NTPROBNP": ("2024-03-01", None, 220, None),
-    "TNT": ("2024-01-08", None, 300, None),
+    "ANTIXA": ("2024-01-15", "2025-06-30", 90, "low_volume_reagent_expiry"),
+    "IL6": ("2024-04-01", "2025-03-31", 70, "low_volume_high_qc_cost"),
+    "ACE": ("2023-11-01", "2025-01-31", 45, "low_volume_outsourcing_cheaper"),
+    "KRYO": ("2024-09-01", "2026-02-28", 15, "manual_labour_cost"),
+    "FOL": ("2024-02-01", "2026-06-30", 120, "low_volume_reagent_expiry"),
+    "PCT": ("2023-12-01", None, 60, None),
+    "NTPROBNP": ("2024-03-01", None, 45, None),
+    "TNT": ("2024-01-08", None, 65, None),
 }

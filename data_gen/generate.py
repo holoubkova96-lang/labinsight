@@ -18,6 +18,8 @@ import config  # noqa: E402
 from dimensions import (EXPORT_PATIENT_COLS, build_dim_date, build_dim_departments,  # noqa: E402
                         build_dim_insurers, build_patients)
 from orders import EXPORT_ORDER_COLS, build_orders  # noqa: E402
+from results import EXPORT_RESULT_COLS, build_results  # noqa: E402
+from test_dims import build_dim_analyzers, build_dim_reference_ranges, build_dim_tests  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "public" / "data"
@@ -58,6 +60,35 @@ def print_stats(patients: pd.DataFrame, depts: pd.DataFrame, orders: pd.DataFram
     print("žádanek na pacienta: medián", per_p.median(), "| 90. percentil", per_p.quantile(.9), "| max", per_p.max())
 
 
+def print_result_stats(r: pd.DataFrame, orders: pd.DataFrame, tests: pd.DataFrame) -> None:
+    print("\n=== Výsledky ===")
+    print("celkem:", len(r), "| na žádanku:", round(len(r) / len(orders), 2),
+          "| nevydáno:", int(r["value"].isna().sum()), "| opakování:", round(r["is_repeat"].mean(), 3))
+    print("flag:", r["flag"].value_counts(normalize=True).round(3).to_dict())
+    print("vzorky:", r["sample_issue"].value_counts(normalize=True).round(4).to_dict())
+    month = pd.to_datetime(r["order_id"].map(orders.set_index("order_id")["collected_at"])).dt.to_period("M")
+    active_months = r.assign(m=month).groupby("test_id")["m"].nunique()
+    per_month = (r["test_id"].value_counts() / active_months).round(0).sort_values()
+    print("průměrně za měsíc (aktivní měsíce), nejméně časté:", per_month.head(10).astype(int).to_dict())
+    print("nejčastější:", per_month.tail(6).astype(int).to_dict())
+    print("osvědčené metody:", per_month[["PCT", "TNT", "NTPROBNP"]].astype(int).to_dict())
+    pct_path = r[r["is_critical"]]
+    within30 = ((pct_path["critical_reported_at"] - pct_path["validated_at"]).dt.total_seconds() <= 1800).mean()
+    print("kritických:", len(pct_path), "| nahlášeno do 30 min:", round(within30, 3))
+    w = r.pivot_table(index="order_id", columns="test_id", values="value")
+    for a, b in (("CREA", "UREA"), ("CREA", "EGFR"), ("TNT", "NTPROBNP"), ("ALT", "AST"), ("CRP", "PCT"), ("TSH", "FT4")):
+        print(f"korelace log {a}–{b}:", round(np.log(w[[a, b]].dropna()).corr().iloc[0, 1], 2))
+    tat = r.merge(orders[["order_id", "priority", "collected_at"]], on="order_id")
+    tat_min = (tat["validated_at"] - tat["collected_at"]).dt.total_seconds() / 60
+    print("medián TAT odběr→validace STAT/rutina:", round(tat_min[tat["priority"] == "STAT"].median()),
+          "/", round(tat_min[tat["priority"] == "ROUTINE"].median()))
+    print("výnos celkem (mil. Kč):", round(r["revenue_czk"].sum() / 1e6, 2),
+          "| body celkem (mil.):", round(r["points"].sum() / 1e6, 2))
+    m = r.assign(m=month)
+    seas = m[m["test_id"].isin(["CRP", "VITD"])].groupby(["test_id", m["m"].dt.month])["value"].median().unstack().round(1)
+    print("sezónnost (medián podle měsíce):\n" + seas.to_string())
+
+
 def main() -> None:
     rng = np.random.default_rng(config.SEED)
     fake = Faker("cs_CZ")
@@ -69,8 +100,16 @@ def main() -> None:
     depts = build_dim_departments(fake)
     patients = build_patients(rng)
     orders = build_orders(patients, depts, dim_date, rng)
+    print("Generuji výsledky…")
+    tests = build_dim_tests()
+    ref = build_dim_reference_ranges()
+    results = build_results(orders, patients, depts, tests, ref, rng)
 
     print("\nZapisuji:")
+    write(tests, "dim_tests")
+    write(ref, "dim_reference_ranges")
+    write(build_dim_analyzers(), "dim_analyzers")
+    write(results[EXPORT_RESULT_COLS], "fact_results")
     write(dim_date, "dim_date")
     write(insurers, "dim_insurers")
     write(depts.drop(columns=["order_share", "orders_per_episode", "stat_share", "patient_focus"]), "dim_departments")
@@ -80,6 +119,7 @@ def main() -> None:
     write(orders, "orders_latent", TMP)
 
     print_stats(patients, depts, orders)
+    print_result_stats(results, orders, tests)
 
 
 if __name__ == "__main__":

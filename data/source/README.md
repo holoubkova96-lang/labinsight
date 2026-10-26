@@ -5,7 +5,7 @@
 | `szv_body.csv` | kódy výkonů a bodové hodnoty | [VZP – Zdravotní výkony](https://vzp.cz/poskytovatele/ciselniky/zdravotni-vykony), číselník v. 1482 (platnost od 1. 10. 2026), staženo 26. 10. 2026 |
 | `ceny_samoplatci.csv` | ceny pro samoplátce (vyplňuje se ručně) | veřejný ceník https://webkalkulacka.agellab.cz/ |
 
-Hodnota bodu 0,86 Kč je **přibližná** (vyhláška č. 432/2025 Sb., příloha č. 5) a je nastavitelná v konfiguraci generátoru.
+Hodnota bodu podle vyhlášky č. 432/2025 Sb., příloha č. 5, část B (akreditovaná laboratoř): **0,80 Kč** pro odbornosti 801 a 813, **0,90 Kč** pro 818, **1,05 Kč** pro kapitolu 999. Nastavitelné v `data_gen/config.py`; smluvní koeficienty pojišťoven (±3 %) jsou fiktivní.
 
 ## Jak vyplnit `ceny_samoplatci.csv`
 
