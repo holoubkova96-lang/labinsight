@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: read
+  actions: read # stažení artefaktu předchozího nasazení
   pages: write
   id-token: write
 
@@ -37,6 +38,22 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      # GitHub Pages i prohlížeče drží index.html až 10 minut v cache. Aby stará
+      # verze stránky nehledala smazané soubory, ponecháme assety předchozího nasazení.
+      - name: Keep assets of the previous deployment
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          prev=$(gh run list --repo "$GITHUB_REPOSITORY" --workflow deploy.yml --branch main \
+            --status success --limit 1 --json databaseId --jq '.[0].databaseId')
+          if [ -n "$prev" ] && gh run download "$prev" --repo "$GITHUB_REPOSITORY" -n github-pages -D prev; then
+            mkdir -p prev_site && tar -xf prev/artifact.tar -C prev_site
+            cp -n prev_site/assets/* dist/assets/ 2>/dev/null || true
+            echo "Kept $(ls prev_site/assets | wc -l) previous assets"
+          else
+            echo "No previous artifact available – skipping"
+          fi
 
       - uses: actions/configure-pages@v6
 
