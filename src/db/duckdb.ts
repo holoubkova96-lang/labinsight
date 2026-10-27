@@ -95,6 +95,11 @@ function normalize(v: unknown): Row[string] {
   return v as Row[string];
 }
 
+function toIso(ms: number, kind: 'date' | 'timestamp'): string {
+  const iso = new Date(ms).toISOString(); // DuckDB TIMESTAMP je bez časové zóny → UTC
+  return kind === 'date' ? iso.slice(0, 10) : iso.slice(0, 19).replace('T', ' ');
+}
+
 // DuckDB-WASM spojení zpracovává dotazy po jednom – řadíme je do fronty
 let queue: Promise<unknown> = Promise.resolve();
 
@@ -107,13 +112,18 @@ export async function query<T extends Row = Row>(sql: string): Promise<T[]> {
   const fields = table.schema.fields.map((f) => ({
     name: f.name,
     scale: DataType.isDecimal(f.type) ? 10 ** f.type.scale : 0,
+    // datum a čas jako čitelný text (číselné časy vrací dotazy přes epoch_ms)
+    temporal: (DataType.isDate(f.type) ? 'date' : DataType.isTimestamp(f.type) ? 'timestamp' : null) as
+      'date' | 'timestamp' | null,
   }));
   const rows: T[] = [];
   for (const r of table.toArray()) {
     const o: Row = {};
     for (const f of fields) {
       const v = r[f.name];
-      o[f.name] = f.scale && v != null ? Number(String(v)) / f.scale : normalize(v);
+      if (f.scale && v != null) o[f.name] = Number(String(v)) / f.scale;
+      else if (f.temporal && v != null) o[f.name] = toIso(Number(normalize(v)), f.temporal);
+      else o[f.name] = normalize(v);
     }
     rows.push(o as T);
   }

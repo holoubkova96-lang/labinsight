@@ -105,18 +105,20 @@ export function TopBar({ mode }: { mode: Mode }) {
           >
             <Icon name={theme === 'dark' ? 'sun' : 'moon'} />
           </button>
-          <button
-            onClick={() => setSlicersOpen(true)}
-            className="relative flex items-center gap-1.5 rounded-lg border border-line px-2.5 py-2 text-sm lg:hidden"
-          >
-            <Icon name="filter" />
-            {t('slicers.open')}
-            {nFilters > 0 && (
-              <span className="rounded-full bg-accent px-1.5 text-xs font-semibold text-white dark:text-black">
-                {nFilters}
-              </span>
-            )}
-          </button>
+          {inMode && (
+            <button
+              onClick={() => setSlicersOpen(true)}
+              className="relative flex items-center gap-1.5 rounded-lg border border-line px-2.5 py-2 text-sm lg:hidden"
+            >
+              <Icon name="filter" />
+              {t('slicers.open')}
+              {nFilters > 0 && (
+                <span className="rounded-full bg-accent px-1.5 text-xs font-semibold text-white dark:text-black">
+                  {nFilters}
+                </span>
+              )}
+            </button>
+          )}
         </div>
       </div>
     </header>

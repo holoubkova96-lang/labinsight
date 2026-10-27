@@ -75,7 +75,7 @@ SELECT t.group_name_${l} AS test_group,
        rank() OVER (PARTITION BY t.test_group ORDER BY sum(r.revenue_czk) DESC) AS rnk
 FROM fact_results r
 JOIN dim_tests t USING (test_id)
-GROUP BY ALL
+GROUP BY t.test_group, t.group_name_${l}, t.name_${l}
 ${c('QUALIFY filtruje podle výsledku okenní funkce (DuckDB)', 'QUALIFY filters on a window-function result (DuckDB)')}
 QUALIFY rnk <= 3
 ORDER BY test_group, rnk;`;
@@ -194,12 +194,13 @@ r AS (
 )
 SELECT t.name_${l} AS test,
        round(c.actual_per_month)                                         AS actual_per_month,
-       ceil(c.fixed_per_month / nullif(r.revenue_per_test - c.variable_per_test, 0)) AS break_even_per_month,
+       CASE WHEN r.revenue_per_test > c.variable_per_test
+            THEN ceil(c.fixed_per_month / (r.revenue_per_test - c.variable_per_test)) END AS break_even_per_month,
        CASE WHEN r.revenue_per_test <= c.variable_per_test THEN 'never'
             WHEN c.actual_per_month >= c.fixed_per_month / (r.revenue_per_test - c.variable_per_test) THEN 'OK'
             ELSE 'below' END                                             AS status
 FROM c JOIN r USING (test_id) JOIN dim_tests t USING (test_id)
-ORDER BY status DESC, break_even_per_month DESC;`;
+ORDER BY status DESC, break_even_per_month DESC NULLS FIRST;`;
     },
   },
   {

@@ -14,6 +14,7 @@ export function AppShell() {
   const { t } = useTranslation();
   const params = useParams();
   const lastMode = useUi((s) => s.lastMode);
+  const inMode = isMode(params.mode);
   const mode = isMode(params.mode) ? params.mode : lastMode;
   const slicersOpen = useUi((s) => s.slicersOpen);
   const setSlicersOpen = useUi((s) => s.setSlicersOpen);
@@ -21,15 +22,17 @@ export function AppShell() {
   return (
     <div data-mode={mode} className="min-h-screen bg-bg">
       <TopBar mode={mode} />
-      {isMode(params.mode) && <PageTabs mode={mode} />}
+      {inMode && <PageTabs mode={mode} />}
       <div className="mx-auto flex max-w-[1600px] gap-6 px-4 py-5 lg:px-6">
-        {/* desktop: postranní panel; mobil: zásuvka */}
-        <aside className="hidden w-72 shrink-0 lg:block">
-          <div className="sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto rounded-xl border border-line bg-surface">
-            <SlicerPanel />
-          </div>
-        </aside>
-        {slicersOpen && (
+        {/* desktop: postranní panel; mobil: zásuvka. Mimo módy (SQL, model, O datech) se filtry neuplatní. */}
+        {inMode && (
+          <aside className="hidden w-72 shrink-0 lg:block">
+            <div className="sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto rounded-xl border border-line bg-surface">
+              <SlicerPanel />
+            </div>
+          </aside>
+        )}
+        {inMode && slicersOpen && (
           <div
             className="fixed inset-0 z-40 lg:hidden"
             role="dialog"
@@ -47,7 +50,7 @@ export function AppShell() {
           </div>
         )}
         <main className="min-w-0 flex-1 space-y-4">
-          <FilterChips />
+          {inMode && <FilterChips />}
           <Outlet />
         </main>
       </div>
