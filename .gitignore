@@ -32,3 +32,6 @@ npm-debug.log*
 
 # Claude Code local config
 .claude/
+
+# Soukromé poznámky autorky (nejsou součástí repozitáře ani aplikace)
+POZNAMKY_SQL_A_TECHNOLOGIE.md

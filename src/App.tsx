@@ -6,7 +6,6 @@ import { Spinner } from './components/ui/States';
 import Landing from './pages/Landing';
 import ModePage from './pages/ModePage';
 
-const SqlLab = lazy(() => import('./pages/SqlLab'));
 const ErDiagram = lazy(() => import('./pages/ErDiagram'));
 const About = lazy(() => import('./pages/About'));
 
@@ -27,14 +26,6 @@ export default function App() {
             element={
               <Suspense fallback={<Spinner />}>
                 <ModePage />
-              </Suspense>
-            }
-          />
-          <Route
-            path="sql"
-            element={
-              <Suspense fallback={<Spinner />}>
-                <SqlLab />
               </Suspense>
             }
           />

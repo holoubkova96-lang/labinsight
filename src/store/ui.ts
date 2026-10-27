@@ -7,7 +7,7 @@ const THEME_KEY = 'labinsight.theme';
 type UiState = {
   theme: Theme;
   slicersOpen: boolean; // mobilní zásuvka s filtry
-  lastMode: Mode; // mód pro stránky mimo módy (SQL laboratoř, O datech)
+  lastMode: Mode; // mód pro stránky mimo módy (datový model, O datech)
   toggleTheme: () => void;
   setSlicersOpen: (open: boolean) => void;
   setLastMode: (mode: Mode) => void;

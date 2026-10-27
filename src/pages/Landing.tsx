@@ -3,16 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { LANGS } from '../i18n';
 import { Icon, type IconName } from '../components/ui/Icon';
 
-const STACK = [
-  'React',
-  'TypeScript',
-  'DuckDB-WASM',
-  'Apache ECharts',
-  'Tailwind CSS',
-  'Zustand',
-  'i18next',
-  'Python',
-];
+/** Odkaz na LinkedIn – dokud je prázdný, odkaz se nezobrazí. */
+const LINKEDIN_URL = '';
 
 export default function Landing() {
   const { t, i18n } = useTranslation();
@@ -32,7 +24,6 @@ export default function Landing() {
       title: t('landing.businessCta'),
       desc: t('landing.businessDesc'),
     },
-    { to: '/sql', mode: 'clinical', icon: 'code', title: t('landing.sqlCta'), desc: t('landing.sqlDesc') },
   ];
 
   return (
@@ -67,7 +58,7 @@ export default function Landing() {
         </h1>
         <p className="mt-5 max-w-2xl text-lg text-ink-2">{t('landing.lead')}</p>
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-3">
+        <div className="mt-10 grid gap-4 sm:grid-cols-2">
           {cards.map((c) => (
             <Link
               key={c.to}
@@ -84,17 +75,18 @@ export default function Landing() {
           ))}
         </div>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2">
+        <div className="mt-12 max-w-md">
           <div className="rounded-xl border border-line bg-surface p-5">
             <h2 className="text-xs font-semibold tracking-wide text-muted uppercase">
               {t('landing.author')}
             </h2>
             <p className="mt-2 font-semibold">{t('landing.authorName')}</p>
-            <p className="text-sm text-ink-2">{t('landing.authorRole')}</p>
             <div className="mt-3 flex gap-3 text-sm">
-              <a className="text-accent hover:underline" href="#" rel="noopener">
-                {t('landing.linkedin')}
-              </a>
+              {LINKEDIN_URL && (
+                <a className="text-accent hover:underline" href={LINKEDIN_URL} rel="noopener">
+                  {t('landing.linkedin')}
+                </a>
+              )}
               <a
                 className="text-accent hover:underline"
                 href="https://github.com/holoubkova96-lang/labinsight"
@@ -102,16 +94,6 @@ export default function Landing() {
               >
                 {t('landing.github')}
               </a>
-            </div>
-          </div>
-          <div className="rounded-xl border border-line bg-surface p-5">
-            <h2 className="text-xs font-semibold tracking-wide text-muted uppercase">{t('landing.stack')}</h2>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {STACK.map((s) => (
-                <span key={s} className="rounded-full border border-line px-2.5 py-1 text-xs text-ink-2">
-                  {s}
-                </span>
-              ))}
             </div>
           </div>
         </div>

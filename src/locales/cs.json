@@ -11,7 +11,6 @@
     "business": "Business"
   },
   "nav": {
-    "sqlLab": "SQL laboratoř",
     "er": "Datový model",
     "about": "O datech",
     "home": "Úvod",
@@ -193,14 +192,10 @@
     "clinicalDesc": "Výsledky, referenční meze, kritické hodnoty, kontrola kvality a provoz.",
     "businessCta": "Business pohled",
     "businessDesc": "Body, úhrady, náklady na výsledek, marže, bod zvratu a životní cyklus metod.",
-    "sqlCta": "SQL laboratoř",
-    "sqlDesc": "Vlastní SQL dotazy nad DuckDB přímo v prohlížeči.",
     "author": "Autorka",
-    "authorName": "[Jméno Příjmení]",
-    "authorRole": "Datová analytička",
+    "authorName": "Mgr. Barbora Fišerová",
     "linkedin": "LinkedIn",
-    "github": "GitHub",
-    "stack": "Technologie"
+    "github": "GitHub"
   },
   "placeholder": {
     "title": "Připravuje se",
@@ -659,81 +654,6 @@
     "last6": "Posledních 6 měs.",
     "next6": "Dalších 6 měs. (prognóza)",
     "change": "Změna"
-  },
-  "sqlLab": {
-    "intro": "Pište vlastní SQL nad stejnou databází DuckDB, ze které vznikají všechny grafy – běží přímo ve vašem prohlížeči. Začněte některým z ukázkových dotazů vlevo.",
-    "examples": "Ukázkové dotazy",
-    "schema": "Schéma databáze",
-    "run": "Spustit",
-    "restore": "Obnovit ukázku",
-    "editor": "SQL editor",
-    "hint": "Ctrl/Cmd + Enter spustí dotaz · Ctrl + mezerník našeptá tabulky a sloupce · změny se týkají jen vaší relace, obnovením stránky se databáze vrátí do původního stavu.",
-    "result": "Výsledek",
-    "stats": "{{rows}} řádků za {{ms}} ms",
-    "truncated": "zobrazeno prvních {{n}}",
-    "view": "Zobrazení",
-    "table": "Tabulka",
-    "chart": "Graf",
-    "yAxis": "Hodnota",
-    "noChart": "Pro graf je potřeba aspoň jeden číselný sloupec.",
-    "presets": {
-      "join": {
-        "title": "JOIN: výsledky podle oddělení",
-        "desc": "Spojení faktové tabulky s dimenzemi a podíl patologických výsledků."
-      },
-      "monthly": {
-        "title": "GROUP BY: objem a výnos po měsících",
-        "desc": "Agregace podle měsíce odběru."
-      },
-      "moving_avg": {
-        "title": "Okno: klouzavý průměr",
-        "desc": "3měsíční klouzavý průměr objemu pomocí AVG() OVER."
-      },
-      "rank": {
-        "title": "Okno: TOP 3 ve skupině",
-        "desc": "RANK() OVER (PARTITION BY …) a filtr QUALIFY."
-      },
-      "tat_percentiles": {
-        "title": "CTE + percentily TAT",
-        "desc": "Medián, 90. a 95. percentil doby odezvy podle priority."
-      },
-      "cohort": {
-        "title": "Kohortová analýza",
-        "desc": "Návratnost pacientů po kvartálech od první žádanky (PIVOT)."
-      },
-      "outliers": {
-        "title": "Detekce outlierů (IQR)",
-        "desc": "Extrémní hodnoty kreatininu Tukeyho metodou."
-      },
-      "cost_per_result": {
-        "title": "Náklad na výsledek",
-        "desc": "Skutečný náklad vs. výnos na vydaný výsledek podle metody."
-      },
-      "break_even": {
-        "title": "Bod zvratu v SQL",
-        "desc": "Fixní a variabilní náklady → minimální měsíční frekvence."
-      },
-      "pareto": {
-        "title": "Pareto 80/20",
-        "desc": "Kumulativní podíl výnosu pomocí SUM() OVER (ORDER BY …)."
-      },
-      "delta_check": {
-        "title": "Delta check (LAG)",
-        "desc": "Největší změny draslíku u téhož pacienta do 48 hodin."
-      },
-      "westgard": {
-        "title": "Kontrola kvality",
-        "desc": "CV %, bias % a porušení pravidla 1-3s podle metody."
-      },
-      "yoy": {
-        "title": "Meziroční srovnání",
-        "desc": "Změna objemu r/r pomocí LAG(…, 12)."
-      },
-      "lifecycle": {
-        "title": "Zrušené metody",
-        "desc": "Plán vs. skutečnost a celková ztráta zrušených metod."
-      }
-    }
   },
   "er": {
     "title": "Datový model – hvězdicové schéma",

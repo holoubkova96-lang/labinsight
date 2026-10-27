@@ -52,7 +52,7 @@ Break-even = fixní náklady / (výnos na test − variabilní náklad na test);
 
 ## Stránky
 
-- **Společné:** Landing, O datech, ER diagram, SQL laboratoř
+- **Společné:** Landing, O datech, ER diagram
 - **Klinický mód:** Přehled · Výsledky a distribuce · Kritické hodnoty · Kontrola kvality · TAT a provoz · Pacient · Korelace · Indikační chování
 - **Business mód:** Přehled · Frekvence vs. náklad · Simulátor zavedení metody · Make-or-buy · Životní cyklus · Pojišťovny a samoplátci · Žadatelé · P&L waterfall · What-if · Prognóza
 
@@ -61,7 +61,7 @@ Break-even = fixní náklady / (výnos na test − variabilní náklad na test);
 1. Plán ✅
 2. Repozitář na GitHubu
 3. Bodové hodnoty, šablona ceníku, generátor dat
-4. Kostra, i18n, slicery, DuckDB → klinický mód → business mód → SQL laboratoř
+4. Kostra, i18n, slicery, DuckDB → klinický mód → business mód
 5. Design, testování
 6. Nasazení, README, průvodce
 

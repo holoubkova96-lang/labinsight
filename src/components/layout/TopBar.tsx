@@ -65,9 +65,6 @@ export function TopBar({ mode }: { mode: Mode }) {
           className="order-last flex w-full gap-1 overflow-x-auto scroll-thin md:order-none md:w-auto"
           aria-label={t('nav.pages')}
         >
-          <NavLink to={{ pathname: '/sql', search }} className={navCls}>
-            {t('nav.sqlLab')}
-          </NavLink>
           <NavLink to={{ pathname: '/er', search }} className={navCls}>
             {t('nav.er')}
           </NavLink>
