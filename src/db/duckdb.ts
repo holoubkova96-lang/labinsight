@@ -42,6 +42,12 @@ export type Row = Record<string, string | number | boolean | null>;
 export type LoadProgress = { step: 'engine' | 'tables' | 'ready'; loaded: number; total: number };
 
 let dbPromise: Promise<duckdb.AsyncDuckDBConnection> | null = null;
+let ready = false;
+
+/** Je databáze už načtená (např. při návratu z úvodní stránky)? */
+export function isDbReady(): boolean {
+  return ready;
+}
 
 export function initDb(onProgress?: (p: LoadProgress) => void): Promise<duckdb.AsyncDuckDBConnection> {
   if (!dbPromise) {
@@ -71,6 +77,7 @@ export function initDb(onProgress?: (p: LoadProgress) => void): Promise<duckdb.A
         await conn.query(`CREATE TABLE ${name} AS SELECT * FROM read_parquet('${name}.parquet')`);
       }
       for (const sql of DERIVED_SQL) await conn.query(sql);
+      ready = true;
       onProgress?.({ step: 'ready', loaded, total: TABLES.length });
       return conn;
     })();

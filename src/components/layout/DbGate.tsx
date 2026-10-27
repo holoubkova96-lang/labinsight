@@ -1,17 +1,23 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import { initDb, type LoadProgress } from '../../db/duckdb';
+import { initDb, isDbReady, type LoadProgress } from '../../db/duckdb';
 import { Icon } from '../ui/Icon';
 
 /** Načte DuckDB a data; do té doby ukazuje průběh. */
 export function DbGate({ children }: { children: ReactNode }) {
   const { t } = useTranslation();
-  const [progress, setProgress] = useState<LoadProgress>({ step: 'engine', loaded: 0, total: 1 });
+  // Při návratu z úvodní stránky je databáze už načtená – průběh rovnou přeskočíme
+  const [progress, setProgress] = useState<LoadProgress>(() =>
+    isDbReady() ? { step: 'ready', loaded: 1, total: 1 } : { step: 'engine', loaded: 0, total: 1 },
+  );
   const [error, setError] = useState<string | null>(null);
   const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
-    initDb(setProgress).catch((e: unknown) => setError(e instanceof Error ? e.message : String(e)));
+    initDb(setProgress)
+      // průběh hlásí jen první načtení; i opakované volání ale musí skončit stavem „ready“
+      .then(() => setProgress((p) => ({ ...p, step: 'ready' })))
+      .catch((e: unknown) => setError(e instanceof Error ? e.message : String(e)));
   }, [attempt]);
 
   if (progress.step === 'ready') return <>{children}</>;
