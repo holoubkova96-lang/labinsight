@@ -1,5 +1,7 @@
 # LabInsight – plán projektu
 
+> **Původní plán z úvodu projektu.** Aplikace byla později zjednodušena na 6 stránek – aktuální rozsah popisuje [README.cs.md](../README.cs.md).
+
 ## Architektura
 
 ```
