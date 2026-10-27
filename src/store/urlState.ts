@@ -31,6 +31,8 @@ export function paramsToFilters(p: URLSearchParams): Filters {
     const v = p.get(PARAM[k]);
     f[k] = v ? v.split(',').filter(Boolean) : [];
   }
+  // starší odkazy mohly v parametru „payer“ nést kód pojišťovny – platí jen nové hodnoty
+  f.payerType = f.payerType.filter((v) => v === 'INSURANCE' || v === 'SELF');
   return f;
 }
 

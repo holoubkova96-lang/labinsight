@@ -40,3 +40,11 @@ describe('lit', () => {
     expect(lit("O'Brien")).toBe("'O''Brien'");
   });
 });
+
+describe('payer filter', () => {
+  it('filters by payer type', () => {
+    expect(buildWhere({ ...EMPTY_FILTERS, payerType: ['SELF'] }, 'results').sql).toBe(
+      "payer_type IN ('SELF')",
+    );
+  });
+});

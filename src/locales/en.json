@@ -310,5 +310,10 @@
     "planBelow": "Even the plan was below break-even – the method could never be profitable.",
     "actualBelow": "Actual volume reached only {{pct}} of break-even.",
     "actualAbove": "Actual volume exceeded break-even."
+  },
+  "errors": {
+    "title": "The page could not be displayed",
+    "text": "Most often a new version of the app was released in the meantime. Reloading the page loads the current version.",
+    "reload": "Reload page"
   }
 }

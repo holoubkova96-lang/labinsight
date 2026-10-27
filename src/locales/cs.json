@@ -311,5 +311,10 @@
     "planBelow": "Už plán byl pod bodem zvratu – metodu nešlo zavést ziskově.",
     "actualBelow": "Skutečnost dosáhla jen {{pct}} bodu zvratu.",
     "actualAbove": "Skutečnost bod zvratu překonala."
+  },
+  "errors": {
+    "title": "Stránku se nepodařilo zobrazit",
+    "text": "Nejčastěji je to proto, že mezitím vyšla nová verze aplikace. Obnovení stránky načte aktuální verzi.",
+    "reload": "Obnovit stránku"
   }
 }
