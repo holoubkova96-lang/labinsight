@@ -6,7 +6,7 @@ import { useUrlSync } from '../../store/useUrlSync';
 import { FilterChips } from '../slicers/FilterChips';
 import { SlicerPanel } from '../slicers/SlicerPanel';
 import { Icon } from '../ui/Icon';
-import { PageTabs } from './PageTabs';
+import { DASHBOARD_ID, PageTabs } from './PageTabs';
 import { TopBar } from './TopBar';
 
 export function AppShell() {
@@ -45,7 +45,7 @@ export function AppShell() {
             </div>
           </div>
         )}
-        <main className="min-w-0 flex-1 space-y-4">
+        <main id={DASHBOARD_ID} className="min-w-0 flex-1 space-y-4">
           <FilterChips />
           <Outlet />
         </main>

@@ -106,7 +106,10 @@
     "comingSoon": "This page is in preparation.",
     "sqlTitle": "Chart SQL query",
     "sqlHint": "This chart is built by this query running in DuckDB inside your browser. The WHERE conditions mirror the active filters.",
-    "crossFilterHint": "Click the chart to filter"
+    "crossFilterHint": "Click the chart to filter",
+    "exportDashboard": "Download dashboard",
+    "exportDashboardTitle": "Save the whole dashboard page as a PNG image",
+    "exporting": "Saving…"
   },
   "loading": {
     "engine": "Starting the DuckDB database in your browser…",

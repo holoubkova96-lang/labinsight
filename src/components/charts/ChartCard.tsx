@@ -1,8 +1,8 @@
-import { useState, type ReactNode } from 'react';
+import { useRef, useState, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { EChartsType } from 'echarts';
 import type { Row } from '../../db/duckdb';
-import { useChartTheme } from './chartTheme';
+import { saveElementAsPng } from './exportImage';
 import { Icon } from '../ui/Icon';
 import { InfoTip } from '../ui/InfoTip';
 import { SqlModal } from '../ui/SqlModal';
@@ -41,6 +41,9 @@ function toCsv(rows: Row[]): string {
   return [cols.join(','), ...rows.map((r) => cols.map((c) => esc(r[c])).join(','))].join('\n');
 }
 
+/** Registrace instance grafu už není potřeba (PNG se dělá ze stránky), API zůstává kvůli stránkám. */
+const noop = () => {};
+
 function download(href: string, name: string) {
   const a = document.createElement('a');
   a.href = href;
@@ -67,9 +70,8 @@ export function ChartCard({
   children,
 }: Props) {
   const { t } = useTranslation();
-  const theme = useChartTheme();
   const [showSql, setShowSql] = useState(false);
-  const [chart, setChart] = useState<EChartsType | null>(null);
+  const cardRef = useRef<HTMLElement>(null);
 
   const exportCsv = () => {
     if (!data) return;
@@ -79,15 +81,15 @@ export function ChartCard({
     download(url, `${fileName}.csv`);
     URL.revokeObjectURL(url);
   };
+  // PNG celé karty včetně titulku – funguje se SVG grafy i v tmavém režimu
   const exportPng = () => {
-    const url = chart?.getDataURL({ type: 'png', pixelRatio: 2, backgroundColor: theme.surface });
-    if (url) download(url, `${fileName}.png`);
+    if (cardRef.current) void saveElementAsPng(cardRef.current, `${fileName}.png`);
   };
 
   const btn =
     'flex items-center gap-1 rounded-md px-2 py-1 text-xs text-ink-2 hover:bg-surface-2 hover:text-ink disabled:opacity-40';
   return (
-    <section className={`min-w-0 rounded-xl border border-line bg-surface p-4 ${className}`}>
+    <section ref={cardRef} className={`min-w-0 rounded-xl border border-line bg-surface p-4 ${className}`}>
       <header className="mb-3 flex flex-wrap items-start justify-between gap-2">
         <div className="min-w-0">
           <h2 className="flex items-center gap-1.5 text-sm font-semibold">
@@ -96,7 +98,7 @@ export function ChartCard({
           </h2>
           {subtitle && <p className="mt-0.5 text-xs text-muted">{subtitle}</p>}
         </div>
-        <div className="flex items-center gap-0.5">
+        <div className="flex items-center gap-0.5" data-no-export>
           <button className={btn} onClick={() => setShowSql(true)} title={t('common.showSql')}>
             <Icon name="code" className="size-3.5" />
             {t('common.showSql')}
@@ -133,9 +135,7 @@ export function ChartCard({
         ) : !data?.length ? (
           <EmptyState />
         ) : (
-          <div className={`h-full transition-opacity ${loading ? 'opacity-60' : ''}`}>
-            {children(setChart)}
-          </div>
+          <div className={`h-full transition-opacity ${loading ? 'opacity-60' : ''}`}>{children(noop)}</div>
         )}
       </div>
       {note && <p className="mt-2 text-xs text-muted">{note}</p>}

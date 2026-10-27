@@ -24,7 +24,8 @@ export function EChart({ option, onReady, onCategoryClick, onItemClick }: Props)
 
   useEffect(() => {
     const node = el.current!;
-    const c = echarts.init(node);
+    // SVG: ostřejší grafy a spolehlivý export celé stránky do obrázku
+    const c = echarts.init(node, undefined, { renderer: 'svg' });
     chart.current = c;
     const ro = new ResizeObserver(() => c.resize());
     ro.observe(node);

@@ -107,7 +107,10 @@
     "comingSoon": "Tato stránka se připravuje.",
     "sqlTitle": "SQL dotaz grafu",
     "sqlHint": "Graf vzniká tímto dotazem nad DuckDB přímo v prohlížeči. Podmínky WHERE odpovídají aktivním filtrům.",
-    "crossFilterHint": "Klikni do grafu pro filtrování"
+    "crossFilterHint": "Klikni do grafu pro filtrování",
+    "exportDashboard": "Stáhnout dashboard",
+    "exportDashboardTitle": "Uložit celou stránku dashboardu jako obrázek PNG",
+    "exporting": "Ukládám…"
   },
   "loading": {
     "engine": "Spouštím databázi DuckDB v prohlížeči…",

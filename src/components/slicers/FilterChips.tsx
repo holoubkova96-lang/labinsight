@@ -46,6 +46,7 @@ export function FilterChips() {
             onClick={c.onRemove}
             className="rounded-full p-0.5 text-ink-2 hover:bg-surface hover:text-ink"
             aria-label={t('chips.remove', { label: c.label })}
+            data-no-export
           >
             <Icon name="x" className="size-3" />
           </button>

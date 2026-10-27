@@ -18,6 +18,7 @@
     "apache-arrow": "17.0.0",
     "echarts": "6.1.0",
     "i18next": "26.5.11",
+    "modern-screenshot": "4.7.0",
     "react": "19.3.1",
     "react-dom": "19.3.1",
     "react-i18next": "17.1.9",
