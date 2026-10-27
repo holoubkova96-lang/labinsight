@@ -7,17 +7,13 @@ import ehWorker from '@duckdb/duckdb-wasm/dist/duckdb-browser-eh.worker.js?url';
 
 /** Parquet soubory z generátoru (public/data). Název souboru = název tabulky. */
 export const TABLES = [
-  'dim_date',
   'dim_patients',
   'dim_tests',
   'dim_reference_ranges',
   'dim_method_registry',
   'dim_departments',
-  'dim_insurers',
-  'dim_analyzers',
   'fact_orders',
   'fact_results',
-  'fact_qc_runs',
   'fact_monthly_costs',
 ] as const;
 
@@ -40,9 +36,6 @@ const DERIVED_SQL = [
   `CREATE TABLE costs_wide AS
    SELECT c.*, t.test_group, t.method_status
    FROM fact_monthly_costs c JOIN dim_tests t USING (test_id)`,
-  `CREATE TABLE qc_wide AS
-   SELECT q.*, CAST(q.run_at AS DATE) AS run_date, t.test_group, t.method_status
-   FROM fact_qc_runs q JOIN dim_tests t USING (test_id)`,
 ];
 
 export type Row = Record<string, string | number | boolean | null>;

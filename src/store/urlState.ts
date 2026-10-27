@@ -3,14 +3,11 @@ import { EMPTY_FILTERS, LIST_KEYS, type Filters, type ListKey } from './filters'
 /** Krátké názvy parametrů v URL, aby šel odkaz pohodlně sdílet. */
 const PARAM: Record<ListKey, string> = {
   depts: 'dept',
-  payers: 'payer',
   groups: 'grp',
   tests: 'test',
-  sex: 'sex',
   ages: 'age',
-  priority: 'prio',
-  analyzers: 'an',
-  status: 'status',
+  sex: 'sex',
+  payerType: 'payer',
 };
 
 export function filtersToParams(f: Filters, base?: URLSearchParams): URLSearchParams {

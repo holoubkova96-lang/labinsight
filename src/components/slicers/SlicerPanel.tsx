@@ -7,14 +7,11 @@ import { useSlicerOptions } from './useSlicerOptions';
 
 const LISTS: { key: ListKey; searchable?: boolean }[] = [
   { key: 'depts', searchable: true },
-  { key: 'payers' },
   { key: 'groups' },
   { key: 'tests', searchable: true },
-  { key: 'sex' },
   { key: 'ages' },
-  { key: 'priority' },
-  { key: 'analyzers' },
-  { key: 'status' },
+  { key: 'sex' },
+  { key: 'payerType' },
 ];
 
 export function SlicerPanel({ onClose }: { onClose?: () => void }) {

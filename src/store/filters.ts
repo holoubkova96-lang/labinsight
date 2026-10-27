@@ -6,41 +6,25 @@ export type Filters = {
   from: string | null; // YYYY-MM-DD
   to: string | null;
   depts: string[];
-  payers: string[]; // kód pojišťovny nebo 'SELF'
   groups: string[];
   tests: string[];
-  sex: string[];
   ages: string[];
-  priority: string[];
-  analyzers: string[];
-  status: string[];
+  sex: string[];
+  payerType: string[]; // 'INSURANCE' (jakákoli pojišťovna) nebo 'SELF' (samoplátce)
 };
 export type ListKey = Exclude<keyof Filters, 'from' | 'to'>;
 
-export const LIST_KEYS: ListKey[] = [
-  'depts',
-  'payers',
-  'groups',
-  'tests',
-  'sex',
-  'ages',
-  'priority',
-  'analyzers',
-  'status',
-];
+export const LIST_KEYS: ListKey[] = ['depts', 'groups', 'tests', 'ages', 'sex', 'payerType'];
 
 export const EMPTY_FILTERS: Filters = {
   from: null,
   to: null,
   depts: [],
-  payers: [],
   groups: [],
   tests: [],
-  sex: [],
   ages: [],
-  priority: [],
-  analyzers: [],
-  status: [],
+  sex: [],
+  payerType: [],
 };
 
 type FilterState = Filters & {

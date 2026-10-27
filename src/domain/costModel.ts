@@ -108,36 +108,6 @@ export function breakEven(p: MethodParams, maxFreq = 20_000, withAmortization = 
   return null;
 }
 
-/** Doba návratnosti jednorázových nákladů zavedení (v měsících), null = nevrátí se. */
-export function paybackMonths(p: MethodParams, freq: number): number | null {
-  const operating = monthly(p, freq, false).margin;
-  if (p.oneOffCzk <= 0) return 0;
-  return operating > 0 ? p.oneOffCzk / operating : null;
-}
-
-export type SensitivityKey = keyof MethodParams | 'freq';
-export type SensitivityRow = { key: SensitivityKey; low: number; high: number; span: number };
-
-/** Tornádo: měsíční marže při změně jednoho parametru o ±pct, ostatní beze změny. */
-export function sensitivity(
-  p: MethodParams,
-  freq: number,
-  keys: SensitivityKey[],
-  pct = 0.2,
-): { base: number; rows: SensitivityRow[] } {
-  const base = monthly(p, freq).margin;
-  const rows = keys.map((key) => {
-    const at = (factor: number) =>
-      key === 'freq'
-        ? monthly(p, freq * factor).margin
-        : monthly({ ...p, [key]: (p[key] as number) * factor }, freq).margin;
-    const low = at(1 - pct);
-    const high = at(1 + pct);
-    return { key, low, high, span: Math.abs(high - low) };
-  });
-  return { base, rows: rows.sort((a, b) => b.span - a.span) };
-}
-
 /**
  * Metoda běžící na více analyzátorech: QC, kalibrace a balení reagencie jsou na
  * každém analyzátoru zvlášť, objem se dělí. Fixní částky (leasing, EHK, validace)
@@ -156,28 +126,4 @@ export function monthlyOn(p: MethodParams, freq: number, analyzers = 1): Monthly
     Object.entries(m).map(([k, v]) => [k, k === 'costPerResult' ? v : v * analyzers]),
   ) as MonthlyBreakdown;
   return scaled;
-}
-
-/**
- * Make-or-buy: měsíční výsledek vlastního provádění vs. odeslání do referenční
- * laboratoře. Při odeslání vykazuje výkon referenční laboratoř, nám zůstává jen
- * náklad na preanalytiku a dopravu (handlingCzk za vzorek).
- */
-export function makeOrBuy(p: MethodParams, freq: number, handlingCzk: number, analyzers = 1) {
-  const make = monthlyOn(p, freq, analyzers).margin;
-  const buy = -handlingCzk * freq;
-  return { make, buy, advantage: make - buy, decision: make >= buy ? ('make' as const) : ('buy' as const) };
-}
-
-/** Nejnižší frekvence, od které se vyplatí provádět metodu vlastními silami. */
-export function makeOrBuyCrossover(
-  p: MethodParams,
-  handlingCzk: number,
-  analyzers = 1,
-  maxFreq = 20_000,
-): number | null {
-  for (let f = 1; f <= maxFreq; f++) {
-    if (makeOrBuy(p, f, handlingCzk, analyzers).decision === 'make') return f;
-  }
-  return null;
 }

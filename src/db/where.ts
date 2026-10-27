@@ -1,23 +1,19 @@
 import type { Filters, ListKey } from '../store/filters';
 
 /** Zdroj dat, na který se filtry aplikují (široké tabulky z duckdb.ts). */
-export type Source = 'results' | 'costs' | 'qc';
+export type Source = 'results' | 'costs';
 
 /** Sloupec každého slicru v daném zdroji; chybí-li, filtr se na zdroj nevztahuje. */
 const COLUMNS: Record<Source, Partial<Record<ListKey, string>>> = {
   results: {
     depts: 'dept_id',
-    payers: 'payer',
     groups: 'test_group',
     tests: 'test_id',
-    sex: 'sex',
     ages: 'age_group',
-    priority: 'priority',
-    analyzers: 'analyzer_id',
-    status: 'method_status',
+    sex: 'sex',
+    payerType: 'payer_type',
   },
-  costs: { groups: 'test_group', tests: 'test_id', analyzers: 'analyzer_id', status: 'method_status' },
-  qc: { groups: 'test_group', tests: 'test_id', analyzers: 'analyzer_id', status: 'method_status' },
+  costs: { groups: 'test_group', tests: 'test_id' },
 };
 
 const SAFE_VALUE = /^[\p{L}\p{N}_\-. +]{1,40}$/u;
@@ -48,9 +44,8 @@ export function buildWhere(f: Filters, source: Source, alias = ''): WhereResult 
       if (from) parts.push(`${p}month_key >= ${lit(from.slice(0, 7))}`);
       if (to) parts.push(`${p}month_key <= ${lit(to.slice(0, 7))}`);
     } else {
-      const col = source === 'qc' ? 'run_date' : 'collected_date';
-      if (from) parts.push(`${p}${col} >= DATE ${lit(from)}`);
-      if (to) parts.push(`${p}${col} <= DATE ${lit(to)}`);
+      if (from) parts.push(`${p}collected_date >= DATE ${lit(from)}`);
+      if (to) parts.push(`${p}collected_date <= DATE ${lit(to)}`);
     }
   }
 

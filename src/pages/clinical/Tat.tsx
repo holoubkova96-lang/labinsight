@@ -7,7 +7,6 @@ import { KpiCard } from '../../components/ui/KpiCard';
 import { useQuery } from '../../db/useQuery';
 import { useWhere } from '../../hooks/usePageData';
 import { useFormat } from '../../i18n/format';
-import { useFilters } from '../../store/filters';
 
 type Cell = { dow: number; h: number; n: number };
 type Ecdf = { priority: string; m: number; n: number };
@@ -27,7 +26,6 @@ export default function Tat() {
   const { t } = useTranslation();
   const f = useFormat();
   const theme = useChartTheme();
-  const crossFilter = useFilters((s) => s.crossFilter);
   const { where } = useWhere('results');
 
   // TAT se počítá na úrovni žádanky: odběr → validace posledního výsledku
@@ -349,13 +347,7 @@ GROUP BY ALL`;
         fileName="tat-phases"
         height={200}
       >
-        {(register) => (
-          <EChart
-            option={phaseOption}
-            onReady={register}
-            onItemClick={(p) => crossFilter('priority', p.dataIndex === 0 ? 'STAT' : 'ROUTINE')}
-          />
-        )}
+        {(register) => <EChart option={phaseOption} onReady={register} />}
       </ChartCard>
       <ChartCard
         title={t('tat.sankey')}

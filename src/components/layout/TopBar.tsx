@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { LANGS, type Lang } from '../../i18n';
 import { activeFilterCount, useFilterValues } from '../../store/filters';
@@ -14,22 +13,14 @@ const MODE_ACTIVE: Record<Mode, string> = {
 
 export function TopBar({ mode }: { mode: Mode }) {
   const { t, i18n } = useTranslation();
-  const { pathname, search } = useLocation();
+  const { search } = useLocation();
   const navigate = useNavigate();
   const theme = useUi((s) => s.theme);
   const toggleTheme = useUi((s) => s.toggleTheme);
   const setSlicersOpen = useUi((s) => s.setSlicersOpen);
-  const setLastMode = useUi((s) => s.setLastMode);
   const nFilters = activeFilterCount(useFilterValues());
-  const inMode = MODES.some((m) => pathname.startsWith(`/${m}/`));
-
-  useEffect(() => {
-    if (inMode) setLastMode(mode);
-  }, [inMode, mode, setLastMode]);
 
   const switchMode = (m: Mode) => navigate({ pathname: `/${m}/overview`, search });
-  const navCls = ({ isActive }: { isActive: boolean }) =>
-    `rounded-md px-2.5 py-1.5 text-sm whitespace-nowrap ${isActive ? 'bg-surface-2 font-medium text-ink' : 'text-ink-2 hover:text-ink'}`;
 
   return (
     <header className="border-b border-line bg-surface">
@@ -46,7 +37,7 @@ export function TopBar({ mode }: { mode: Mode }) {
           className="flex rounded-lg border border-line bg-surface-2 p-0.5"
         >
           {MODES.map((m) => {
-            const active = inMode && m === mode;
+            const active = m === mode;
             return (
               <button
                 key={m}
@@ -60,18 +51,6 @@ export function TopBar({ mode }: { mode: Mode }) {
             );
           })}
         </div>
-
-        <nav
-          className="order-last flex w-full gap-1 overflow-x-auto scroll-thin md:order-none md:w-auto"
-          aria-label={t('nav.pages')}
-        >
-          <NavLink to={{ pathname: '/er', search }} className={navCls}>
-            {t('nav.er')}
-          </NavLink>
-          <NavLink to={{ pathname: '/about', search }} className={navCls}>
-            {t('nav.about')}
-          </NavLink>
-        </nav>
 
         <div className="ml-auto flex items-center gap-2">
           <span className="hidden rounded-full border border-line px-2 py-0.5 text-xs text-muted sm:inline">
@@ -102,20 +81,18 @@ export function TopBar({ mode }: { mode: Mode }) {
           >
             <Icon name={theme === 'dark' ? 'sun' : 'moon'} />
           </button>
-          {inMode && (
-            <button
-              onClick={() => setSlicersOpen(true)}
-              className="relative flex items-center gap-1.5 rounded-lg border border-line px-2.5 py-2 text-sm lg:hidden"
-            >
-              <Icon name="filter" />
-              {t('slicers.open')}
-              {nFilters > 0 && (
-                <span className="rounded-full bg-accent px-1.5 text-xs font-semibold text-white dark:text-black">
-                  {nFilters}
-                </span>
-              )}
-            </button>
-          )}
+          <button
+            onClick={() => setSlicersOpen(true)}
+            className="relative flex items-center gap-1.5 rounded-lg border border-line px-2.5 py-2 text-sm lg:hidden"
+          >
+            <Icon name="filter" />
+            {t('slicers.open')}
+            {nFilters > 0 && (
+              <span className="rounded-full bg-accent px-1.5 text-xs font-semibold text-white dark:text-black">
+                {nFilters}
+              </span>
+            )}
+          </button>
         </div>
       </div>
     </header>

@@ -11,8 +11,6 @@
     "business": "Business"
   },
   "nav": {
-    "er": "Data model",
-    "about": "About the data",
     "home": "Home",
     "pages": "Pages"
   },
@@ -20,24 +18,12 @@
     "clinical": {
       "overview": "Overview",
       "results": "Results & distributions",
-      "critical": "Critical values",
-      "qc": "Quality control",
-      "tat": "TAT & operations",
-      "patient": "Patient",
-      "correlation": "Correlation",
-      "ordering": "Ordering behaviour"
+      "tat": "TAT & operations"
     },
     "business": {
       "overview": "Overview",
       "frequency": "Volume vs. cost",
-      "breakeven": "Break-even",
-      "makebuy": "Make-or-buy",
-      "lifecycle": "Method lifecycle",
-      "payers": "Insurers & self-payers",
-      "requesters": "Requesters",
-      "pnl": "P&L waterfall",
-      "whatif": "What-if",
-      "forecast": "Forecast"
+      "lifecycle": "Method lifecycle"
     }
   },
   "theme": {
@@ -66,14 +52,10 @@
     },
     "presetsHint": "Quick ranges count back from the end of the data (Sep 30, 2026).",
     "depts": "Department / requester",
-    "payers": "Insurer / self-payer",
     "groups": "Test group",
     "tests": "Test",
     "sex": "Sex",
     "ages": "Age group",
-    "priority": "STAT / routine",
-    "analyzers": "Analyser",
-    "status": "Method status",
     "search": "Search…",
     "all": "All",
     "selected_one": "{{count}} selected",
@@ -82,8 +64,8 @@
     "none": "No matches",
     "internal": "Hospital departments",
     "external": "External clinics",
-    "self": "Self-payer",
-    "ignored": "These filters do not apply to this data: {{list}}"
+    "ignored": "These filters do not apply to this data: {{list}}",
+    "payerType": "Payer"
   },
   "values": {
     "sex": {
@@ -93,6 +75,10 @@
     "priority": {
       "STAT": "STAT",
       "ROUTINE": "Routine"
+    },
+    "payerType": {
+      "INSURANCE": "Health insurer",
+      "SELF": "Self-payer"
     },
     "status": {
       "ACTIVE": "Active",
@@ -131,11 +117,11 @@
     "samples": "Samples (orders)",
     "results": "Results",
     "pathological": "Abnormal results",
-    "critical": "Critical values",
     "tatStat": "Median TAT – STAT",
     "tatRoutine": "Median TAT – routine",
     "minutes": "{{value}} min",
-    "ofResults": "of {{total}} results"
+    "ofResults": "of {{total}} results",
+    "critical": "Critical values"
   },
   "charts": {
     "volumeTrend": "Test volume over time",
@@ -149,56 +135,32 @@
   "glossary": {
     "tat": "TAT (turnaround time) – time from sample collection to result validation. The median is robust to extreme values.",
     "pathological": "A result outside the reference interval for the patient's sex and age (flag L/H, critical LL/HH).",
-    "critical": "A critical value endangers the patient; the laboratory must phone it to the physician immediately.",
     "samples": "Number of unique orders containing at least one result that matches the filters.",
-    "westgard": "Westgard rules – a set of statistical rules for evaluating quality-control runs (e.g. 1-3s, 2-2s, R-4s, 10x).",
-    "egfr": "eGFR – estimated glomerular filtration rate from creatinine, age and sex (CKD-EPI 2021 equation).",
     "pointValue": "Point value – how many CZK an insurer pays per procedure point. For laboratories it is set by the annual reimbursement decree.",
     "breakEven": "Break-even – the minimum volume at which revenue covers a method's fixed and variable costs.",
     "histogram": "A histogram shows how often values fall into each interval and reveals the shape of the distribution (e.g. skew in enzymes).",
     "boxplot": "A box plot summarises a distribution in five numbers and makes groups easy to compare.",
-    "criticalTarget": "Recommended target: phone a critical value to the physician within 30 minutes of validation.",
-    "cv": "Coefficient of variation = SD / mean × 100. Measures the imprecision (spread) of repeated control measurements.",
-    "bias": "Bias = (control mean − target) / target × 100. Measures systematic deviation of the method.",
-    "leveyJennings": "A Levey-Jennings chart plots control measurements over time against the target and ±1, 2 and 3 SD bands.",
     "percentile": "90th percentile = the value below which 90 % of samples fall. It shows the long tail of slow samples better than the mean.",
     "ecdf": "Empirical cumulative distribution: for each time, the share of samples that already have a result.",
     "sankey": "A Sankey diagram shows flows between states; band width is proportional to the number of results.",
-    "deltaCheck": "A delta check compares a result with the same patient's previous result. An unexpectedly large change may indicate a sample mix-up or pre-analytical error.",
-    "pearson": "Pearson's r measures a linear relationship (−1 to +1). For skewed data it is computed on logarithms.",
-    "spearman": "Spearman's ρ is a rank correlation – robust to outliers and to non-linear (monotonic) relationships.",
-    "r2": "The coefficient of determination R² is the share of Y's variance explained by the regression on X.",
-    "mri": "Minimum retesting interval (MRI) – the time before which repeating a test usually adds no new information (e.g. HbA1c 90 days).",
-    "costPerResult": "Estimate: number of early repeats × actual cost per reportable result of that test from the cost model.",
     "procedures": "A procedure = a reported test result the lab bills to an insurer (points) or to a self-payer.",
     "absorption": "Costs are assigned to reported results: number of results × the method's actual cost per result in that month (absorption costing).",
     "costPerReportable": "Actual cost per reportable result = all method costs (reagents, QC, calibration, expiry, EQA, staff, lease, overhead) / number of reported results.",
     "pareto": "The 80/20 Pareto rule: a small share of items often drives most of the effect. Sorted bars with a cumulative line show how many methods make up 80 %.",
-    "payback": "Payback period = one-off introduction costs (validation, training) / monthly operating margin.",
-    "sensitivity": "Sensitivity analysis shows which assumptions move the result most. The longest bars are the parameters to verify most carefully.",
-    "makeOrBuy": "Make-or-buy compares running a method in-house with sending samples to a reference laboratory. When sent out, the reference lab bills the procedure; we keep only the pre-analytics and transport cost.",
     "lifecycleLoss": "Sum of negative cumulative results of discontinued methods: revenue − all costs including validation, training and expiry.",
-    "waterfall": "A waterfall chart shows how a starting value changes step by step through positive and negative items to the final value.",
-    "annualized": "Period result scaled to 12 months: result / number of months × 12.",
-    "breakEvenPointValue": "By how much the point value would have to change (with the other scenario assumptions) for the operating result to be exactly zero.",
-    "holtWinters": "Holt-Winters exponential smoothing tracks the level, trend and seasonality of a series, weighting older data less; α, β and γ are chosen by the lowest error.",
-    "mape": "MAPE = mean absolute percentage error. The model is trained without the latest months and compared with what actually happened."
+    "critical": "A critical value endangers the patient; the laboratory must phone it to the physician immediately."
   },
   "landing": {
     "title": "LabInsight",
     "lead": "An interactive clinical-laboratory dashboard that answers one question: does this method pay off given its volume and its cost?",
     "clinicalCta": "Clinical view",
-    "clinicalDesc": "Results, reference intervals, critical values, quality control and operations.",
+    "clinicalDesc": "Test results, reference intervals and laboratory operations.",
     "businessCta": "Business view",
-    "businessDesc": "Points, reimbursement, cost per result, margins, break-even and method lifecycle.",
+    "businessDesc": "Revenue, cost per result, margins and method lifecycle.",
     "author": "Author",
     "authorName": "Mgr. Barbora Fišerová",
     "linkedin": "LinkedIn",
     "github": "GitHub"
-  },
-  "placeholder": {
-    "title": "Coming soon",
-    "text": "This page will be added in the next phase of the project."
   },
   "results": {
     "test": "Test",
@@ -218,44 +180,6 @@
     "outOfRangeSub": "20 tests with the highest share of abnormal results · click to select a test",
     "low": "Below",
     "high": "Above"
-  },
-  "critical": {
-    "reportedIn": "reported in {{min}} min",
-    "onTime": "Within 30 min",
-    "late": "After 30 min",
-    "minutes": "minutes (log scale)",
-    "target": "30 min target",
-    "count": "Count",
-    "within30": "Reported within 30 min",
-    "medianTime": "Median time to report",
-    "over60": "Reported after 60 min",
-    "timeline": "Critical value notification timeline",
-    "timelineSub": "Each dot = one critical value; height = time from validation to phone notification",
-    "histogram": "Time to notification",
-    "histogramSub": "Notifications in 5-minute intervals; those after 30 minutes in orange",
-    "byDept": "Share reported within 30 min by department",
-    "byTest": "Critical values by test"
-  },
-  "qc": {
-    "target": "target",
-    "lot": "lot",
-    "mean": "mean",
-    "level": "Level",
-    "warning": "1-2s warning",
-    "reject": "Rejection (Westgard)",
-    "runs": "Control measurements",
-    "cv": "CV % (imprecision)",
-    "bias": "Bias % (deviation)",
-    "rejections": "Rule violations",
-    "lj": "Levey-Jennings chart – {{test}} · {{analyzer}}",
-    "ljSub": "Both control levels in SD units from target · default view is the last 90 days; drag the slider to change it",
-    "violations": "Westgard rule violations",
-    "violationsSub": "Measurements that would reject the run (newest first)",
-    "date": "Date",
-    "value": "Value",
-    "rules": "Rules",
-    "summary": "QC overview of all methods",
-    "summarySub": "Click a row to show that method's Levey-Jennings chart"
   },
   "tat": {
     "dow": {
@@ -294,74 +218,9 @@
     "ecdf": "Cumulative TAT distribution",
     "ecdfSub": "Share of samples with a result within a given time from collection",
     "phases": "TAT phases (median)",
-    "phasesSub": "Where a sample spends its time · click to filter by priority",
+    "phasesSub": "Where a sample spends its time",
     "sankey": "Result path",
     "sankeySub": "Priority → sample condition → outcome (number of results)"
-  },
-  "patient": {
-    "pick": "Patient",
-    "orders_one": "{{count}} order",
-    "orders_other": "{{count}} orders",
-    "byId": "or ID",
-    "show": "Show",
-    "gdpr": "Patients are pseudonymised: instead of name and national ID only a fictional ID, birth year and district (a GDPR-style approach).",
-    "id": "ID",
-    "birthYear": "Birth year",
-    "district": "District",
-    "ordersEpisodes": "Orders / episodes",
-    "period": "Period",
-    "trend": "Results over time",
-    "trendSub": "Small multiples – each test has its own axis; grey band = reference interval, orange = out of range, red = critical",
-    "tests": "Patient's tests",
-    "delta": "Delta check",
-    "deltaSub": "Results that changed more than usual versus the previous result within {{days}} days",
-    "previous": "Previous",
-    "current": "Current",
-    "change": "Change",
-    "limit": "Limit",
-    "hours": "Hours since previous"
-  },
-  "correlation": {
-    "samples": "Samples",
-    "regression": "Regression line",
-    "scale": "Scale",
-    "log": "Logarithmic",
-    "linear": "Linear",
-    "pairs": "Pairs (same sample)",
-    "pearson": "Pearson's r",
-    "spearman": "Spearman's ρ",
-    "strength": {
-      "strong": "strong correlation",
-      "moderate": "moderate correlation",
-      "weak": "weak correlation",
-      "none": "no correlation"
-    },
-    "scatter": "{{x}} vs. {{y}}",
-    "scatterSub": "Values from the same order, random sample of up to {{n}} points, with regression line",
-    "matrix": "Correlation matrix",
-    "matrixSub": "Pearson on logs · blue = negative, red = positive · click a cell to show the pair"
-  },
-  "ordering": {
-    "testsPerOrder": "Tests per order",
-    "ordersPerPatient": "{{value}} orders per patient",
-    "earlyRepeats": "Early repeats",
-    "ofMri": "of {{total}} tests with an MRI",
-    "earlyShare": "Early repeat share",
-    "earlyCost": "Cost of early repeats",
-    "bridge": "the bridge between clinic and economics",
-    "profile": "Requester ordering profile",
-    "profileSub": "Share of each requester's orders including the test (15 most frequent) · click to filter the requester",
-    "ofOrders": "of orders",
-    "byTest": "Early repeats by test",
-    "byTestSub": "Share of results repeated before the minimum retesting interval (MRI)",
-    "byDept": "Requesters: volume and early repeats",
-    "byDeptSub": "Cost = number of early repeats × actual cost per result from the cost model · click to filter",
-    "early": "Early",
-    "days": "days",
-    "cost": "Cost",
-    "kind": "Type",
-    "internal": "Internal",
-    "external": "External"
   },
   "units": {
     "kCzk": "k CZK",
@@ -424,95 +283,6 @@
     "selectedNote": "{{test}}: reagent expiry is {{expiry}} of costs, fixed costs (QC, calibration, EQA, lease, validation) {{fixed}}.",
     "clippedNote": "↓ Off the axis (margin per result): {{list}}"
   },
-  "breakeven": {
-    "form": "Method parameters",
-    "preset": "Start from",
-    "newMethod": "New method (template)",
-    "existing": "Existing methods",
-    "freq": "Expected volume",
-    "formNote": "Simulates a single analyser. Revenue = points × point value (self-payers excluded). Staff rates: technician CZK 420/h, specialist CZK 780/h.",
-    "group": {
-      "revenue": "Revenue",
-      "reagent": "Reagents",
-      "quality": "Quality control",
-      "fixed": "Staff and fixed costs"
-    },
-    "field": {
-      "points": "Procedure points",
-      "pointValue": "Point value",
-      "reagentCzk": "Reagent per test",
-      "packSize": "Tests per pack",
-      "stabilityDays": "Stability once opened",
-      "qcPerDay": "QC runs per day",
-      "qcCzk": "QC run cost",
-      "calPerMonth": "Calibrations per month",
-      "calCzk": "Calibration cost",
-      "ehkYearCzk": "EQA per year",
-      "techMin": "Technician per test",
-      "uniMin": "Specialist per test",
-      "leaseMonthCzk": "Lease & service per month",
-      "overheadPerResult": "Overhead per result",
-      "oneOffCzk": "Validation & training"
-    },
-    "unit": {
-      "pts": "pts",
-      "czk": "CZK",
-      "days": "days",
-      "min": "min"
-    },
-    "verdict": {
-      "yes": "Worth introducing",
-      "borderline": "Borderline – only just pays off",
-      "no": "Not worth it – the method would lose money"
-    },
-    "verdictText": "Break-even is {{be}} results per month; the expected volume of {{freq}} is {{ratio}} of break-even.",
-    "verdictNever": "Even at very high volume revenue never covers costs – revenue per result is below the variable cost.",
-    "kpiBreakEven": "Break-even",
-    "withoutAmort": "without validation write-off: {{n}}",
-    "vsRevenue": "revenue {{rev}}",
-    "monthlyMargin": "Monthly margin",
-    "yearly": "per year {{v}}",
-    "payback": "Payback of introduction",
-    "months": "{{n}} mo",
-    "expected": "expected",
-    "base": "Base margin",
-    "marginChange": "Change in monthly margin",
-    "curve": "Cost per result vs. revenue per result",
-    "curveSub": "Where the curves cross = break-even; vertical line = expected volume",
-    "tornado": "Sensitivity analysis (tornado)",
-    "tornadoSub": "Change in monthly margin when a parameter moves by ±20 % (base margin {{base}})",
-    "structure": "Monthly cost structure",
-    "structureSub": "At the expected volume, {{total}} per month in total",
-    "part": {
-      "variable": "Reagents & consumables",
-      "expiry": "Reagent expiry",
-      "qc": "Quality control",
-      "calibration": "Calibration",
-      "ehk": "EQA",
-      "staff": "Staff",
-      "lease": "Lease & service",
-      "overhead": "Overhead",
-      "amortization": "Validation write-off"
-    }
-  },
-  "makebuy": {
-    "make": "In-house testing",
-    "buy": "Send to reference lab",
-    "crossover": "Crossover",
-    "tat": "Send-out TAT",
-    "decision": "Recommendation",
-    "decisionMake": "Keep in-house",
-    "decisionBuy": "Send out",
-    "kpiMethods": "Methods assessed",
-    "kpiBuy": "Active methods better sent out",
-    "kpiSaving": "Monthly saving from sending out",
-    "kpiSelected": "Selected method",
-    "advantage": "difference {{v}} per month",
-    "chart": "Make-or-buy – {{test}}",
-    "chartSub": "Monthly result of both options by volume · sending out costs {{handling}} per sample (pre-analytics and transport), result in {{tat}} h",
-    "table": "Make-or-buy for all methods",
-    "tableSub": "At the actual volume in the period · click a row to chart the method"
-  },
   "lifecycle": {
     "running": "ongoing",
     "category": {
@@ -540,213 +310,5 @@
     "planBelow": "Even the plan was below break-even – the method could never be profitable.",
     "actualBelow": "Actual volume reached only {{pct}} of break-even.",
     "actualAbove": "Actual volume exceeded break-even."
-  },
-  "payers": {
-    "shareResults": "Share of procedures",
-    "shareRevenue": "Share of revenue",
-    "kpiSelfOrders": "Self-payers – share of orders",
-    "kpiSelfRevenue": "{{pct}} of revenue",
-    "kpiPointValue": "Realised point value",
-    "kpiPointValueSub": "weighted average across insurers and specialties",
-    "kpiTop": "Largest payer",
-    "ofRevenue": "{{pct}} of revenue",
-    "kpiRevenuePerResult": "Revenue per result – self-payer",
-    "vsInsurance": "insurers {{v}}",
-    "share": "Payers: share of procedures and revenue",
-    "shareSub": "Click to filter the payer",
-    "trend": "Revenue by payer over time",
-    "trendSub": "Monthly revenue stacked by insurer and self-payers",
-    "pointValues": "Point value by insurer",
-    "pointValuesSub": "Decree No. 432/2025 Coll. × FICTIONAL contract coefficient (simulated individual contracts) · realised = revenue / points",
-    "insurer": "Insurer",
-    "coef": "Contract coefficient",
-    "realised": "Realised",
-    "selfNote": "Self-payer prices: {{estimated}} of {{total}} tests are still estimated from points (points × point value × 1.35) until the price list is filled in (data/source/ceny_samoplatci.csv)."
-  },
-  "requesters": {
-    "kpiActive": "Active requesters",
-    "kpiSplit": "{{internal}} internal · {{external}} external",
-    "kpiExternalShare": "External – share of revenue",
-    "ofOrders": "{{pct}} of orders",
-    "kpiPerOrder": "Revenue per order – internal",
-    "externalPerOrder": "external {{v}}",
-    "kpiTop": "Largest requester",
-    "top": "Top {{n}} requesters",
-    "kindTrend": "Internal vs. external clients",
-    "kindTrendSub": "Monthly revenue by requester type",
-    "table": "All requesters"
-  },
-  "pnl": {
-    "item": {
-      "revenue": "Revenue",
-      "reagents": "Reagents & consumables",
-      "qcCal": "QC, calibration, EQA",
-      "expiry": "Expiry",
-      "staff": "Staff",
-      "service": "Lease & service",
-      "other": "Validation & overhead",
-      "result": "Operating result",
-      "baseResult": "Base result",
-      "scenarioResult": "Scenario result"
-    },
-    "costs": "Total costs",
-    "selfShare": "of which self-payers {{pct}}",
-    "marginPct": "margin {{pct}}",
-    "annualized": "Annualised result",
-    "months": "from {{n}} months of data",
-    "waterfall": "P&L waterfall",
-    "waterfallSub": "From revenue through each cost item to the operating result for the selected period",
-    "byGroup": "P&L by test group",
-    "marginCol": "Margin"
-  },
-  "whatif": {
-    "controls": "Scenario assumptions",
-    "reset": "Reset",
-    "presets": "Quick scenarios",
-    "lever": {
-      "pointValue": "Point value (insurers)",
-      "volume": "Test volume",
-      "reagentPrice": "Reagent & consumable prices",
-      "qcPrice": "QC & calibrator prices",
-      "staffRate": "Staff costs"
-    },
-    "preset": {
-      "pointCut": "Point value −5 %",
-      "inflation": "Cost inflation",
-      "growth": "Volume +15 %",
-      "austerity": "Insurer austerity year"
-    },
-    "note": "Annualised from the average month of the selected period. Simplification: QC, lease, validation and overhead are fixed with respect to volume; expiry falls as volume grows.",
-    "base": "Base",
-    "scenario": "Scenario",
-    "baseResult": "Base result / year",
-    "scenarioResult": "Scenario result / year",
-    "impact": "Scenario impact",
-    "perYear": "on the annual operating result",
-    "breakEvenPointValue": "Critical point value change",
-    "breakEvenPointValueSub": "at which the lab would break even",
-    "bridge": "Result bridge: base → scenario",
-    "bridgeSub": "Contribution of each item to the change in annual operating result",
-    "compare": "Base vs. scenario",
-    "compareSub": "Annual revenue and cost items"
-  },
-  "forecast": {
-    "series": "Series",
-    "all": "All active methods",
-    "horizon": "Horizon",
-    "months": "{{n}} months",
-    "actual": "Actual",
-    "fitted": "Model (in-sample)",
-    "forecast": "Forecast",
-    "interval": "95 % interval",
-    "nextMonth": "Next month",
-    "horizonTotal": "{{n}}-month forecast",
-    "vsLast": "{{pct}} vs. recent months",
-    "model": "Model",
-    "mape": "Backtest error (MAPE)",
-    "mapeSub": "forecasting recent months from earlier data",
-    "chart": "Volume forecast – {{series}}",
-    "chartSub": "Holt-Winters (trend + seasonality) {{n}} months ahead with a 95 % uncertainty interval",
-    "table": "Forecast by method",
-    "tableSub": "Last 6 months vs. forecast for the next 6 months – input for reagent orders and capacity planning · click to show the method",
-    "last6": "Last 6 mo",
-    "next6": "Next 6 mo (forecast)",
-    "change": "Change"
-  },
-  "er": {
-    "title": "Data model – star schema",
-    "intro": "Fact tables (events: orders, results, QC runs, monthly costs) link to dimensions (lookups: patients, tests, departments, insurers, analysers, calendar) through foreign keys. Numbers in the header = row count.",
-    "fact": "Fact table",
-    "dim": "Dimension",
-    "pk": "primary key",
-    "fk": "foreign key",
-    "rel": "1:N relationship",
-    "more": "+ {{n}} more columns",
-    "columns": "Table columns",
-    "rows": "rows",
-    "wideNote": "For fast filtering the app builds denormalised tables results_wide, costs_wide and qc_wide (facts joined with dimensions) after loading, so all charts share the same WHERE condition.",
-    "desc": {
-      "fact_orders": "An order = one sample collection: who, when, for whom, priority and payer.",
-      "fact_results": "One test result: value, flag, timestamps, points and revenue.",
-      "fact_qc_runs": "Control-material measurements at 2 levels for the Westgard rules.",
-      "fact_monthly_costs": "Monthly costs of a method on an analyser by cost-model component.",
-      "dim_patients": "Pseudonymised patients: sex, birth year, age group, insurer, district.",
-      "dim_tests": "Test catalogue: procedure code and points (VZP), units, critical limits, cost parameters.",
-      "dim_reference_ranges": "Reference intervals by sex and age.",
-      "dim_method_registry": "Method lifecycle: introduction, discontinuation, plan, lessons learned, make-or-buy.",
-      "dim_departments": "Hospital departments and external clinics.",
-      "dim_insurers": "Health insurers and point value (fictional contract coefficient).",
-      "dim_analyzers": "Analysers and their lease.",
-      "dim_date": "Calendar: weekday, public holidays, season."
-    }
-  },
-  "about": {
-    "intro": "Where the dashboard's numbers come from, what is real and what is made up, and which simplifications the model makes.",
-    "disclaimerTitle": "All patients, volumes and costs are fictional",
-    "disclaimer": "The data were produced by a script with a fixed seed. They do not represent any real laboratory, hospital or patient. Only the public tariff data (procedure points, point value) and professional principles (reference intervals, Westgard rules, eGFR equation) are real.",
-    "sourcesTitle": "Sources",
-    "source": "Source",
-    "usage": "Used for",
-    "retrieved": "Retrieved",
-    "sources": {
-      "vzp": {
-        "name": "VZP – Health procedures code list, version 1482",
-        "usage": "Procedure codes and points for 45 tests (valid from Oct 1, 2026)."
-      },
-      "decree": {
-        "name": "Decree No. 432/2025 Coll. (2026 reimbursement decree)",
-        "usage": "Point value: CZK 0.80 (801, 813), 0.90 (818), 1.05 (999) for an accredited laboratory."
-      },
-      "prices": {
-        "name": "Public self-payer price list (webkalkulacka.agellab.cz)",
-        "usage": "Self-payer prices – entered manually into data/source/ceny_samoplatci.csv; estimated from points until filled in."
-      },
-      "mri": {
-        "name": "RCPath / ACB – National Minimum Retesting Intervals (2021)",
-        "usage": "Minimum retesting intervals (ordering behaviour)."
-      },
-      "ckdepi": {
-        "name": "Inker et al., NEJM 2021 – race-free CKD-EPI equation",
-        "usage": "eGFR from creatinine, age and sex."
-      },
-      "westgard": {
-        "name": "Westgard QC – Westgard Rules",
-        "usage": "Rules for evaluating internal quality control."
-      }
-    },
-    "realTitle": "What is based on reality",
-    "real": [
-      "Procedure codes and points from the VZP code list.",
-      "Point value for laboratory specialties from the 2026 reimbursement decree.",
-      "Reference and critical limits commonly used in clinical chemistry and haematology.",
-      "Insurers (codes and names) and the structure of orders, results and QC.",
-      "Professional methods: CKD-EPI 2021 eGFR, Westgard rules, minimum retesting intervals."
-    ],
-    "fictionalTitle": "What is fictional",
-    "fictional": [
-      "All patients, orders, results and their values.",
-      "Test volumes and their distribution over time.",
-      "Prices of reagents, QC, calibration, EQA, lease and overhead (realistic but made up).",
-      "Insurer contract coefficients on the point value (±3 %).",
-      "External clinics and their names, the method register and lessons learned.",
-      "Costs of sending samples to a reference laboratory."
-    ],
-    "generatorTitle": "How the data were made",
-    "generator": [
-      "A Python generator (numpy, pandas, Faker cs_CZ) with a fixed seed of 42 creates 36 months of data (10/2023 – 9/2026): 5,000 patients, 50,000 orders, ~362,000 results, ~108,000 QC runs and monthly costs.",
-      "Orders are generated as care episodes (inpatient stays with daily draws, emergency visits, oncology cycles, outpatient visits). Values follow realistic distributions (log-normal for enzymes and CRP), seasonality (inflammation in winter, vitamin D in summer), correlations through shared clinical factors and a small share of haemolysed or faulty samples.",
-      "The cost model simulates reagents day by day, including expiry of opened packs. The result is the actual cost per reportable result, which rises steeply for low-volume methods."
-    ],
-    "simplificationsTitle": "Simplifications",
-    "simplifications": [
-      "The BONlab laboratory coefficient and regulatory caps of the reimbursement decree are not modelled (revenue = points × point value).",
-      "When a sample is sent out, the reference lab bills the procedure; the lab keeps only the pre-analytics and transport cost.",
-      "Costs are assigned to results by absorption costing (results × the method's cost per result in the month).",
-      "STAT and routine runs of a test are billed under the same code.",
-      "Forecast and what-if are indicative decision models, not accounting predictions."
-    ],
-    "volumeTitle": "Data volume (table rows)",
-    "privacyTitle": "Privacy",
-    "privacy": "The app works with pseudonymised fictional data: instead of name and national ID only an ID, birth year and district. Everything runs locally in your browser – no data are sent to a server."
   }
 }

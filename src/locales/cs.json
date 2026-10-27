@@ -11,8 +11,6 @@
     "business": "Business"
   },
   "nav": {
-    "er": "Datový model",
-    "about": "O datech",
     "home": "Úvod",
     "pages": "Stránky"
   },
@@ -20,24 +18,12 @@
     "clinical": {
       "overview": "Přehled",
       "results": "Výsledky a distribuce",
-      "critical": "Kritické hodnoty",
-      "qc": "Kontrola kvality",
-      "tat": "TAT a provoz",
-      "patient": "Pacient",
-      "correlation": "Korelace",
-      "ordering": "Indikační chování"
+      "tat": "TAT a provoz"
     },
     "business": {
       "overview": "Přehled",
       "frequency": "Frekvence vs. náklad",
-      "breakeven": "Bod zvratu",
-      "makebuy": "Make-or-buy",
-      "lifecycle": "Životní cyklus metod",
-      "payers": "Pojišťovny a samoplátci",
-      "requesters": "Žadatelé",
-      "pnl": "P&L waterfall",
-      "whatif": "What-if",
-      "forecast": "Prognóza"
+      "lifecycle": "Životní cyklus metod"
     }
   },
   "theme": {
@@ -66,14 +52,10 @@
     },
     "presetsHint": "Rychlé volby se počítají od konce dat (30. 9. 2026).",
     "depts": "Oddělení / žadatel",
-    "payers": "Pojišťovna / samoplátce",
     "groups": "Skupina vyšetření",
     "tests": "Vyšetření",
     "sex": "Pohlaví",
     "ages": "Věková skupina",
-    "priority": "STAT / rutina",
-    "analyzers": "Analyzátor",
-    "status": "Stav metody",
     "search": "Hledat…",
     "all": "Vše",
     "selected_one": "{{count}} vybrána",
@@ -83,8 +65,8 @@
     "none": "Nic nenalezeno",
     "internal": "Nemocniční oddělení",
     "external": "Externí ambulance",
-    "self": "Samoplátce",
-    "ignored": "Na tato data se nevztahuje filtr: {{list}}"
+    "ignored": "Na tato data se nevztahuje filtr: {{list}}",
+    "payerType": "Plátce"
   },
   "values": {
     "sex": {
@@ -94,6 +76,10 @@
     "priority": {
       "STAT": "STAT",
       "ROUTINE": "Rutina"
+    },
+    "payerType": {
+      "INSURANCE": "Zdravotní pojišťovna",
+      "SELF": "Samoplátce"
     },
     "status": {
       "ACTIVE": "Aktivní",
@@ -132,11 +118,11 @@
     "samples": "Vzorky (žádanky)",
     "results": "Výsledky",
     "pathological": "Patologické výsledky",
-    "critical": "Kritické hodnoty",
     "tatStat": "Medián TAT – STAT",
     "tatRoutine": "Medián TAT – rutina",
     "minutes": "{{value}} min",
-    "ofResults": "z {{total}} výsledků"
+    "ofResults": "z {{total}} výsledků",
+    "critical": "Kritické hodnoty"
   },
   "charts": {
     "volumeTrend": "Objem vyšetření v čase",
@@ -150,56 +136,32 @@
   "glossary": {
     "tat": "TAT (turnaround time) – doba od odběru vzorku do validace výsledku. Medián je odolný vůči extrémním hodnotám.",
     "pathological": "Výsledek mimo referenční meze pro dané pohlaví a věk (příznak L/H, kritické LL/HH).",
-    "critical": "Kritická hodnota ohrožuje pacienta a laboratoř ji musí neprodleně telefonicky nahlásit lékaři.",
     "samples": "Počet unikátních žádanek, které obsahují alespoň jeden výsledek vyhovující filtrům.",
-    "westgard": "Westgardova pravidla – sada statistických pravidel pro vyhodnocení kontrol kvality (např. 1-3s, 2-2s, R-4s, 10x).",
-    "egfr": "eGFR – odhad glomerulární filtrace z kreatininu, věku a pohlaví (rovnice CKD-EPI 2021).",
     "pointValue": "Hodnota bodu – kolik Kč zaplatí pojišťovna za 1 bod výkonu. Pro laboratoře ji stanoví úhradová vyhláška.",
     "breakEven": "Bod zvratu – minimální frekvence, při které výnos pokryje fixní i variabilní náklady metody.",
     "histogram": "Histogram ukazuje, jak často se hodnoty vyskytují v jednotlivých intervalech. Prozradí tvar rozdělení (např. zešikmení u enzymů).",
     "boxplot": "Krabicový graf shrnuje rozdělení pěti čísly a umožňuje rychle porovnat skupiny.",
-    "criticalTarget": "Doporučený cíl: kritickou hodnotu nahlásit lékaři do 30 minut od validace.",
-    "cv": "Variační koeficient = SD / průměr × 100. Měří nepřesnost (rozptyl) opakovaných měření kontroly.",
-    "bias": "Bias = (průměr kontroly − cílová hodnota) / cílová hodnota × 100. Měří systematické vychýlení metody.",
-    "leveyJennings": "Levey-Jenningsův graf zobrazuje měření kontrolního materiálu v čase vůči cílové hodnotě a pásmům ±1, 2 a 3 SD.",
     "percentile": "90. percentil = hodnota, pod kterou leží 90 % vzorků. Lépe než průměr ukazuje „dlouhý ocas“ pomalých vzorků.",
     "ecdf": "Kumulativní distribuční funkce: pro každý čas ukazuje podíl vzorků, které už mají výsledek.",
     "sankey": "Sankeyův diagram zobrazuje toky mezi stavy; šířka pásu odpovídá počtu výsledků.",
-    "deltaCheck": "Delta check porovná výsledek s předchozím výsledkem téhož pacienta. Nečekaně velká změna může znamenat záměnu vzorku nebo preanalytickou chybu.",
-    "pearson": "Pearsonův r měří lineární vztah (−1 až +1). U zešikmených dat se počítá na logaritmech.",
-    "spearman": "Spearmanův ρ je korelace pořadí – odolná vůči odlehlým hodnotám a nelineárnímu (monotónnímu) vztahu.",
-    "r2": "Koeficient determinace R² říká, jakou část rozptylu Y vysvětluje regrese na X.",
-    "mri": "Minimální interval opakování (MRI) – doba, před jejímž uplynutím opakování vyšetření zpravidla nepřinese novou informaci (např. HbA1c 90 dní).",
-    "costPerResult": "Odhad: počet předčasných opakování × skutečný náklad na vydaný výsledek daného vyšetření z nákladového modelu.",
     "procedures": "Výkon = vydaný výsledek vyšetření, který laboratoř vykazuje pojišťovně (body) nebo účtuje samoplátci.",
     "absorption": "Náklady se přiřazují vydaným výsledkům: počet výsledků × skutečný náklad na výsledek metody v daném měsíci (absorpční kalkulace).",
     "costPerReportable": "Skutečný náklad na vydaný výsledek = všechny náklady metody (reagencie, QC, kalibrace, expirace, EHK, personál, leasing, režie) / počet vydaných výsledků.",
     "pareto": "Paretovo pravidlo 80/20: malá část položek často tvoří většinu efektu. Seřazené sloupce a kumulativní čára ukazují, kolik metod tvoří 80 %.",
-    "payback": "Doba návratnosti = jednorázové náklady zavedení (validace, zaškolení) / měsíční provozní marže.",
-    "sensitivity": "Citlivostní analýza ukazuje, které předpoklady nejvíc ovlivní výsledek. Nejdelší pruhy = parametry, které je potřeba ověřit nejpečlivěji.",
-    "makeOrBuy": "Make-or-buy porovná vlastní provádění metody s odesláním vzorků do referenční laboratoře. Při odeslání vykazuje výkon referenční laboratoř, nám zůstává náklad na preanalytiku a dopravu.",
     "lifecycleLoss": "Součet záporných kumulovaných výsledků zrušených metod: výnos − všechny náklady včetně validace, zaškolení a expirace.",
-    "waterfall": "Vodopádový graf ukazuje, jak se výchozí hodnota postupně mění jednotlivými kladnými a zápornými položkami až ke konečné hodnotě.",
-    "annualized": "Výsledek období přepočtený na 12 měsíců: výsledek / počet měsíců × 12.",
-    "breakEvenPointValue": "O kolik procent by se musela změnit hodnota bodu (při ostatních předpokladech scénáře), aby provozní výsledek byl přesně nula.",
-    "holtWinters": "Holt-Wintersova metoda exponenciálně vyrovnává úroveň, trend a sezónnost řady. Starším datům dává menší váhu; parametry α, β, γ se volí podle nejmenší chyby.",
-    "mape": "MAPE = průměrná absolutní procentní chyba. Model se natrénuje bez posledních měsíců a porovná se s tím, co se skutečně stalo."
+    "critical": "Kritická hodnota ohrožuje pacienta a laboratoř ji musí neprodleně telefonicky nahlásit lékaři."
   },
   "landing": {
     "title": "LabInsight",
     "lead": "Interaktivní dashboard klinické laboratoře, který odpovídá na otázku: vyplatí se nám tato metoda vzhledem k její frekvenci a nákladům?",
     "clinicalCta": "Klinický pohled",
-    "clinicalDesc": "Výsledky, referenční meze, kritické hodnoty, kontrola kvality a provoz.",
+    "clinicalDesc": "Výsledky vyšetření, referenční meze a provoz laboratoře.",
     "businessCta": "Business pohled",
-    "businessDesc": "Body, úhrady, náklady na výsledek, marže, bod zvratu a životní cyklus metod.",
+    "businessDesc": "Výnosy, náklady na výsledek, marže a životní cyklus metod.",
     "author": "Autorka",
     "authorName": "Mgr. Barbora Fišerová",
     "linkedin": "LinkedIn",
     "github": "GitHub"
-  },
-  "placeholder": {
-    "title": "Připravuje se",
-    "text": "Tato stránka bude doplněna v další fázi projektu."
   },
   "results": {
     "test": "Vyšetření",
@@ -219,44 +181,6 @@
     "outOfRangeSub": "20 vyšetření s nejvyšším podílem patologických výsledků · klikem vybereš vyšetření",
     "low": "Pod mezí",
     "high": "Nad mezí"
-  },
-  "critical": {
-    "reportedIn": "nahlášeno za {{min}} min",
-    "onTime": "Do 30 min",
-    "late": "Po 30 min",
-    "minutes": "minuty (log. škála)",
-    "target": "cíl 30 min",
-    "count": "Počet",
-    "within30": "Nahlášeno do 30 min",
-    "medianTime": "Medián doby nahlášení",
-    "over60": "Nahlášeno po 60 min",
-    "timeline": "Časová osa hlášení kritických hodnot",
-    "timelineSub": "Každý bod = jedna kritická hodnota; výška = doba od validace do telefonického nahlášení",
-    "histogram": "Doba do nahlášení",
-    "histogramSub": "Počet hlášení po 5minutových intervalech; hlášení po 30 minutách oranžově",
-    "byDept": "Podíl nahlášených do 30 min podle oddělení",
-    "byTest": "Kritické hodnoty podle vyšetření"
-  },
-  "qc": {
-    "target": "cíl",
-    "lot": "šarže",
-    "mean": "průměr",
-    "level": "Úroveň",
-    "warning": "Varování 1-2s",
-    "reject": "Zamítnutí (Westgard)",
-    "runs": "Měření kontrol",
-    "cv": "CV % (nepřesnost)",
-    "bias": "Bias % (vychýlení)",
-    "rejections": "Porušení pravidel",
-    "lj": "Levey-Jenningsův graf – {{test}} · {{analyzer}}",
-    "ljSub": "Kontroly obou úrovní v jednotkách SD od cílové hodnoty · výchozí pohled posledních 90 dní, posuvníkem změníš rozsah",
-    "violations": "Porušení Westgardových pravidel",
-    "violationsSub": "Měření, kvůli kterým by se běh zamítl (nejnovější nahoře)",
-    "date": "Datum",
-    "value": "Hodnota",
-    "rules": "Pravidla",
-    "summary": "Přehled QC všech metod",
-    "summarySub": "Klikem na řádek zobrazíš Levey-Jenningsův graf metody"
   },
   "tat": {
     "dow": {
@@ -295,75 +219,9 @@
     "ecdf": "Kumulativní rozdělení TAT",
     "ecdfSub": "Jaký podíl vzorků má výsledek do daného času od odběru",
     "phases": "Fáze TAT (medián)",
-    "phasesSub": "Kde vzorek tráví čas · klikem filtruješ prioritu",
+    "phasesSub": "Kde vzorek tráví čas",
     "sankey": "Cesta výsledku",
     "sankeySub": "Priorita → stav vzorku → výsledek (počet výsledků)"
-  },
-  "patient": {
-    "pick": "Pacient",
-    "orders_one": "{{count}} žádanka",
-    "orders_few": "{{count}} žádanky",
-    "orders_other": "{{count}} žádanek",
-    "byId": "nebo ID",
-    "show": "Zobrazit",
-    "gdpr": "Pacienti jsou pseudonymizovaní: místo jména a rodného čísla jen fiktivní ID, rok narození a okres (ukázka přístupu podle GDPR).",
-    "id": "ID",
-    "birthYear": "Rok narození",
-    "district": "Okres",
-    "ordersEpisodes": "Žádanky / epizody",
-    "period": "Období",
-    "trend": "Vývoj výsledků v čase",
-    "trendSub": "Malé násobky – každé vyšetření má vlastní osu; šedé pásmo = referenční meze, oranžově mimo meze, červeně kritické",
-    "tests": "Vyšetření pacienta",
-    "delta": "Delta check",
-    "deltaSub": "Výsledky, které se změnily víc, než je obvyklé, proti předchozímu výsledku do {{days}} dnů",
-    "previous": "Předchozí",
-    "current": "Aktuální",
-    "change": "Změna",
-    "limit": "Limit",
-    "hours": "Hodin od předchozího"
-  },
-  "correlation": {
-    "samples": "Vzorky",
-    "regression": "Regresní přímka",
-    "scale": "Měřítko",
-    "log": "Logaritmické",
-    "linear": "Lineární",
-    "pairs": "Páry (stejný vzorek)",
-    "pearson": "Pearsonův koeficient r",
-    "spearman": "Spearmanův koeficient ρ",
-    "strength": {
-      "strong": "silná korelace",
-      "moderate": "středně silná korelace",
-      "weak": "slabá korelace",
-      "none": "bez korelace"
-    },
-    "scatter": "{{x}} vs. {{y}}",
-    "scatterSub": "Hodnoty ze stejné žádanky, náhodný vzorek max. {{n}} bodů, s regresní přímkou",
-    "matrix": "Korelační matice",
-    "matrixSub": "Pearson na logaritmech · modrá = záporná, červená = kladná · klikem na buňku zobrazíš pár"
-  },
-  "ordering": {
-    "testsPerOrder": "Vyšetření na žádanku",
-    "ordersPerPatient": "{{value}} žádanky na pacienta",
-    "earlyRepeats": "Předčasná opakování",
-    "ofMri": "z {{total}} vyšetření s MRI",
-    "earlyShare": "Podíl předčasných",
-    "earlyCost": "Náklad předčasných opakování",
-    "bridge": "most mezi klinikou a ekonomikou",
-    "profile": "Indikační profil žadatelů",
-    "profileSub": "Podíl žádanek oddělení, které obsahují dané vyšetření (15 nejčastějších) · klikem filtruješ žadatele",
-    "ofOrders": "žádanek",
-    "byTest": "Předčasná opakování podle vyšetření",
-    "byTestSub": "Podíl výsledků opakovaných dřív, než je minimální interval (MRI)",
-    "byDept": "Žadatelé: objem a předčasná opakování",
-    "byDeptSub": "Náklad = počet předčasných opakování × skutečný náklad na výsledek z nákladového modelu · klikem filtruješ",
-    "early": "Předčasně",
-    "days": "dní",
-    "cost": "Náklad",
-    "kind": "Typ",
-    "internal": "Interní",
-    "external": "Externí"
   },
   "units": {
     "kCzk": "tis. Kč",
@@ -426,95 +284,6 @@
     "selectedNote": "{{test}}: expirace tvoří {{expiry}} nákladů, fixní náklady (QC, kalibrace, EHK, leasing, validace) {{fixed}}.",
     "clippedNote": "↓ Mimo osu (marže na výsledek): {{list}}"
   },
-  "breakeven": {
-    "form": "Parametry metody",
-    "preset": "Vycházet z",
-    "newMethod": "Nová metoda (šablona)",
-    "existing": "Existující metody",
-    "freq": "Očekávaná frekvence",
-    "formNote": "Simulace jednoho analyzátoru. Výnos = body × hodnota bodu (samoplátci nejsou zahrnuti). Osobní sazby: laborant 420 Kč/h, VŠ 780 Kč/h.",
-    "group": {
-      "revenue": "Výnos",
-      "reagent": "Reagencie",
-      "quality": "Kontrola kvality",
-      "fixed": "Personál a fixní náklady"
-    },
-    "field": {
-      "points": "Body výkonu",
-      "pointValue": "Hodnota bodu",
-      "reagentCzk": "Reagencie na test",
-      "packSize": "Testů v balení",
-      "stabilityDays": "Stabilita po otevření",
-      "qcPerDay": "QC měření denně",
-      "qcCzk": "Cena QC měření",
-      "calPerMonth": "Kalibrací měsíčně",
-      "calCzk": "Cena kalibrace",
-      "ehkYearCzk": "EHK ročně",
-      "techMin": "Laborant na test",
-      "uniMin": "VŠ na test",
-      "leaseMonthCzk": "Leasing a servis měsíčně",
-      "overheadPerResult": "Režie na výsledek",
-      "oneOffCzk": "Validace a zaškolení"
-    },
-    "unit": {
-      "pts": "b.",
-      "czk": "Kč",
-      "days": "dní",
-      "min": "min"
-    },
-    "verdict": {
-      "yes": "Vyplatí se zavést",
-      "borderline": "Hraniční – vyplatí se jen těsně",
-      "no": "Nevyplatí se – metoda by byla ztrátová"
-    },
-    "verdictText": "Bod zvratu je {{be}} výsledků měsíčně; očekávaná frekvence {{freq}} je {{ratio}} bodu zvratu.",
-    "verdictNever": "Ani při velmi vysoké frekvenci výnos nepokryje náklady – výnos na výsledek je nižší než variabilní náklad.",
-    "kpiBreakEven": "Bod zvratu",
-    "withoutAmort": "bez odpisu validace: {{n}}",
-    "vsRevenue": "výnos {{rev}}",
-    "monthlyMargin": "Měsíční marže",
-    "yearly": "ročně {{v}}",
-    "payback": "Návratnost zavedení",
-    "months": "{{n}} měs.",
-    "expected": "očekávaná",
-    "base": "Výchozí marže",
-    "marginChange": "Změna měsíční marže",
-    "curve": "Náklad na výsledek vs. výnos na výsledek",
-    "curveSub": "Průsečík křivek = bod zvratu; svislá čára = očekávaná frekvence",
-    "tornado": "Citlivostní analýza (tornádo)",
-    "tornadoSub": "Změna měsíční marže při změně parametru o ±20 % (výchozí marže {{base}})",
-    "structure": "Struktura měsíčních nákladů",
-    "structureSub": "Při očekávané frekvenci, celkem {{total}} měsíčně",
-    "part": {
-      "variable": "Reagencie a materiál",
-      "expiry": "Expirace reagencií",
-      "qc": "Kontrola kvality",
-      "calibration": "Kalibrace",
-      "ehk": "EHK",
-      "staff": "Personál",
-      "lease": "Leasing a servis",
-      "overhead": "Režie",
-      "amortization": "Odpis validace"
-    }
-  },
-  "makebuy": {
-    "make": "Vlastní provádění",
-    "buy": "Odeslání do referenční laboratoře",
-    "crossover": "Bod přechodu",
-    "tat": "TAT odeslání",
-    "decision": "Doporučení",
-    "decisionMake": "Provádět",
-    "decisionBuy": "Odesílat",
-    "kpiMethods": "Posuzované metody",
-    "kpiBuy": "Aktivní metody výhodnější odesílat",
-    "kpiSaving": "Úspora odesláním měsíčně",
-    "kpiSelected": "Vybraná metoda",
-    "advantage": "rozdíl {{v}} měsíčně",
-    "chart": "Make-or-buy – {{test}}",
-    "chartSub": "Měsíční výsledek obou variant podle frekvence · odeslání stojí {{handling}} za vzorek (preanalytika a doprava), výsledek za {{tat}} h",
-    "table": "Make-or-buy všech metod",
-    "tableSub": "Při skutečné frekvenci v období · klikem vybereš metodu do grafu"
-  },
   "lifecycle": {
     "running": "dosud",
     "category": {
@@ -542,213 +311,5 @@
     "planBelow": "Už plán byl pod bodem zvratu – metodu nešlo zavést ziskově.",
     "actualBelow": "Skutečnost dosáhla jen {{pct}} bodu zvratu.",
     "actualAbove": "Skutečnost bod zvratu překonala."
-  },
-  "payers": {
-    "shareResults": "Podíl na výkonech",
-    "shareRevenue": "Podíl na výnosu",
-    "kpiSelfOrders": "Samoplátci – podíl žádanek",
-    "kpiSelfRevenue": "{{pct}} výnosu",
-    "kpiPointValue": "Realizovaná hodnota bodu",
-    "kpiPointValueSub": "vážený průměr všech pojišťoven a odborností",
-    "kpiTop": "Největší plátce",
-    "ofRevenue": "{{pct}} výnosu",
-    "kpiRevenuePerResult": "Výnos na výsledek – samoplátce",
-    "vsInsurance": "pojišťovny {{v}}",
-    "share": "Plátci: podíl výkonů a výnosů",
-    "shareSub": "Klikem filtruješ plátce",
-    "trend": "Výnosy podle plátce v čase",
-    "trendSub": "Měsíční výnos, skládaný podle pojišťoven a samoplátců",
-    "pointValues": "Hodnota bodu podle pojišťovny",
-    "pointValuesSub": "Vyhláška č. 432/2025 Sb. × FIKTIVNÍ smluvní koeficient (simulace individuálních smluv) · realizovaná = výnos / body",
-    "insurer": "Pojišťovna",
-    "coef": "Smluvní koeficient",
-    "realised": "Realizovaná",
-    "selfNote": "Ceny pro samoplátce: {{estimated}} z {{total}} vyšetření je zatím odhadnuto z bodů (body × hodnota bodu × 1,35), dokud nebude vyplněn ceník (data/source/ceny_samoplatci.csv)."
-  },
-  "requesters": {
-    "kpiActive": "Aktivní žadatelé",
-    "kpiSplit": "{{internal}} interních · {{external}} externích",
-    "kpiExternalShare": "Externí – podíl výnosu",
-    "ofOrders": "{{pct}} žádanek",
-    "kpiPerOrder": "Výnos na žádanku – interní",
-    "externalPerOrder": "externí {{v}}",
-    "kpiTop": "Největší žadatel",
-    "top": "{{n}} největších žadatelů",
-    "kindTrend": "Interní vs. externí klienti",
-    "kindTrendSub": "Měsíční výnos podle typu žadatele",
-    "table": "Všichni žadatelé"
-  },
-  "pnl": {
-    "item": {
-      "revenue": "Výnosy",
-      "reagents": "Reagencie a materiál",
-      "qcCal": "QC, kalibrace, EHK",
-      "expiry": "Expirace",
-      "staff": "Personál",
-      "service": "Leasing a servis",
-      "other": "Validace a režie",
-      "result": "Provozní výsledek",
-      "baseResult": "Výchozí výsledek",
-      "scenarioResult": "Výsledek scénáře"
-    },
-    "costs": "Náklady celkem",
-    "selfShare": "z toho samoplátci {{pct}}",
-    "marginPct": "marže {{pct}}",
-    "annualized": "Výsledek za rok (přepočet)",
-    "months": "z {{n}} měsíců dat",
-    "waterfall": "P&L waterfall",
-    "waterfallSub": "Od výnosů přes jednotlivé nákladové položky k provoznímu výsledku za zvolené období",
-    "byGroup": "P&L podle skupin vyšetření",
-    "marginCol": "Marže"
-  },
-  "whatif": {
-    "controls": "Předpoklady scénáře",
-    "reset": "Vynulovat",
-    "presets": "Rychlé scénáře",
-    "lever": {
-      "pointValue": "Hodnota bodu (pojišťovny)",
-      "volume": "Objem vyšetření",
-      "reagentPrice": "Ceny reagencií a materiálu",
-      "qcPrice": "Ceny QC a kalibrátorů",
-      "staffRate": "Mzdové náklady"
-    },
-    "preset": {
-      "pointCut": "Snížení hodnoty bodu o 5 %",
-      "inflation": "Inflace nákladů",
-      "growth": "Růst objemu o 15 %",
-      "austerity": "Úsporný rok pojišťoven"
-    },
-    "note": "Roční přepočet z průměrného měsíce zvoleného období. Zjednodušení: QC, leasing, validace a režie jsou vůči objemu fixní; expirace s rostoucím objemem klesá.",
-    "base": "Výchozí stav",
-    "scenario": "Scénář",
-    "baseResult": "Výchozí výsledek / rok",
-    "scenarioResult": "Výsledek scénáře / rok",
-    "impact": "Dopad scénáře",
-    "perYear": "na provozní výsledek za rok",
-    "breakEvenPointValue": "Kritická změna hodnoty bodu",
-    "breakEvenPointValueSub": "při které by laboratoř byla na nule",
-    "bridge": "Most výsledku: výchozí stav → scénář",
-    "bridgeSub": "Příspěvek každé položky ke změně ročního provozního výsledku",
-    "compare": "Výchozí stav vs. scénář",
-    "compareSub": "Roční výnosy a nákladové položky"
-  },
-  "forecast": {
-    "series": "Řada",
-    "all": "Všechny aktivní metody",
-    "horizon": "Horizont",
-    "months": "{{n}} měsíce",
-    "actual": "Skutečnost",
-    "fitted": "Model (zpětně)",
-    "forecast": "Prognóza",
-    "interval": "95% interval",
-    "nextMonth": "Příští měsíc",
-    "horizonTotal": "Prognóza na {{n}} měs.",
-    "vsLast": "{{pct}} proti posledním měsícům",
-    "model": "Model",
-    "mape": "Chyba backtestu (MAPE)",
-    "mapeSub": "prognóza posledních měsíců z dřívějších dat",
-    "chart": "Prognóza objemu – {{series}}",
-    "chartSub": "Holt-Winters (trend + sezónnost) na {{n}} měsíců dopředu s 95% intervalem nejistoty",
-    "table": "Prognóza podle metod",
-    "tableSub": "Posledních 6 měsíců vs. prognóza dalších 6 měsíců – podklad pro objednávky reagencií a plánování kapacit · klikem zobrazíš metodu",
-    "last6": "Posledních 6 měs.",
-    "next6": "Dalších 6 měs. (prognóza)",
-    "change": "Změna"
-  },
-  "er": {
-    "title": "Datový model – hvězdicové schéma",
-    "intro": "Faktové tabulky (události: žádanky, výsledky, QC měření, měsíční náklady) jsou propojené s dimenzemi (číselníky: pacienti, vyšetření, oddělení, pojišťovny, analyzátory, kalendář) přes cizí klíče. Čísla v záhlaví = počet řádků.",
-    "fact": "Faktová tabulka",
-    "dim": "Dimenze",
-    "pk": "primární klíč",
-    "fk": "cizí klíč",
-    "rel": "vztah 1:N",
-    "more": "+ {{n}} dalších sloupců",
-    "columns": "Sloupce tabulek",
-    "rows": "řádků",
-    "wideNote": "Pro rychlé filtrování si aplikace po načtení vytvoří denormalizované tabulky results_wide, costs_wide a qc_wide (výsledek JOINu faktů s dimenzemi), aby všechny grafy sdílely stejnou podmínku WHERE.",
-    "desc": {
-      "fact_orders": "Žádanka = jeden odběr vzorku: kdo, kdy, pro koho, priorita a plátce.",
-      "fact_results": "Výsledek jednoho vyšetření: hodnota, příznak, časová razítka, body a výnos.",
-      "fact_qc_runs": "Měření kontrolního materiálu ve 2 úrovních pro Westgardova pravidla.",
-      "fact_monthly_costs": "Měsíční náklady metody na analyzátoru podle složek nákladového modelu.",
-      "dim_patients": "Pseudonymizovaní pacienti: pohlaví, rok narození, věková skupina, pojišťovna, okres.",
-      "dim_tests": "Katalog vyšetření: kód výkonu a body (VZP), jednotky, kritické meze, parametry nákladů.",
-      "dim_reference_ranges": "Referenční meze podle pohlaví a věku.",
-      "dim_method_registry": "Životní cyklus metod: zavedení, zrušení, plán, lessons learned, make-or-buy.",
-      "dim_departments": "Oddělení nemocnice a externí ambulance.",
-      "dim_insurers": "Zdravotní pojišťovny a hodnota bodu (fiktivní smluvní koeficient).",
-      "dim_analyzers": "Analyzátory a jejich leasing.",
-      "dim_date": "Kalendář: den v týdnu, svátky, sezóna."
-    }
-  },
-  "about": {
-    "intro": "Odkud pochází čísla v dashboardu, co je skutečné a co vymyšlené a jaká zjednodušení model obsahuje.",
-    "disclaimerTitle": "Všichni pacienti, objemy a náklady jsou fiktivní",
-    "disclaimer": "Data vygeneroval skript s pevným seedem. Nepředstavují žádnou skutečnou laboratoř, nemocnici ani pacienta. Skutečné jsou jen veřejné ceníkové údaje (body výkonů, hodnota bodu) a odborné principy (referenční meze, Westgardova pravidla, rovnice eGFR).",
-    "sourcesTitle": "Zdroje",
-    "source": "Zdroj",
-    "usage": "Použití",
-    "retrieved": "Staženo",
-    "sources": {
-      "vzp": {
-        "name": "VZP – číselník Zdravotní výkony, verze 1482",
-        "usage": "Kódy výkonů a bodové hodnoty 45 vyšetření (platnost od 1. 10. 2026)."
-      },
-      "decree": {
-        "name": "Vyhláška č. 432/2025 Sb. (úhradová vyhláška 2026)",
-        "usage": "Hodnota bodu: 0,80 Kč (801, 813), 0,90 Kč (818), 1,05 Kč (999) pro akreditovanou laboratoř."
-      },
-      "prices": {
-        "name": "Veřejný ceník pro samoplátce (webkalkulacka.agellab.cz)",
-        "usage": "Ceny pro samoplátce – vyplňují se ručně do data/source/ceny_samoplatci.csv; dokud chybí, jsou odhadnuty z bodů."
-      },
-      "mri": {
-        "name": "RCPath / ACB – National Minimum Retesting Intervals (2021)",
-        "usage": "Minimální intervaly opakování vyšetření (indikační chování)."
-      },
-      "ckdepi": {
-        "name": "Inker et al., NEJM 2021 – rovnice CKD-EPI bez rasy",
-        "usage": "Výpočet eGFR z kreatininu, věku a pohlaví."
-      },
-      "westgard": {
-        "name": "Westgard QC – Westgard Rules",
-        "usage": "Pravidla vyhodnocení vnitřní kontroly kvality."
-      }
-    },
-    "realTitle": "Co vychází ze skutečnosti",
-    "real": [
-      "Kódy výkonů a jejich body podle číselníku VZP.",
-      "Hodnota bodu pro laboratorní odbornosti podle úhradové vyhlášky 2026.",
-      "Referenční a kritické meze běžně používané v klinické biochemii a hematologii.",
-      "Pojišťovny (kódy a názvy) a struktura žádanky, výsledku a QC.",
-      "Odborné metody: eGFR CKD-EPI 2021, Westgardova pravidla, minimální intervaly opakování."
-    ],
-    "fictionalTitle": "Co je fiktivní",
-    "fictional": [
-      "Všichni pacienti, žádanky, výsledky a jejich hodnoty.",
-      "Objemy vyšetření a jejich rozložení v čase.",
-      "Ceny reagencií, QC, kalibrací, EHK, leasing a režie (realistické, ale vymyšlené).",
-      "Smluvní koeficienty pojišťoven k hodnotě bodu (±3 %).",
-      "Externí ambulance a jejich názvy, registr metod a lessons learned.",
-      "Náklady na odeslání vzorků do referenční laboratoře."
-    ],
-    "generatorTitle": "Jak data vznikla",
-    "generator": [
-      "Generátor v Pythonu (numpy, pandas, Faker cs_CZ) s pevným seedem 42 vytvoří 36 měsíců dat (10/2023 – 9/2026): 5 000 pacientů, 50 000 žádanek, ~362 000 výsledků, ~108 000 QC měření a měsíční náklady.",
-      "Žádanky vznikají po epizodách péče (hospitalizace s denními odběry, urgentní příjem, onkologické cykly, ambulance). Hodnoty mají realistická rozdělení (log-normální u enzymů a CRP), sezónnost (zánět v zimě, vitamin D v létě), korelace přes sdílené klinické faktory a malé procento hemolytických či chybných vzorků.",
-      "Nákladový model simuluje reagencie den po dni včetně expirace otevřených balení. Výsledkem je skutečný náklad na vydaný výsledek, který u málo častých metod prudce roste."
-    ],
-    "simplificationsTitle": "Zjednodušení",
-    "simplifications": [
-      "Laboratorní koeficient BONlab a regulační omezení úhradové vyhlášky nejsou modelovány (výnos = body × hodnota bodu).",
-      "Při odeslání vzorku vykazuje výkon referenční laboratoř; laboratoři zůstává jen náklad na preanalytiku a dopravu.",
-      "Náklady se k výsledkům přiřazují absorpční kalkulací (výsledky × náklad na výsledek metody v měsíci).",
-      "Stejný výkon STAT a rutina je vykazován stejným kódem.",
-      "Prognóza a what-if jsou orientační modely pro rozhodování, ne účetní predikce."
-    ],
-    "volumeTitle": "Objem dat (řádky tabulek)",
-    "privacyTitle": "Ochrana osobních údajů",
-    "privacy": "Aplikace pracuje s pseudonymizovanými fiktivními daty: místo jména a rodného čísla jen ID, rok narození a okres. Vše běží lokálně v prohlížeči – žádná data se neodesílají na server."
   }
 }

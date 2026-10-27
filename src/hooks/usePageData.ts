@@ -23,12 +23,10 @@ export function useLabels() {
     const map = (key: keyof typeof options) => new Map(options[key].map((o) => [o.value, o.label]));
     const tests = map('tests');
     const depts = map('depts');
-    const analyzers = map('analyzers');
     return {
       options,
       test: (id: string) => tests.get(id) ?? id,
       dept: (id: string) => depts.get(id) ?? id,
-      analyzer: (id: string) => analyzers.get(id) ?? id,
     };
   }, [options]);
 }
