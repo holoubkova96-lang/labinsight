@@ -35,7 +35,8 @@ Across all pages:
 - **Global filters (slicers):** period with quick ranges, department, test group, test, age group, sex and payer (health insurer vs. self-payer).
 - **Cross-filtering:** clicking a bar, cell or bubble filters the whole dashboard; active filters appear as removable chips.
 - **Shareable views:** filters and language are stored in the URL.
-- **“Show SQL”** on every chart reveals the exact query behind it; **CSV and PNG export** of every chart.
+- **“Show SQL”** on every chart reveals the exact query behind it; **CSV and PNG export** of every chart and
+  **“Download dashboard”** saves the whole page (filters, KPIs and charts) as one PNG.
 - **Czech / English** interface with locale-aware number, currency and date formats; light and dark theme; responsive layout.
 
 ## How it works

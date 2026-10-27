@@ -35,7 +35,8 @@ Na všech stránkách:
 - **Globální filtry (slicery):** období s rychlými volbami, oddělení, skupina vyšetření, vyšetření, věková skupina, pohlaví a plátce (pojišťovna vs. samoplátce).
 - **Cross-filtering:** klik na sloupec, buňku nebo bublinu přefiltruje celý dashboard; aktivní filtry se zobrazují jako „chips“.
 - **Sdílení pohledu:** filtry i jazyk se ukládají do URL.
-- **„Zobrazit SQL“** u každého grafu ukáže přesný dotaz, ze kterého graf vznikl; **export CSV a PNG** každého grafu.
+- **„Zobrazit SQL“** u každého grafu ukáže přesný dotaz, ze kterého graf vznikl; **export CSV a PNG** každého grafu a
+  **„Stáhnout dashboard“** uloží celou stránku (filtry, KPI a grafy) jako jeden obrázek PNG.
 - **Čeština / angličtina** včetně formátu čísel, měn a dat; světlý i tmavý režim; responzivní rozložení.
 
 ## Jak to funguje

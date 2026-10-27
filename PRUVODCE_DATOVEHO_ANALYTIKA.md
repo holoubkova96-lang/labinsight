@@ -221,6 +221,8 @@ Jak by dashboard chybě předešel: před zavedením stačí nakreslit křivku n
 ## 6. Stránky dashboardu – co, proč a pro koho
 
 U každého grafu je ikona ⓘ s vysvětlením pojmu, tlačítko **Zobrazit SQL** a export **CSV / PNG**.
+Tlačítkem **Stáhnout dashboard** (vpravo v liště záložek) se uloží celá stránka – filtry, KPI i grafy – jako jeden obrázek PNG,
+třeba do prezentace nebo e-mailu.
 
 ### Klinický mód
 
@@ -415,7 +417,10 @@ extrémy spadnou do krajních košů (`least` / `greatest`).
   výpočty nákladového modelu mají automatické testy. V dashboardu jdou čísla dohledat přes SQL.
 - **„Proč medián, a ne průměr TAT?“** – Pár velmi pomalých vzorků by průměr zkreslil; medián popisuje typický vzorek.
 - **„Co je bod zvratu a proč u nízké frekvence roste náklad?“** – Fixní náklady (QC, kalibrace, leasing, expirace) se dělí menším počtem výsledků.
-- **„Jak byste dashboard rozšířila?“** – Viz kapitola 11 (napojení na LIS, plánování objednávek reagencií, upozornění).
+- **„Jak byste dashboard rozšířila?“** – Viz kapitola 11 (přihlášení a role pro více laboratoří, napojení na LIS, upozornění).
+- **„Jak byste řešila přístup k datům, kdyby šlo o skutečné laboratoře?“** – Přihlášení a role přes Supabase,
+  data v úložišti s pravidly Row Level Security, každá laboratoř vidí jen svá data. Bezpečnost musí hlídat server,
+  ne jen skryté tlačítko v aplikaci (kapitola 11.1).
 - **„Co bylo nejtěžší?“** – Např. přiřadit náklady k filtrům (absorpční kalkulace) nebo nasimulovat expiraci reagencií.
 - **„Proč DuckDB, a ne Power BI?“** – Chtěla jsem projekt, který si kdokoli otevře odkazem bez licence, a ukázat SQL.
   Principy (hvězdicové schéma, míry, cross-filtering) jsou stejné jako v Power BI.
@@ -424,8 +429,77 @@ extrémy spadnou do krajních košů (`least` / `greatest`).
 
 ## 11. Možná rozšíření
 
+### 11.1 Přihlášení, role a více laboratoří
+
+Dnes je dashboard veřejná ukázka s fiktivními daty. Kdyby měl sloužit skutečným laboratořím, potřeboval by
+přihlášení a řízení přístupu. Tady je promyšlený návrh – na pohovoru ukazuje, že vidíš i bezpečnost a provoz,
+ne jen grafy.
+
+#### Proč to nejde „jen přidat“ do současné aplikace
+Aplikace je **statická stránka** (GitHub Pages) a data jsou soubory Parquet ve **veřejném repozitáři**.
+Přihlašovací okno přidané jen do prohlížeče by bylo **na oko**: kdokoli by si data stáhl přímo z adresy souboru.
+Skutečné role potřebují **server**, který data drží a u každého požadavku ověří, kdo se ptá a co smí.
+
+> **Klíčová věta na pohovor:** „Bezpečnost se nedá vyřešit v prohlížeči. Prohlížeč může tlačítko schovat,
+> ale data musí chránit server – kontrolou oprávnění u každého požadavku.“
+
+#### Navržené řešení: Supabase (free tier)
+[Supabase](https://supabase.com) je služba, která v jednom balíku nabízí:
+
+| Služba | K čemu v LabInsight |
+|---|---|
+| **Auth** (přihlášení) | e-mail + heslo nebo „magic link“, případně přihlášení přes Google / Microsoft účet nemocnice |
+| **Postgres databáze** | tabulky laboratoří, uživatelů a jejich rolí |
+| **Storage** (úložiště souborů) | soubory Parquet s daty, zvlášť pro každou laboratoř |
+| **Row Level Security (RLS)** | pravidla přímo v databázi: uživatel vidí jen řádky a soubory své laboratoře |
+
+Free tier stačí na ukázku i malý provoz (stovky MB dat, desítky tisíc přihlášených uživatelů měsíčně).
+Omezení: neaktivní projekt se po týdnu „uspí“ a probudí se až při další návštěvě.
+
+#### Role
+| Role | Prohlížet dashboard | Stáhnout data (CSV, Parquet) | Nahrát nová data | Spravovat uživatele |
+|---|:-:|:-:|:-:|:-:|
+| **Čtenář** (např. lékař) | ✓ | – | – | – |
+| **Analytik** | ✓ | ✓ | – | – |
+| **Správce laboratoře** | ✓ | ✓ | ✓ | ✓ (jen své laboratoře) |
+
+Role se přiděluje **pro konkrétní laboratoř** – jeden člověk může být analytikem v jedné laboratoři a čtenářem v jiné.
+
+#### Datový model navíc
+```
+laboratories (lab_id, name)
+memberships  (user_id, lab_id, role)      -- kdo je v které laboratoři a s jakou rolí
+datasets     (dataset_id, lab_id, period, file_path, uploaded_by, uploaded_at)
+```
+Ke stávajícímu hvězdicovému schématu by přibyl sloupec **`lab_id`** ve faktových tabulkách. Díky němu jde
+porovnávat laboratoře mezi sebou (benchmarking) – a zároveň hlídat, kdo smí vidět čí data.
+
+#### Jak by to fungovalo
+1. Uživatel se přihlásí → Supabase vrátí **token** (podepsaný „průkaz“, kdo je).
+2. Aplikace si s tokenem vyžádá data své laboratoře. **RLS pravidlo** v databázi pustí jen soubory,
+   ke kterým má uživatel členství; ostatní server vůbec nevydá.
+3. Soubory se stahují přes **podepsané odkazy s krátkou platností** (např. 10 minut), ne přes veřejnou adresu.
+4. DuckDB-WASM v prohlížeči pak pracuje stejně jako dnes – dashboard se téměř nemění.
+5. **Nahrání dat** (správce laboratoře): formulář pro soubor CSV/Parquet → kontrola formátu a povinných
+   sloupců → uložení do Storage → záznam do tabulky `datasets`.
+6. **Stahování dat** a export CSV vidí jen role Analytik a Správce. Tlačítko se ostatním skryje,
+   ale hlavně ho **server odmítne** – skrytí v aplikaci je jen pohodlí, ne ochrana.
+
+#### Na co myslet (otázky, které můžeš dostat)
+- **Osobní údaje (GDPR):** do cloudu jen pseudonymizovaná data (bez jmen a rodných čísel), smlouva o zpracování
+  osobních údajů s poskytovatelem, datacentrum v EU.
+- **Audit:** kdo a kdy data nahrál nebo stáhl (tabulka logů).
+- **Kvalita nahraných dat:** validace před uložením (správné sloupce, jednotky, rozsahy hodnot), jinak
+  by jedna chybná dávka zkreslila celý dashboard.
+- **Veřejná ukázka zůstane:** recruiter musí vidět demo bez účtu → fiktivní data dál na GitHub Pages,
+  přihlášená verze zvlášť.
+- **Alternativy:** Firebase (Google), Clerk nebo Auth0 jen na přihlášení, případně firemní přihlášení přes
+  Microsoft Entra ID v nemocnici. Supabase vychází nejlépe, protože přihlášení, databáze, úložiště i pravidla
+  přístupu jsou na jednom místě.
+
+### 11.2 Další rozšíření
+
 - **Napojení na skutečný laboratorní informační systém (LIS)** a pravidelná aktualizace dat (např. noční export do Parquetu).
-- **Backend a přihlášení**, pokud by šlo o skutečná data (role: lékař, ekonom, vedení).
 - **Simulátor zavedení nové metody:** formulář s parametry (body, cena reagencie, stabilita, očekávaná frekvence) → bod zvratu dřív, než se metoda zavede.
 - **Make-or-buy:** porovnání vlastního provádění s odesláním vzorků do referenční laboratoře.
 - **Prognóza objemů** (trend + sezónnost) pro objednávky reagencií a plánování kapacit.
