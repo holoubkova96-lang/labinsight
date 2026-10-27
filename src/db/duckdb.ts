@@ -44,9 +44,19 @@ export type LoadProgress = { step: 'engine' | 'tables' | 'ready'; loaded: number
 let dbPromise: Promise<duckdb.AsyncDuckDBConnection> | null = null;
 let ready = false;
 
+/** První a poslední den dat (YYYY-MM-DD) – zjistí se z dat po načtení, nic není napevno. */
+export type DataRange = { start: string; end: string };
+let dataRange: DataRange | null = null;
+
 /** Je databáze už načtená (např. při návratu z úvodní stránky)? */
 export function isDbReady(): boolean {
   return ready;
+}
+
+/** Rozsah dat; dostupný po načtení databáze (dashboard se vykreslí až potom). */
+export function getDataRange(): DataRange {
+  if (!dataRange) throw new Error('Data ještě nejsou načtená');
+  return dataRange;
 }
 
 export function initDb(onProgress?: (p: LoadProgress) => void): Promise<duckdb.AsyncDuckDBConnection> {
@@ -77,6 +87,13 @@ export function initDb(onProgress?: (p: LoadProgress) => void): Promise<duckdb.A
         await conn.query(`CREATE TABLE ${name} AS SELECT * FROM read_parquet('${name}.parquet')`);
       }
       for (const sql of DERIVED_SQL) await conn.query(sql);
+      // období dat = nejstarší a nejnovější odběr; při přidání dat se samo posune
+      const range = (
+        await conn.query(`SELECT strftime(min(collected_at), '%Y-%m-%d') AS start,
+                                 strftime(max(collected_at), '%Y-%m-%d') AS "end"
+                          FROM fact_orders`)
+      ).toArray()[0];
+      dataRange = { start: String(range.start), end: String(range.end) };
       ready = true;
       onProgress?.({ step: 'ready', loaded, total: TABLES.length });
       return conn;

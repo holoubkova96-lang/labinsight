@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { getDataRange, type DataRange } from '../../db/duckdb';
 import { useQuery } from '../../db/useQuery';
 import { useFormat } from '../../i18n/format';
 import type { ListKey } from '../../store/filters';
@@ -6,9 +7,10 @@ import type { ListKey } from '../../store/filters';
 export type Option = { value: string; label: string; group?: string; parent?: string };
 export type SlicerOptions = Record<ListKey, Option[]>;
 
-/** Rozsah dat z generátoru – rychlé volby období se počítají od jeho konce. */
-export const DATA_START = '2023-10-01';
-export const DATA_END = '2026-09-30';
+/** Rozsah dat (první a poslední den) – rychlé volby období se počítají od jeho konce. */
+export function useDataRange(): DataRange {
+  return getDataRange();
+}
 
 const AGE_GROUPS = ['0-17', '18-39', '40-64', '65-79', '80+'];
 

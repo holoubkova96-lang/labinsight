@@ -88,6 +88,8 @@ python data_gen/generate.py      # nebo: npm run data
 Generátor je deterministický (seed 42) a vytvoří 36 měsíců dat (10/2023 – 9/2026):
 5 000 pacientů, 50 000 žádanek, ~363 000 výsledků a měsíční náklady metod.
 Ceny pro samoplátce se berou z `data/source/ceny_samoplatci.csv`; dokud není vyplněný, odhadnou se z bodů.
+Dashboard si první a poslední den období zjistí přímo z dat, takže delší nebo kratší období se ve filtrech i grafech projeví
+bez úpravy kódu – stačí data přegenerovat, commitnout a pushnout.
 
 ## Zdroje dat
 

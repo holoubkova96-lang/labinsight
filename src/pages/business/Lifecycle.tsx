@@ -9,7 +9,7 @@ import { useQuery } from '../../db/useQuery';
 import { breakEven } from '../../domain/costModel';
 import { useLabels, useWhere } from '../../hooks/usePageData';
 import { useFormat } from '../../i18n/format';
-import { DATA_END } from '../../components/slicers/useSlicerOptions';
+import { useDataRange } from '../../components/slicers/useSlicerOptions';
 import { useMethodParams } from './useMethodParams';
 
 type Method = {
@@ -48,6 +48,7 @@ export default function Lifecycle() {
   const theme = useChartTheme();
   const labels = useLabels();
   const methods = useMethodParams();
+  const { end: dataEnd } = useDataRange();
   const { where } = useWhere('results');
   const { where: costWhere, ignoredNote } = useWhere('costs');
 
@@ -107,7 +108,7 @@ ORDER BY month_key, test_id`;
     .filter((m) => !isCancelled(m))
     .reduce((s, m) => s + (totals.get(m.test_id) ?? 0), 0);
   const colorOf = (m: Method) => (isCancelled(m) ? theme.series[7] : theme.series[0]);
-  const end = new Date(`${DATA_END}T23:59:59`).getTime();
+  const end = new Date(`${dataEnd}T23:59:59`).getTime();
 
   // --- Gantt: zavedení → zrušení ---
   const ganttOption: EChartsOption = {

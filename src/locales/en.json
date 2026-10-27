@@ -50,7 +50,7 @@
       "ytd": "YTD",
       "all": "All"
     },
-    "presetsHint": "Quick ranges count back from the end of the data (Sep 30, 2026).",
+    "presetsHint": "Quick ranges count back from the end of the data ({{date}}).",
     "depts": "Department / requester",
     "groups": "Test group",
     "tests": "Test",

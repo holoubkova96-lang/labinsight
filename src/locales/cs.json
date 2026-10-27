@@ -50,7 +50,7 @@
       "ytd": "Letos",
       "all": "Vše"
     },
-    "presetsHint": "Rychlé volby se počítají od konce dat (30. 9. 2026).",
+    "presetsHint": "Rychlé volby se počítají od konce dat ({{date}}).",
     "depts": "Oddělení / žadatel",
     "groups": "Skupina vyšetření",
     "tests": "Vyšetření",

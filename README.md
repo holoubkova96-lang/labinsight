@@ -88,6 +88,8 @@ python data_gen/generate.py      # or: npm run data
 The generator is deterministic (seed 42) and produces 36 months of data (10/2023 – 9/2026):
 5,000 patients, 50,000 orders, ~363,000 results and monthly costs per method.
 Self-payer prices are taken from `data/source/ceny_samoplatci.csv` when filled in, otherwise estimated from points.
+The dashboard reads the first and last date from the data, so a longer or shorter period shows up in the filters and charts
+without any code change – regenerate, commit and push.
 
 ## Data sources
 

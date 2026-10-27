@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useFormat } from '../../i18n/format';
 import { LIST_KEYS, useFilters, useFilterValues } from '../../store/filters';
 import { Icon } from '../ui/Icon';
-import { DATA_END, DATA_START, useSlicerOptions } from './useSlicerOptions';
+import { useDataRange, useSlicerOptions } from './useSlicerOptions';
 
 /** Aktivní filtry jako „chips“ – každý jde zrušit jedním klikem. */
 export function FilterChips() {
@@ -13,12 +13,13 @@ export function FilterChips() {
   const clear = useFilters((s) => s.clear);
   const clearAll = useFilters((s) => s.clearAll);
   const options = useSlicerOptions();
+  const { start: dataStart, end: dataEnd } = useDataRange();
 
   const chips: { id: string; label: string; onRemove: () => void }[] = [];
   if (filters.from || filters.to) {
     chips.push({
       id: 'range',
-      label: `${t('slicers.period')}: ${f.date(filters.from ?? DATA_START)} – ${f.date(filters.to ?? DATA_END)}`,
+      label: `${t('slicers.period')}: ${f.date(filters.from ?? dataStart)} – ${f.date(filters.to ?? dataEnd)}`,
       onRemove: () => clear('from'),
     });
   }
