@@ -1,7 +1,6 @@
 # LabInsight
 
 **Interactive analytics dashboard for a clinical biochemistry & haematology laboratory.**
-It answers one business question: *does a laboratory method pay off given its volume and its cost?*
 
 🔗 **Live demo:** https://holoubkova96-lang.github.io/labinsight/
 🇨🇿 Česká verze: [README.cs.md](README.cs.md) · 📘 Guide (Czech): [PRUVODCE_DATOVEHO_ANALYTIKA.md](PRUVODCE_DATOVEHO_ANALYTIKA.md)
@@ -9,13 +8,6 @@ It answers one business question: *does a laboratory method pay off given its vo
 > ⚠️ All patients, volumes and costs are **fictional**. Only the public tariff data (procedure points from the VZP code list, point value from Decree No. 432/2025 Coll.) are real.
 
 ---
-
-## Why this project
-
-Laboratories regularly introduce new methods that later have to be discontinued because they lose money:
-low volume does not cover fixed costs such as daily quality control, calibration, external quality assessment
-and reagents that expire once opened. LabInsight shows **how cost per result grows as volume falls** and which
-methods are worth keeping, so such decisions can be made *before* a method is introduced.
 
 ## Features
 
