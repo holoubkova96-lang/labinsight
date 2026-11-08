@@ -3,7 +3,7 @@
 **Interactive analytics dashboard for a clinical biochemistry & hematology laboratory.**
 
 🔗 **Live demo:** https://holoubkova96-lang.github.io/labinsight/
-🇨🇿 Česká verze: [README.cs.md](README.cs.md) · 📘 Guide (Czech): [PRUVODCE_DATOVEHO_ANALYTIKA.md](PRUVODCE_DATOVEHO_ANALYTIKA.md)
+🇨🇿 Česká verze: [README.cs.md](README.cs.md)
 
 > ⚠️ All patients, volumes and costs are **fictional**. Only the public tariff data (procedure points from the VZP code list, point value from Decree No. 432/2025 Coll.) are real.
 
@@ -11,7 +11,7 @@
 
 ## Features
 
-The dashboard has two switchable modes with their own accent colour:
+The dashboard has two switchable modes with their own accent color:
 
 | Mode | Page | What it shows |
 |---|---|---|
@@ -41,8 +41,8 @@ Python generator (fixed seed) ──► Parquet files ──► DuckDB-WASM in t
   Every KPI and chart is a real SQL query over ~363,000 results.
 - **Star schema.** Fact tables (`fact_orders`, `fact_results`, `fact_monthly_costs`) link to dimensions
   (`dim_patients`, `dim_tests`, `dim_departments`, `dim_reference_ranges`, `dim_method_registry`).
-  After loading, the app builds denormalised `results_wide` / `costs_wide` tables so every chart shares one `WHERE` clause.
-- **Cost model.** Monthly cost per method = reagents + consumables + QC + calibration + **reagent expiry** + EQA + staff + analyser lease
+  After loading, the app builds denormalized `results_wide` / `costs_wide` tables so every chart shares one `WHERE` clause.
+- **Cost model.** Monthly cost per method = reagents + consumables + QC + calibration + **reagent expiry** + EQA + staff + analyzer lease
   + validation write-off + overhead. Divided by reported results it gives the *actual cost per result*.
   Costs are assigned to filtered results by absorption costing (results × the method's cost per result in that month).
 
@@ -92,7 +92,7 @@ without any code change – regenerate, commit and push.
 | [Public self-payer price list](https://webkalkulacka.agellab.cz/) | Self-payer prices (entered manually, not scraped) | – |
 | [Inker et al., NEJM 2021](https://doi.org/10.1056/NEJMoa2102953) | eGFR (CKD-EPI 2021 equation) | – |
 
-**Simplifications:** the BONlab laboratory coefficient and regulatory caps of the decree are not modelled
+**Simplifications:** the BONlab laboratory coefficient and regulatory caps of the decree are not modeled
 (revenue = points × point value); insurer contract coefficients (±3 %), reagent prices, QC, lease and overhead are fictional
 but realistic.
 

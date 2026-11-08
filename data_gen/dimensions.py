@@ -75,7 +75,7 @@ INTERNAL_DEPTS = [
     ("CHIR", "Chirurgie", "Surgery", "CHIR", True, .10, 2.5, .25),
     ("JIP", "JIP interní", "Intermediate care unit", "JIP", True, .07, 6.0, .60),
     ("ARO", "ARO", "Intensive care unit (ICU)", "ARO", True, .04, 7.0, .70),
-    ("PED", "Pediatrie", "Paediatrics", "PED", True, .05, 2.0, .20),
+    ("PED", "Pediatrie", "Pediatrics", "PED", True, .05, 2.0, .20),
     ("ONK", "Onkologie", "Oncology", "ONK", False, .08, 4.0, .05),
     ("URG", "Urgentní příjem", "Emergency department", "URG", False, .16, 1.15, .85),
 ]
@@ -83,12 +83,12 @@ INTERNAL_DEPTS = [
 # (kategorie, CZ, EN, počet ambulancí, zaměření pacientů)
 EXTERNAL_TYPES = [
     ("PL", "Praktický lékař", "General practitioner", 5, None),
-    ("PLDD", "Praktický lékař pro děti a dorost", "Paediatric GP", 2, "child"),
+    ("PLDD", "Praktický lékař pro děti a dorost", "Pediatric GP", 2, "child"),
     ("DIAB", "Diabetologie", "Diabetology", 2, "diabetes"),
     ("KARD", "Kardiologie", "Cardiology", 2, "cardiac"),
     ("NEFRO", "Nefrologie", "Nephrology", 1, "ckd"),
     ("ENDO", "Endokrinologie", "Endocrinology", 1, "thyroid"),
-    ("GYN", "Gynekologie", "Gynaecology", 2, "female"),
+    ("GYN", "Gynekologie", "Gynecology", 2, "female"),
     ("INTA", "Interní ambulance", "Internal medicine outpatient clinic", 2, None),
 ]
 EXTERNAL_ORDER_SHARE = 0.32

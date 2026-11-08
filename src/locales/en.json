@@ -1,7 +1,7 @@
 {
   "app": {
     "name": "LabInsight",
-    "tagline": "Analytics dashboard for a clinical biochemistry & haematology laboratory",
+    "tagline": "Analytics dashboard for a clinical biochemistry & hematology laboratory",
     "disclaimer": "Patients, volumes and costs are entirely fictional. Procedure points and the point value come from real sources (VZP, Decree No. 432/2025 Coll.).",
     "disclaimerShort": "Fictional data"
   },
@@ -204,7 +204,7 @@
     },
     "issue": {
       "NONE": "No defect",
-      "HEMOLYSIS": "Haemolysis",
+      "HEMOLYSIS": "Hemolysis",
       "CLOT": "Clotted",
       "INSUFFICIENT": "Insufficient volume"
     },
@@ -269,7 +269,7 @@
       "cut": "low volume and loss-making – consider sending out or discontinuing"
     },
     "bubble": "Method volume vs. margin",
-    "bubbleSub": "Bubble size = total revenue · colour = profitability · click to pick a method for the cost curve",
+    "bubbleSub": "Bubble size = total revenue · color = profitability · click to pick a method for the cost curve",
     "curve": "Cost per result by volume – {{test}}",
     "curveSub": "Model: fixed costs (QC, calibration, lease, EQA) are spread over fewer results; at low volume reagents also expire",
     "costCurve": "Cost per result (model)",
@@ -299,7 +299,7 @@
     "gantt": "Method lifecycle",
     "ganttSub": "From introduction to discontinuation · blue successful, red discontinued",
     "plan": "Planned vs. actual volume",
-    "planSub": "Average results per month · grey plan, coloured actual",
+    "planSub": "Average results per month · grey plan, colored actual",
     "planned": "Plan",
     "actual": "Actual",
     "cumulative": "Cumulative result of new methods",

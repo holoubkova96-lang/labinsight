@@ -4,7 +4,7 @@
 Odpovídá na jednu byznysovou otázku: *vyplatí se nám tato metoda vzhledem k její frekvenci a nákladům?*
 
 🔗 **Živé demo:** https://holoubkova96-lang.github.io/labinsight/
-🇬🇧 English version: [README.md](README.md) · 📘 Průvodce projektem: [PRUVODCE_DATOVEHO_ANALYTIKA.md](PRUVODCE_DATOVEHO_ANALYTIKA.md)
+🇬🇧 English version: [README.md](README.md)
 
 > ⚠️ Všichni pacienti, objemy a náklady jsou **fiktivní**. Skutečné jsou jen veřejné úhradové údaje (body výkonů z číselníku VZP, hodnota bodu z vyhlášky č. 432/2025 Sb.).
 

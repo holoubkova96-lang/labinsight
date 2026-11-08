@@ -34,4 +34,7 @@ npm-debug.log*
 .claude/
 
 # Soukromé poznámky autorky (nejsou součástí repozitáře ani aplikace)
-POZNAMKY_SQL_A_TECHNOLOGIE.md
+soukrome_podklady/
+POZNAMKY_SQL_A_TECHNOLOGIE.*
+PRUVODCE_DATOVEHO_ANALYTIKA.*
+*.pdf

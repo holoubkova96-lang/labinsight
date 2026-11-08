@@ -36,7 +36,7 @@ NEW_METHODS = {
                 reason_cs="Malý objem při velkém balení reagencie – expirace otevřených balení.",
                 reason_en="Small volume with a large reagent pack – opened packs expired.",
                 lessons_cs="Folát se ordinuje hlavně spolu s B12, ale gastroenterologie i hematologie posílaly vzorky jinam. Varovat měl nepoměr balení 100 testů vs. 28denní stabilita při ~40 testech měsíčně.",
-                lessons_en="Folate is mostly ordered together with B12, but gastroenterology and haematology kept sending samples elsewhere. The mismatch of a 100-test pack with 28-day stability at ~40 tests a month was the warning sign."),
+                lessons_en="Folate is mostly ordered together with B12, but gastroenterology and hematology kept sending samples elsewhere. The mismatch of a 100-test pack with 28-day stability at ~40 tests a month was the warning sign."),
     "PCT": dict(validation=110_000, training=15_000, handling=40, tat=24,
                 reason_cs=None, reason_en=None,
                 lessons_cs="Osvědčila se: jasná klinická poptávka (sepse, ATB stewardship) z ARO, JIP a interny a STAT režim, který referenční laboratoř nenabídne.",
