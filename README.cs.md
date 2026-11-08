@@ -10,13 +10,6 @@ Odpovídá na jednu byznysovou otázku: *vyplatí se nám tato metoda vzhledem k
 
 ---
 
-## Proč tento projekt
-
-Laboratoře pravidelně zavádějí nové metody, které pak kvůli nevýhodnosti ruší: nízká frekvence nepokryje fixní
-náklady, jako je denní kontrola kvality, kalibrace, externí hodnocení kvality a reagencie, které po otevření expirují.
-LabInsight ukazuje, **jak náklad na jeden výsledek roste s klesající frekvencí** a které metody se vyplatí udržet –
-aby se takové rozhodnutí dalo udělat *dřív*, než se metoda zavede.
-
 ## Co dashboard umí
 
 Dashboard má dva přepínatelné módy, každý s vlastní akcentovou barvou:
