@@ -1,6 +1,6 @@
 # LabInsight
 
-**Interactive analytics dashboard for a clinical biochemistry & haematology laboratory.**
+**Interactive analytics dashboard for a clinical biochemistry & hematology laboratory.**
 
 🔗 **Live demo:** https://holoubkova96-lang.github.io/labinsight/
 🇨🇿 Česká verze: [README.cs.md](README.cs.md) · 📘 Guide (Czech): [PRUVODCE_DATOVEHO_ANALYTIKA.md](PRUVODCE_DATOVEHO_ANALYTIKA.md)
