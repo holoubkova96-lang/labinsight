@@ -1,7 +1,6 @@
 # LabInsight
 
 **Interaktivní analytický dashboard klinické biochemicko-hematologické laboratoře.**
-Odpovídá na jednu byznysovou otázku: *vyplatí se nám tato metoda vzhledem k její frekvenci a nákladům?*
 
 🔗 **Živé demo:** https://holoubkova96-lang.github.io/labinsight/
 🇬🇧 English version: [README.md](README.md)
